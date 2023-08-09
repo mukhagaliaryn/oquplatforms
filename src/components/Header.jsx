@@ -55,21 +55,21 @@ const Header = () => {
                                 <DropdownMenu.Item className="outline-none">
                                     <Link
                                         href={"/accounts/user"}
-                                        className="block text-neutral-600 px-4 py-2 border-b hover:bg-neutral-200"
+                                        className="block text-neutral-600 px-4 py-2 border-b hover:bg-orange-100"
                                     >Аккаунт</Link>
                                 </DropdownMenu.Item>
                                 <DropdownMenu.Item className="outline-none">
                                     <Link
                                         href={"/accounts/user/settings"}
-                                        className="block text-neutral-600 px-4 py-2 border-b hover:bg-neutral-200"
+                                        className="block text-neutral-600 px-4 py-2 border-b hover:bg-orange-100"
                                     >Баптаулар</Link>
                                 </DropdownMenu.Item>
                                 <DropdownMenu.Item
                                     onClick={logoutHandler}
-                                    className="px-4 py-2 border-b flex items-center cursor-pointer outline-none hover:bg-neutral-200"
+                                    className="px-4 py-2 border-b flex items-center cursor-pointer outline-none hover:bg-orange-100"
                                 >
                                     <div className="text-xl text-neutral-500 mr-2">
-                                        <IoExitOutline />
+                                        <IoExitOutline className="text-2xl"/>
                                     </div>
                                     <span className="text-neutral-600">Жүйеден шығу</span>
                                 </DropdownMenu.Item>
@@ -108,15 +108,15 @@ const Header = () => {
                             </div>
 
                             <div id="nav" className="flex flex-col">
-                                <Link href={"/"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-neutral-200">Басты бет</Link>
-                                <Link href={"/"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-neutral-200">Өнімдер</Link>
-                                <Link href={"/"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-neutral-200">Біз жайлы</Link>
+                                <Link href={"/"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-orange-100">Басты бет</Link>
+                                <Link href={"/"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-orange-100">Өнімдер</Link>
+                                <Link href={"/"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-orange-100">Біз жайлы</Link>
                             </div>
 
                             {isAuthenticated ?
                                 <div className="">
                                     {user &&
-                                        <div className="flex items-center px-4 py-3 border-b bg-neutral-200">
+                                        <div className="flex items-center px-4 py-3 border-b bg-orange-100">
                                             <Image src={user.image ? user.image : "/icons/user.png"} width={300} height={300} className="w-10 border-2 border-orange-400 p-1 rounded-full" alt="image" />
                                             <div className="ml-2">
                                                 <h1 className="text-neutral-600 font-semibold">{user.first_name} {user.last_name}</h1>
@@ -125,9 +125,9 @@ const Header = () => {
                                         </div>
                                     }
                                     <div className="flex flex-col">
-                                        <Link href={"/accounts/user"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-neutral-200">Аккаунт</Link>
-                                        <Link href={"/accounts/user/settings"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-neutral-200">Баптаулар</Link>
-                                        <span onClick={logoutHandler} className="cursor-pointer text-neutral-600 transition-all px-4 py-3 border-b hover:bg-neutral-200">Шығу</span>
+                                        <Link href={"/accounts/user"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-orange-100">Аккаунт</Link>
+                                        <Link href={"/accounts/user/settings"} className="text-neutral-600 transition-all px-4 py-3 border-b hover:bg-orange-100">Баптаулар</Link>
+                                        <span onClick={logoutHandler} className="cursor-pointer text-neutral-600 transition-all px-4 py-3 border-b hover:bg-orange-100">Шығу</span>
                                     </div>
                                 </div>
                                 :
