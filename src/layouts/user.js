@@ -7,7 +7,7 @@ import { PiPasswordThin } from "react-icons/pi";
 
 
 const UserAccountLayout = (props) => {
-    const router = useRouter()
+    const router = useRouter();
 
     return (
         <MainLayout

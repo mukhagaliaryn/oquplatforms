@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { check_auth_status } from "../redux/actions/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "../components/header";
+import Sidebar from "../components/sidebar";
 
 
 const MainLayout = (props) => {
     const router = useRouter();
+    const user = useSelector(state => state.auth.user)
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const dispatch = useDispatch();
 
 
@@ -18,7 +21,7 @@ const MainLayout = (props) => {
             dispatch(check_auth_status());
 
     }, [dispatch]);
-    
+
     return (
         <React.Fragment>
             <Head>
@@ -30,16 +33,41 @@ const MainLayout = (props) => {
                     localStorage.setItem("currentPage", "${router.asPath}");
                 `}
             </Script>
-            <div id="root" className="min-h-screen flex flex-col">
-                <div id="main-wrapper" className="flex-1">
-                    <Header />
 
-                    <div id="page-props">
-                        {props.children}
+            <div id="root" className={`h-screen flex flex-col ${isAuthenticated ? null : "overflow-y-auto"}`}>
+                {isAuthenticated ?
+                    // for platform app
+                    <div id="main-wrapper" className="flex-1 flex">
+                        <Sidebar />
+
+                        <div className="h-screen flex-1 overflow-y-auto">
+                            <Header
+                                isAuthenticated={isAuthenticated}
+                                user={user}
+                            />
+
+                            <div id="page-props" className="p-5">
+                                {props.children}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    :
+                    // for main app
+                    <React.Fragment>
+                        <div id="main-wrapper" className="flex-1">
+                            <Header 
+                                isAuthenticated={isAuthenticated} 
+                                user={user}
+                            />
 
-                <Footer />
+                            <div id="page-props">
+                                {props.children}
+                            </div>
+                        </div>
+
+                        <Footer />
+                    </React.Fragment>
+                }
             </div>
         </React.Fragment>
     )
