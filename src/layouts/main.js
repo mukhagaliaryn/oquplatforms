@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import { check_auth_status } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/header";
-import Sidebar from "../components/sidebar";
 
 
 const MainLayout = (props) => {
@@ -34,40 +33,20 @@ const MainLayout = (props) => {
                 `}
             </Script>
 
-            <div id="root" className={`h-screen flex flex-col ${isAuthenticated ? null : "overflow-y-auto"}`}>
-                {isAuthenticated ?
-                    // for platform app
-                    <div id="main-wrapper" className="flex-1 flex">
-                        <Sidebar />
-
-                        <div className="h-screen flex-1 overflow-y-auto">
-                            <Header
-                                isAuthenticated={isAuthenticated}
-                                user={user}
-                            />
-
-                            <div id="page-props" className="p-5">
-                                {props.children}
-                            </div>
+            <div id="root" className="min-h-screen flex flex-col">
+                <React.Fragment>
+                    <div id="main-wrapper" className="flex-1">
+                        <Header
+                            isAuthenticated={isAuthenticated}
+                            user={user}
+                        />
+                        <div id="page-props">
+                            {props.children}
                         </div>
                     </div>
-                    :
-                    // for main app
-                    <React.Fragment>
-                        <div id="main-wrapper" className="flex-1">
-                            <Header 
-                                isAuthenticated={isAuthenticated} 
-                                user={user}
-                            />
 
-                            <div id="page-props">
-                                {props.children}
-                            </div>
-                        </div>
-
-                        <Footer />
-                    </React.Fragment>
-                }
+                    <Footer />
+                </React.Fragment>
             </div>
         </React.Fragment>
     )

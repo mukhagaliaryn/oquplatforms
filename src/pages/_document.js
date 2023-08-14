@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link rel="shortcut icon" href="/icons/icon.png" type="image/x-icon" />
       </Head>
-      <body className="font-inter overflow-hidden">
+      <body className="font-inter">
         <Main />
         <NextScript />
       </body>
