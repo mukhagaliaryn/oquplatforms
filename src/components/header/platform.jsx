@@ -2,9 +2,12 @@ import React from "react";
 import Dropdown from "./Dropdown";
 import Link from "next/link";
 import { CiGrid41, CiHome, CiSearch } from "react-icons/ci";
+import { useRouter } from "next/router";
 
 
 const PlatformHeader = ({user, logoutHandler}) => {
+    const router = useRouter();
+
     return (
         <div id="intro-header" className="container mx-auto px-5 flex justify-between h-16">
             <div id="hidden" className="block md:hidden"></div>
@@ -15,14 +18,20 @@ const PlatformHeader = ({user, logoutHandler}) => {
 
             <div className="hidden lg:flex">
                 <nav className="flex mr-5">
-                    <Link href={"/"} className="flex h-full px-2 items-center text-neutral-600 border-b-4 border-orange-400">
+                    <Link 
+                        href={"/"} 
+                        className={`flex h-full px-2 items-center text-neutral-600 border-b-2 ${router.pathname == "/" ? "border-orange-400 text-orange-400" : "border-transparent"}`}
+                    >
                         <CiHome className="text-2xl mr-2"/>
                         <span>Басты бет</span>
                     </Link>
 
-                    <Link href={"/"} className="flex h-full px-2 items-center text-neutral-600">
+                    <Link 
+                        href={"/explorer"} 
+                        className={`flex h-full px-2 items-center text-neutral-600 border-b-2 ${router.pathname == "/explorer" ? "border-orange-400 text-orange-400" : "border-transparent"}`}
+                    >
                         <CiGrid41 className="text-2xl mr-2"/>
-                        <span>Басты бет</span>
+                        <span>Қосымшалар</span>
                     </Link>
                 </nav>
 

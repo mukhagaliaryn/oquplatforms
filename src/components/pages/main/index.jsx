@@ -160,7 +160,7 @@ const LandingComponent = () => {
 
             {/* Join today */}
             {/* ===================================================================================== */}
-            <div className="bg-gray-50">
+            <div className="bg-neutral-50">
                 <div className="max-w-2xl text-center mx-auto py-10 md:py-20 px-5">
                     <h1 className="text-2xl md:text-4xl font-bold text-center mb-5 md:mb-10">Қазірден бізге қосыл!</h1>
                     <p className="mb-5 md:mb-10 text-neutral-600">
