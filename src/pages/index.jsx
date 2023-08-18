@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import MainComponent from "../components/pages/platforms/students";
 
 
-
 const Main = () => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 

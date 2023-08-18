@@ -1,5 +1,5 @@
 import According from "@/src/components/According";
-import { BtnLink } from "@/src/components/Button";
+import { BtnLink, BtnLinkPrimary } from "@/src/components/Button";
 import MainLayout from "@/src/layouts/main";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -53,6 +53,12 @@ const Product = () => {
                             <BtnLink href={"/"}>
                                 Жазылу
                             </BtnLink>
+
+                            <div className="mt-2 lg:mt-0 lg:ml-2">
+                                <BtnLinkPrimary href={"/product/23/chapter/23"}>
+                                    Сабаққа өту
+                                </BtnLinkPrimary>
+                            </div>
                         </div>
                     </div>
 

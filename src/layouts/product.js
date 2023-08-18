@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/header";
 
 
-const MainLayout = (props) => {
+const ProductLayout = (props) => {
     const router = useRouter();
     const user = useSelector(state => state.auth.user)
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
@@ -34,25 +34,25 @@ const MainLayout = (props) => {
             </Script>
 
             <div id="root" className="min-h-screen flex flex-col">
-                <div id="main-wrapper" className="flex-1">
+                <div className="flex-1">
                     <Header
                         isAuthenticated={isAuthenticated}
                         user={user}
                     />
-                    <div id="page-props">
+                    <div id="page-props" className="flex-1">
                         {props.children}
                     </div>
                 </div>
-
+                
                 <Footer />
             </div>
         </React.Fragment>
     )
 }
 
-MainLayout.defaultProps = {
+ProductLayout.defaultProps = {
     title: "OQU platforms",
     content: "OQU platforms - онлайн білім беру микросервистері"
 }
 
-export default MainLayout;
+export default ProductLayout;
