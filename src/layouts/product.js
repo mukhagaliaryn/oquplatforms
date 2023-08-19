@@ -32,19 +32,21 @@ const ProductLayout = (props) => {
                     localStorage.setItem("currentPage", "${router.asPath}");
                 `}
             </Script>
+            
+            <style jsx global>{`
+                body {
+                    overflow: hidden;
+                }
+            `}</style>
 
             <div id="root" className="min-h-screen flex flex-col">
-                <div className="flex-1">
-                    <Header
-                        isAuthenticated={isAuthenticated}
-                        user={user}
-                    />
-                    <div id="page-props" className="flex-1">
-                        {props.children}
-                    </div>
+                <Header
+                    isAuthenticated={isAuthenticated}
+                    user={user}
+                />
+                <div id="page-props" className="overflow-y-auto" style={{ height: "calc(100vh - 65px)" }}>
+                    {props.children}
                 </div>
-                
-                <Footer />
             </div>
         </React.Fragment>
     )

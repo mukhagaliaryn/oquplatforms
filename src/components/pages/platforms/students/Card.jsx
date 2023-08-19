@@ -24,7 +24,7 @@ const Card = ({item}) => {
                 </div>
                 <div className="mt-2">
                     <div className="h-1 rounded bg-neutral-100 overflow-hidden">
-                        <div className={`h-full bg-orange-400 rounded w-[${item.progress}%]`}></div>
+                        <div className="h-full bg-orange-400 rounded" style={{ width: `${item.progress}%`}}></div>
                     </div>
                 </div>
             </div>

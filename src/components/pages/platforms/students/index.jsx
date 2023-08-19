@@ -104,7 +104,7 @@ const MainComponent = () => {
                                 <div key={i} className="mb-5">
                                     <h1 className="text-neutral-600 text-sm">{item.title} - {item.progress}</h1>
                                     <div className="h-2 bg-neutral-100 rounded">
-                                        <div className={`h-full bg-orange-400 rounded w-[${item.progress}%]`}></div>
+                                        <div className="h-full bg-orange-400 rounded" style={{width: `${item.progress}%`}}></div>
                                     </div>  
                                 </div>
                             )
