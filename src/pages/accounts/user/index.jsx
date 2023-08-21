@@ -134,16 +134,6 @@ const UserAccount = ({ user_account, access }) => {
                         {/* User account form */}
                         <form className="w-full" onSubmit={handleSubmit2(onSubmitAccount)}>
                             <div className="mb-4">
-                                <label htmlFor="" className="w-full block text-left font-bold mb-2 text-neutral-600">Облыс</label>
-                                <select defaultValue={user_account.area} {...register2("area")} className="border rounded-lg py-2 px-4 block w-full text-neutral-600">
-                                    <option value="NOT_DEFINED">Таңдалмаған</option>
-                                    <option value="TURKESTAN">Түркістан облысы</option>
-                                    <option value="ALMATY_AREA">Алматы облысы</option>
-                                    <option value="AQMOLA">Ақмола облысы</option>
-                                </select>
-                            </div>
-
-                            <div className="mb-4">
                                 <label htmlFor="" className="w-full block text-left font-bold mb-2 text-neutral-600">Қала</label>
                                 <select defaultValue={user_account.city} {...register2("city")} className="border rounded-lg py-2 px-4 block w-full text-neutral-600">
                                     <option value="NOT_DEFINED">Таңдалмаған</option>

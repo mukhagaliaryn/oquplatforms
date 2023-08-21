@@ -55,7 +55,7 @@ const UserAvatar = ({ access }) => {
             });
 
             if (response.status == 204) {
-                router.reload();
+                router.push('/accounts/user');
                 dispatch(setAlert("Сурет өшті!", "success"));
             } else {
                 dispatch(setAlert("Бір жерден қателік кетті!", "error"));

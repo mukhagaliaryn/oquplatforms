@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="shortcut icon" href="/icons/icon.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="/icons/logo-520.png" type="image/x-icon" />
       </Head>
       <body className="font-inter">
         <Main />
