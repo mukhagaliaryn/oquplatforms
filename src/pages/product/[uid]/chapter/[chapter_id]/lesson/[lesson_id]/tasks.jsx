@@ -44,7 +44,7 @@ const LessonTask = () => {
                         <form>
                             {sidebar.map(item => {
                                 return (
-                                    <div className="border-b">
+                                    <div className="border-b" key={item}>
                                         {/* Question */}
                                         <div className="flex font-bold mt-5">
                                             <h1 className="mx-4">{item + 1}.</h1>
