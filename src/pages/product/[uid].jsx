@@ -15,6 +15,11 @@ const Product = ({ product, purposes, features, chapters, lessons, user_type }) 
     const user = useSelector(state => state.auth.user);
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
+
+    if (typeof window !== 'undefined' && !isAuthenticated) {
+        router.push('/accounts/login')
+    }
+    
     return (
         <MainLayout
             title={product && product.name}

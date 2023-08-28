@@ -18,6 +18,11 @@ const Chapter = ({ product, chapter, chapters, lessons, videos, tasks, quizzes }
         router.push(link)
     }
 
+
+    if (typeof window !== 'undefined' && !isAuthenticated) {
+        router.push('/accounts/login')
+    }
+
     return (
         <ProductLayout
             title={chapter && chapter.chapter_name}
@@ -70,7 +75,7 @@ const Chapter = ({ product, chapter, chapters, lessons, videos, tasks, quizzes }
                                                 return (
                                                     <div
                                                         key={video.id}
-                                                        onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${chapter.id}/lesson/${lesson.id}`)}
+                                                        onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${chapter.id}/lesson/${lesson.id}/video/${video.id}`)}
                                                         className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                                     >
                                                         <div className="flex items-center">
@@ -93,7 +98,7 @@ const Chapter = ({ product, chapter, chapters, lessons, videos, tasks, quizzes }
                                                 return (
                                                     <div
                                                         key={task.id}
-                                                        onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${chapter.id}/lesson/${lesson.id}/tasks`)}
+                                                        onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${chapter.id}/lesson/${lesson.id}/task/${task.id}`)}
                                                         className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                                     >
                                                         <div className="flex items-center">
@@ -115,7 +120,7 @@ const Chapter = ({ product, chapter, chapters, lessons, videos, tasks, quizzes }
                                                 return (
                                                     <div
                                                         key={quiz.id}
-                                                        onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${chapter.id}/lesson/${lesson.id}/tasks`)}
+                                                        onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${chapter.id}/lesson/${lesson.id}/quiz/${quiz.id}`)}
                                                         className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                                     >
                                                         <div className="flex items-center">
