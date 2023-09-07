@@ -7,7 +7,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const QuizLesson = ({ videos, tasks, quizzes, quiz, questions, chapter }) => {
+const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, chapter, access }) => {
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -18,9 +18,9 @@ const QuizLesson = ({ videos, tasks, quizzes, quiz, questions, chapter }) => {
 
     return (
         <ProductLayout
-            title={quiz && quiz.title}
+            title={user_quiz_data && user_quiz_data.title}
         >
-            {(isAuthenticated && quiz) &&
+            {(isAuthenticated && user_quiz_data) &&
                 <div className="container mx-auto px-5 flex items-start mb-10">
                     {/* Sidebar */}
                     <LessonSidebar 
@@ -31,7 +31,11 @@ const QuizLesson = ({ videos, tasks, quizzes, quiz, questions, chapter }) => {
                     />
 
                     {/* Content */}
-                    <QuizComponent quiz={quiz} questions={questions} />
+                    <QuizComponent 
+                        user_quiz_data={user_quiz_data}
+                        router={router}
+                        access={access}
+                    />
                 </div>
             }
         </ProductLayout>
@@ -51,13 +55,12 @@ export async function getServerSideProps(context) {
 
     const user_type = data.user_type || null
     const chapter = data.chapter || null;
-    const quiz = data.quiz || null;
-    const questions = data.questions || [];
+    const user_quiz_data = data.user_quiz_data || null;
 
     const videos = data.videos || [];
     const tasks = data.tasks || [];
     const quizzes = data.quizzes || [];
-
+    const access = context.req.cookies.access || ""
 
     if (user_type === "TEACHER" || user_type === "MANAGER") {
         return {
@@ -68,12 +71,12 @@ export async function getServerSideProps(context) {
     return {
         props: {
             chapter,
-            quiz,
-            questions,
+            user_quiz_data,
             videos,
             tasks,
             quizzes,
-            user_type
+            user_type,
+            access
         }
     }
 }

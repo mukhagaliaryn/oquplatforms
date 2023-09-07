@@ -1,14 +1,35 @@
 import React from "react";
 import { BtnLink } from "@/src/components/Button";
+import { BACKEND_URL } from "@/src/redux/actions/types";
+import { useRouter } from "next/router";
 
 
-const QuizComponent = ({ quiz, questions }) => {
+const QuizComponent = ({ user_quiz_data, access }) => {
+    const router = useRouter();
+
+    const ChoiceAnswer = async (id, q_id, a_id) => {
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/answer/${id}/${q_id}/${a_id}/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            });
+
+            router.push(router.asPath);
+        } catch {
+            console.log('Error!');
+        }
+    }
+
     return (
         <div className="shadow flex-1 mt-5 rounded-xl ml-2 px-5">
             <div className="mt-5">
                 <div className="flex justify-between items-center">
-                    <h1 className="text-4xl font-bold">{quiz.title}</h1>
-                    <span className="text-sm text-neutral-600">{quiz.duration} мин</span>
+                    <h1 className="text-4xl font-bold">{user_quiz_data.quiz.title}</h1>
+                    <span className="text-sm text-neutral-600">{user_quiz_data.quiz.duration} мин</span>
                 </div>
                 <span className="text-neutral-600 block mt-2">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -20,7 +41,7 @@ const QuizComponent = ({ quiz, questions }) => {
 
             <div className="mt-5">
                 <form>
-                    {questions.map((question, i) => {
+                    {user_quiz_data.questions.map((question, i) => {
                         return (
                             <div className="border-b" key={question.id}>
                                 {/* Question */}
@@ -37,9 +58,21 @@ const QuizComponent = ({ quiz, questions }) => {
                                             <label
                                                 key={answer.id}
                                                 htmlFor={answer.id}
-                                                className="flex items-center px-4 py-2 rounded-lg cursor-pointer hover:bg-orange-100">
-                                                <input type="radio" id={answer.id} name={question.id} />
-                                                <span className="ml-2">{answer.text}</span>
+                                                onClick={() => ChoiceAnswer(user_quiz_data.id, question.id, answer.id)}
+                                                className="flex items-center px-4 py-2 rounded-lg cursor-pointer hover:bg-orange-100"
+                                            >
+                                                {question.format === 'ONE' ?
+                                                    <>
+                                                        <input type="radio" id={answer.id} name={question.id} />
+                                                        <span className="ml-2">{answer.text}</span>
+                                                    </>
+
+                                                :
+                                                    <>
+                                                        <input type="checkbox" id={answer.id} name={question.id} />
+                                                        <span className="ml-2">{answer.text}</span>
+                                                    </>
+                                                }
                                             </label>
                                         )
                                     })}

@@ -1,5 +1,6 @@
 import '@/src/styles/globals.css';
 import '@/src/styles/fonts.css';
+import '@/src/styles/parser.css';
 import 'react-day-picker/dist/style.css';
 import "@/src/styles/calendar.css";
 import NextNprogress from 'nextjs-progressbar';

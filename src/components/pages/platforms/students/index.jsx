@@ -64,9 +64,8 @@ const MainComponent = (props) => {
                     </div>
 
                     <div className="flex mt-5 md:mt-10">
-
                         <div
-                            className="flex-1 rounded-xl xl:mr-5 2xl:mr-10 block md:flex items-center cursor-pointer">
+                            className="flex-1 rounded-xl xl:mr-5 2xl:mr-10 block md:flex cursor-pointer">
                             <div className="mb-5 md:mb-0 md:mr-5">
                                 <Image
                                     src={user.image ? user.image : "/icons/user.png"} width={512} height={512} alt="image"

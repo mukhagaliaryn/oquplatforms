@@ -1,12 +1,9 @@
-import { BtnLink } from "@/src/components/Button";
 import LessonSidebar from "@/src/components/pages/product/lesson/sidebar";
 import VideoComponent from "@/src/components/pages/product/lesson/video";
 import ProductLayout from "@/src/layouts/product";
 import { BACKEND_URL } from "@/src/redux/actions/types";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { CiCircleChevLeft, CiFileOn, CiPlay1, CiViewList } from "react-icons/ci";
 import { useSelector } from "react-redux";
 
 

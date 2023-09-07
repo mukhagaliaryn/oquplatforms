@@ -11,7 +11,7 @@ import MainLayout from "@/src/layouts/main";
 
 
 
-const Product = ({ product, purposes, features, chapters, lessons, user_type }) => {
+const Product = ({ product, user_product, purposes, features, chapters, lessons, access }) => {
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -29,9 +29,10 @@ const Product = ({ product, purposes, features, chapters, lessons, user_type }) 
                 <React.Fragment>
                     {/* Detail */}
                     <ProductDetailComponent 
-                        product={product} 
-                        user_type={user_type}
+                        product={product}
+                        user_product={user_product}
                         chapters={chapters}
+                        access={access}
                     />
 
                     <div className="container mx-auto px-5 py-10 xl:flex">
@@ -68,10 +69,13 @@ export async function getServerSideProps(context) {
     const data = await res.json();
     const user_type = data.user_type || null
     const product = data.product || null;
+    const user_product = data.user_product || null;
     const purposes = data.purposes || [];
     const features = data.features || [];
     const chapters = data.chapters || [];
     const lessons = data.lessons || [];
+
+    const access = context.req.cookies.access || ""
 
 
     if (user_type === "TEACHER" || user_type === "MANAGER") {
@@ -83,11 +87,12 @@ export async function getServerSideProps(context) {
     return {
         props: {
             product,
+            user_product,
             purposes,
             features,
             chapters,
             lessons,
-            user_type
+            access
         }
     }
 }

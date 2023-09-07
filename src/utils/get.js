@@ -38,3 +38,16 @@ export const getClassLevel = (prop) => {
 
     return result;
 }
+
+export const getProductType = (prop) => {
+    let result = "";
+    switch (prop) {
+        case "SUBJECT":
+            result = "Жалпы орта мектептерге арналған пән";
+            break;
+        case "COURSE":
+            result = "Авторлық онлайн курс";
+            break;
+    }
+    return result;
+}
