@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import ChapterContent from "@/src/components/pages/product/chapter/content";
 import ChapterSidebar from "@/src/components/pages/product/chapter/sidebar";
 import ProductLayout from "@/src/layouts/product";
 import { BACKEND_URL } from "@/src/redux/actions/types";
 import { useSelector } from "react-redux";
+import ConfirmModal from "@/src/components/pages/product/chapter/confirm";
 
 
-const Chapter = ({ product, chapter, chapters, lessons, videos, tasks, quizzes }) => {
+const Chapter = ({ product, user_chapter, user_chapters, user_lessons, videos, tasks, quizzes }) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
+    const [confirm, setConfirm] = useState(true);
 
     if (typeof window !== 'undefined' && !isAuthenticated) {
         router.push('/accounts/login')
@@ -17,22 +19,25 @@ const Chapter = ({ product, chapter, chapters, lessons, videos, tasks, quizzes }
 
     return (
         <ProductLayout
-            title={chapter && chapter.chapter_name}
-            content={chapter && chapter.about}
+            title={user_chapter && user_chapter.chapter.chapter_name}
+            content={user_chapter && user_chapter.chapter.about}
         >
-            {(isAuthenticated && chapter) &&
+            {(isAuthenticated && user_chapter) &&
                 <div className="container mx-auto px-5 flex items-start">
+                    {confirm &&
+                        <ConfirmModal confirm={confirm} setConfirm={setConfirm} />
+                    }
+                    
                     {/* Sidebar */}
-                    <ChapterSidebar 
+                    <ChapterSidebar
                         product={product}
-                        chapters={chapters} 
+                        user_chapters={user_chapters} 
                     />
 
                     {/* Content */}
                     <ChapterContent
-                        product={product}
-                        chapter={chapter}
-                        lessons={lessons}
+                        user_chapter={user_chapter}
+                        user_lessons={user_lessons}
                         videos={videos}
                         tasks={tasks}
                         quizzes={quizzes}
@@ -55,10 +60,10 @@ export async function getServerSideProps(context) {
     const data = await res.json();
 
     const user_type = data.user_type || null
-    const product = data.product || null;
-    const chapter = data.chapter || null;
-    const chapters = data.chapters || [];
-    const lessons = data.lessons || [];
+    const product = data.product || null
+    const user_chapter = data.user_chapter || null;
+    const user_chapters = data.user_chapters || [];
+    const user_lessons = data.user_lessons || [];
     const videos = data.videos || [];
     const tasks = data.tasks || [];
     const quizzes = data.quizzes || [];
@@ -73,12 +78,13 @@ export async function getServerSideProps(context) {
     return {
         props: {
             product,
-            chapter,
-            chapters,
-            lessons,
+            user_chapter,
+            user_chapters,
+            user_lessons,
             videos,
             tasks,
             quizzes,
+            
             user_type
         }
     }
