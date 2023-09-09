@@ -18,7 +18,7 @@ const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, chapter, access })
 
     return (
         <ProductLayout
-            title={user_quiz_data && user_quiz_data.title}
+            title={user_quiz_data && user_quiz_data.quiz.title}
         >
             {(isAuthenticated && user_quiz_data) &&
                 <div className="container mx-auto px-5 flex items-start mb-10">

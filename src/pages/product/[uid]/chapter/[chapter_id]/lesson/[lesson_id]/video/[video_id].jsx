@@ -7,7 +7,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const VideoLesson = ({ videos, tasks, quizzes, video, chapter }) => {
+const VideoLesson = ({ user_video, tasks, quizzes, videos, chapter, access }) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
 
@@ -18,10 +18,10 @@ const VideoLesson = ({ videos, tasks, quizzes, video, chapter }) => {
 
     return (
         <ProductLayout
-            title={video && video.title}
-            content={video && video.description}
+            title={user_video && user_video.video.title}
+            content={user_video && user_video.video.description}
         >
-            {(isAuthenticated && video) &&
+            {(isAuthenticated && user_video) &&
                 <div className="container mx-auto px-5 flex items-start mb-10">
                     
                     {/* Sidebar */}
@@ -33,7 +33,7 @@ const VideoLesson = ({ videos, tasks, quizzes, video, chapter }) => {
                     />
 
                     {/* Content */}
-                    <VideoComponent video={video} />
+                    <VideoComponent user_video={user_video} access={access} />
                 </div>
             }
         </ProductLayout>
@@ -52,14 +52,15 @@ export async function getServerSideProps(context) {
     const res = await fetch(`${BACKEND_URL}/products/product/${context.params.uid}/chapter/${context.params.chapter_id}/lesson/${context.params.lesson_id}/video/${context.params.video_id}`, context.req.cookies.access && config)
     const data = await res.json();
 
-    const user_type = data.user_type || null
+    const user_type = data.user_type || null;
     const chapter = data.chapter || null;
-    const video = data.video || null;
+    const user_lesson = data.user_lesson || null;
+    const user_video = data.user_video || null;
 
     const videos = data.videos || [];
     const tasks = data.tasks || [];
     const quizzes = data.quizzes || [];
-
+    const access = context.req.cookies.access || "";
 
     if (user_type === "TEACHER" || user_type === "MANAGER") {
         return {
@@ -70,11 +71,13 @@ export async function getServerSideProps(context) {
     return {
         props: {
             chapter,
-            video,
+            user_lesson,
+            user_video,
             videos,
             tasks,
             quizzes,
-            user_type
+            user_type,
+            access
         }
     }
 }

@@ -7,7 +7,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const TaskLesson = ({ videos, tasks, quizzes, task, chapter }) => {
+const TaskLesson = ({ videos, tasks, quizzes, user_task, chapter, access }) => {
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -18,9 +18,9 @@ const TaskLesson = ({ videos, tasks, quizzes, task, chapter }) => {
 
     return (
         <ProductLayout
-            title={task && task.title}
+            title={user_task && user_task.task.title}
         >
-            {(isAuthenticated && task) &&
+            {(isAuthenticated && user_task) &&
                 <div className="container mx-auto px-5 flex items-start mb-10">
                     {/* Sidebar */}
                     <LessonSidebar 
@@ -31,7 +31,7 @@ const TaskLesson = ({ videos, tasks, quizzes, task, chapter }) => {
                     />
 
                     {/* Content */}
-                    <TaskComponent task={task} />
+                    <TaskComponent user_task={user_task} access={access} />
                 </div>
             }
         </ProductLayout>
@@ -51,12 +51,12 @@ export async function getServerSideProps(context) {
 
     const user_type = data.user_type || null
     const chapter = data.chapter || null;
-    const task = data.task || null;
+    const user_task = data.user_task || null;
 
     const videos = data.videos || [];
     const tasks = data.tasks || [];
     const quizzes = data.quizzes || [];
-
+    const access = context.req.cookies.access || ""
 
     if (user_type === "TEACHER" || user_type === "MANAGER") {
         return {
@@ -67,11 +67,12 @@ export async function getServerSideProps(context) {
     return {
         props: {
             chapter,
-            task,
+            user_task,
             videos,
             tasks,
             quizzes,
-            user_type
+            user_type,
+            access
         }
     }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { CiFileOn, CiPlay1, CiViewList } from "react-icons/ci";
-import { GoCircle } from "react-icons/go";
+import { GoCheckCircleFill, GoCircle } from "react-icons/go";
 import According from "@/src/components/According";
 import { useRouter } from "next/router";
 
@@ -36,21 +36,25 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                     return (
                         <According title={item.lesson.title} content={"Сабақ жайлы мәлімет"} key={item.lesson.id}>
                             {/* Videos */}
-                            {videos.map(video => {
-                                if (video.lesson === item.lesson.id) {
+                            {videos.map(video_item => {
+                                if (video_item.video.lesson === item.lesson.id) {
                                     return (
                                         <div
-                                            key={video.id}
-                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/video/${video.id}`)}
+                                            key={video_item.video.id}
+                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/video/${video_item.video.id}`)}
                                             className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                         >
                                             <div className="flex items-center">
                                                 <CiPlay1 className="text-xl mr-2" />
-                                                <span>{video.title}</span>
+                                                <span>{video_item.video.title}</span>
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
-                                                <GoCircle className="text-xl" />
+                                                {video_item.is_done ?
+                                                    <GoCheckCircleFill className="mr-2 text-xl text-green-500" />
+                                                    :
+                                                    <GoCircle className="mr-2 text-xl" />
+                                                }
                                                 {/* <BtnLink href={"/product/23/chapter/23/lesson/232"}>Сабақты бастау</BtnLink> */}
                                             </div>
                                         </div>
@@ -59,21 +63,25 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                             })}
 
                             {/* Tasks */}
-                            {tasks.map(task => {
-                                if (task.lesson === item.lesson.id) {
+                            {tasks.map(task_item => {
+                                if (task_item.task.lesson === item.lesson.id) {
                                     return (
                                         <div
-                                            key={task.id}
-                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/task/${task.id}`)}
+                                            key={task_item.task.id}
+                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/task/${task_item.task.id}`)}
                                             className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                         >
                                             <div className="flex items-center">
                                                 <CiFileOn className="text-xl mr-2" />
-                                                <span>{task.title}</span>
+                                                <span>{task_item.task.title}</span>
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
-                                                <GoCircle className="text-xl" />
+                                                {task_item.is_done ?
+                                                    <GoCheckCircleFill className="mr-2 text-xl text-green-500" />
+                                                    :
+                                                    <GoCircle className="mr-2 text-xl" />
+                                                }
                                             </div>
                                         </div>
                                     )
@@ -81,21 +89,25 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                             })}
 
                             {/* Quizzes */}
-                            {quizzes.map(quiz => {
-                                if (quiz.lesson === item.lesson.id) {
+                            {quizzes.map(quiz_item => {
+                                if (quiz_item.quiz.lesson === item.lesson.id) {
                                     return (
                                         <div
-                                            key={quiz.id}
-                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/quiz/${quiz.id}`)}
+                                            key={quiz_item.quiz.id}
+                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/quiz/${quiz_item.quiz.id}`)}
                                             className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                         >
                                             <div className="flex items-center">
                                                 <CiViewList className="text-xl mr-2" />
-                                                <span>{quiz.title}</span>
+                                                <span>{quiz_item.quiz.title}</span>
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
-                                                <GoCircle className="text-xl" />
+                                                {quiz_item.status === "FINISH" ?
+                                                    <GoCheckCircleFill className="mr-2 text-xl text-green-500" />
+                                                    :
+                                                    <GoCircle className="mr-2 text-xl" />
+                                                }
                                             </div>
                                         </div>
                                     )

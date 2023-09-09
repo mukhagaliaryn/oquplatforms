@@ -36,6 +36,7 @@ const Chapter = ({ product, user_chapter, user_chapters, user_lessons, videos, t
 
                     {/* Content */}
                     <ChapterContent
+                        product={product}
                         user_chapter={user_chapter}
                         user_lessons={user_lessons}
                         videos={videos}
