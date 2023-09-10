@@ -7,7 +7,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const VideoLesson = ({ user_video, tasks, quizzes, videos, chapter, access }) => {
+const VideoLesson = ({ user_video, user_lesson, tasks, quizzes, videos, chapter, access }) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
 
@@ -25,15 +25,20 @@ const VideoLesson = ({ user_video, tasks, quizzes, videos, chapter, access }) =>
                 <div className="container mx-auto px-5 flex items-start mb-10">
                     
                     {/* Sidebar */}
-                    <LessonSidebar 
+                    <LessonSidebar
+                        user_lesson={user_lesson}
                         videos={videos}
                         tasks={tasks}
                         quizzes={quizzes}
                         chapter={chapter}
+                        access={access}
                     />
 
                     {/* Content */}
-                    <VideoComponent user_video={user_video} access={access} />
+                    <VideoComponent 
+                        user_video={user_video} 
+                        access={access} 
+                    />
                 </div>
             }
         </ProductLayout>

@@ -1,4 +1,4 @@
-import QuizComponent from "@/src/components/pages/product/lesson/quiz/quiz";
+import QuizComponent from "@/src/components/pages/product/lesson/quiz";
 import LessonSidebar from "@/src/components/pages/product/lesson/sidebar";
 import ProductLayout from "@/src/layouts/product";
 import { BACKEND_URL } from "@/src/redux/actions/types";
@@ -7,7 +7,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, chapter, access }) => {
+const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, user_lesson, chapter, access }) => {
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -23,17 +23,18 @@ const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, chapter, access })
             {(isAuthenticated && user_quiz_data) &&
                 <div className="container mx-auto px-5 flex items-start mb-10">
                     {/* Sidebar */}
-                    <LessonSidebar 
+                    <LessonSidebar
+                        user_lesson={user_lesson}
                         videos={videos}
                         tasks={tasks}
                         quizzes={quizzes}
                         chapter={chapter}
+                        access={access}
                     />
 
                     {/* Content */}
-                    <QuizComponent 
+                    <QuizComponent
                         user_quiz_data={user_quiz_data}
-                        router={router}
                         access={access}
                     />
                 </div>
@@ -55,6 +56,7 @@ export async function getServerSideProps(context) {
 
     const user_type = data.user_type || null
     const chapter = data.chapter || null;
+    const user_lesson = data.user_lesson || null;
     const user_quiz_data = data.user_quiz_data || null;
 
     const videos = data.videos || [];
@@ -71,6 +73,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             chapter,
+            user_lesson,
             user_quiz_data,
             videos,
             tasks,

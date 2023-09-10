@@ -7,7 +7,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const TaskLesson = ({ videos, tasks, quizzes, user_task, chapter, access }) => {
+const TaskLesson = ({ videos, tasks, quizzes, user_task, user_lesson, chapter, access }) => {
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -23,15 +23,20 @@ const TaskLesson = ({ videos, tasks, quizzes, user_task, chapter, access }) => {
             {(isAuthenticated && user_task) &&
                 <div className="container mx-auto px-5 flex items-start mb-10">
                     {/* Sidebar */}
-                    <LessonSidebar 
+                    <LessonSidebar
+                        user_lesson={user_lesson}
                         videos={videos}
                         tasks={tasks}
                         quizzes={quizzes}
                         chapter={chapter}
+                        access={access}
                     />
 
                     {/* Content */}
-                    <TaskComponent user_task={user_task} access={access} />
+                    <TaskComponent 
+                        user_task={user_task} 
+                        access={access} 
+                    />
                 </div>
             }
         </ProductLayout>
@@ -51,6 +56,7 @@ export async function getServerSideProps(context) {
 
     const user_type = data.user_type || null
     const chapter = data.chapter || null;
+    const user_lesson = data.user_lesson || null;
     const user_task = data.user_task || null;
 
     const videos = data.videos || [];
@@ -67,6 +73,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             chapter,
+            user_lesson,
             user_task,
             videos,
             tasks,

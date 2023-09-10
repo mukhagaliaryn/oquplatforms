@@ -3,10 +3,65 @@ import Link from "next/link";
 import { CiCircleChevLeft, CiFileOn, CiPlay1, CiViewList } from "react-icons/ci";
 import { useRouter } from "next/router";
 import { GoCheckCircleFill } from "react-icons/go";
+import { BACKEND_URL } from "@/src/redux/actions/types";
+import { setAlert } from "@/src/redux/actions/alert";
+import { useDispatch } from "react-redux";
 
 
-const LessonSidebar = ({ chapter, videos, tasks, quizzes }) => {
+const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access }) => {
     const router = useRouter();
+    const dispatch = useDispatch();
+
+    let video_done;
+    let task_done;
+    let quiz_done;
+
+    for (let i = 0; i < videos.length; i++) {
+        if (videos[i].is_done) {
+            video_done = true;
+        } else {
+            video_done = false;
+            break;
+        }
+    }
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].is_done) {
+            task_done = true;
+        } else {
+            task_done = false;
+            break;
+        }
+    }
+    for (let i = 0; i < quizzes.length; i++) {
+        if (quizzes[i].status === "FINISH") {
+            quiz_done = true;
+        } else {
+            quiz_done = false;
+            break;
+        }
+    }
+
+
+    const handleFinishLesson = async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/products/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/finished/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            });
+
+            if (response.status == 200) {
+                router.push(`/product/${router.query.uid}/chapter/${router.query.chapter_id}`);
+                dispatch(setAlert("Сабақ аяқталды!", "success"));
+            } else {
+                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    } 
 
     return (
         <div className="w-80 sticky top-0 mr-2 pt-5 hidden md:block">
@@ -17,10 +72,13 @@ const LessonSidebar = ({ chapter, videos, tasks, quizzes }) => {
                     <CiCircleChevLeft className="text-2xl mr-2" />
                     <h1>{chapter.chapter_name}</h1>
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 flex items-center">
                     <div className="h-1 w-full bg-neutral-100 rounded-lg overflow-hidden">
-                        <div className="bg-orange-400" style={{ width: `${chapter.score}px` }}></div>
+                        <div className="bg-orange-400 h-full" style={{ width: `${user_lesson.score}%` }}></div>
                     </div>
+                    <span className="text-xs text-neutral-600 ml-2">
+                        {user_lesson.score}/{user_lesson.max_score}
+                    </span>
                 </div>
             </Link>
 
@@ -56,7 +114,7 @@ const LessonSidebar = ({ chapter, videos, tasks, quizzes }) => {
                             >   
                                 <div className="flex items-center flex-1">
                                     <CiFileOn className="mr-2 text-xl" />
-                                    <span className="line-clamp-1">{item.task.title}</span>
+                                    <span className="flex-1 line-clamp-1">{item.task.title}</span>
                                 </div>
                                 {item.is_done &&
                                     <GoCheckCircleFill className="text-xl text-green-500" />
@@ -87,6 +145,21 @@ const LessonSidebar = ({ chapter, videos, tasks, quizzes }) => {
                     )
                 })}
             </ul>
+            
+            {!user_lesson.is_done &&
+                <>
+                    {(video_done && task_done && quiz_done) &&
+                        <div className="mt-5">
+                            <button
+                                onClick={() => handleFinishLesson()}
+                                className="px-6 py-3 block w-full border-orange-400 bg-orange-400 text-white rounded-lg transition-all hover:opacity-70"
+                            >
+                                Сабақты аяқтау
+                            </button>
+                        </div>
+                    }
+                </>
+            }
         </div>
     )
 }

@@ -16,7 +16,7 @@ const ProductDetailComponent = ({ product, user_product, chapters, access }) => 
 
     const handleSubscribe = async product_id => {
         try {
-            const response = await fetch(`${BACKEND_URL}/profiles/user/product/items/create/${product_id}/`, {
+            const response = await fetch(`${BACKEND_URL}/products/product/${product_id}/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,6 +27,26 @@ const ProductDetailComponent = ({ product, user_product, chapters, access }) => 
             if (response.status == 200) {
                 router.push(`/product/${product_id}`);
                 dispatch(setAlert("Сабаққа жазылды!", "success"));
+            } else {
+                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const updateAndRoute = async product_id => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/products/product/${product_id}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            });
+
+            if (response.status == 200) {
+                router.push(`/product/${product.id}/chapter/${chapters[0].id}`);
             } else {
                 dispatch(setAlert("Бір жерден қателік кетті!", "error"));
             }
@@ -94,9 +114,12 @@ return (
                     :
                         <>
                             {chapters[0] &&
-                                <BtnLinkPrimary href={`/product/${product.id}/chapter/${chapters[0].id}`}>
+                                <button
+                                    onClick={() => updateAndRoute(product.id)}
+                                    className="border px-4 py-2 bg-white rounded-lg block text-center text-neutral-600 transition-all hover:border-neutral-900"
+                                >
                                     Сабаққа өту
-                                </BtnLinkPrimary>
+                                </button>
                             }
                         </>
                     }

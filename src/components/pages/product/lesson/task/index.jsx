@@ -54,7 +54,7 @@ const TaskComponent = ({ user_task, access }) => {
                     <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit quae libero tenetur. Sed, nihil fugit.</li>
                 </ul>
             </div>
-
+            
             {!user_task.is_done &&
                 <form className="mb-5 flex justify-between" onSubmit={e => onSubmit(e)}>
                     <div className="flex items-center text-neutral-600">

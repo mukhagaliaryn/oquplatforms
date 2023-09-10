@@ -23,7 +23,7 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
 
                 <div className="mt-5 flex items-center">
                     <div className="h-1 bg-neutral-100 flex-1 rounded-xl overflow-hidden">
-                        <div className="h-full bg-orange-400" style={{ width: `${user_chapter.score}px` }}></div>
+                        <div className="h-full bg-orange-400" style={{ width: `${user_chapter.score}%` }}></div>
                     </div>
                     <div className="ml-4">
                         <span className="text-xs text-neutral-600">{user_chapter.score}/{user_chapter.max_score}</span>
@@ -34,7 +34,12 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
             <div className="mt-10">
                 {user_lessons.map(item => {
                     return (
-                        <According title={item.lesson.title} content={"Сабақ жайлы мәлімет"} key={item.lesson.id}>
+                        <According 
+                            title={item.lesson.title} 
+                            content={"Сабақ жайлы мәлімет"} 
+                            key={item.lesson.id}
+                            status={item.is_done}
+                        >
                             {/* Videos */}
                             {videos.map(video_item => {
                                 if (video_item.video.lesson === item.lesson.id) {
@@ -44,18 +49,17 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                                             onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/video/${video_item.video.id}`)}
                                             className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                         >
-                                            <div className="flex items-center">
+                                            <div className="flex items-center flex-1">
                                                 <CiPlay1 className="text-xl mr-2" />
                                                 <span>{video_item.video.title}</span>
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
                                                 {video_item.is_done ?
-                                                    <GoCheckCircleFill className="mr-2 text-xl text-green-500" />
-                                                    :
-                                                    <GoCircle className="mr-2 text-xl" />
+                                                    <GoCheckCircleFill className="text-xl text-green-500" />
+                                                :
+                                                    <GoCircle className="text-xl" />
                                                 }
-                                                {/* <BtnLink href={"/product/23/chapter/23/lesson/232"}>Сабақты бастау</BtnLink> */}
                                             </div>
                                         </div>
                                     )
@@ -78,9 +82,9 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
 
                                             <div className="flex items-center text-neutral-600">
                                                 {task_item.is_done ?
-                                                    <GoCheckCircleFill className="mr-2 text-xl text-green-500" />
+                                                    <GoCheckCircleFill className="text-xl text-green-500" />
                                                     :
-                                                    <GoCircle className="mr-2 text-xl" />
+                                                    <GoCircle className="text-xl" />
                                                 }
                                             </div>
                                         </div>
@@ -104,9 +108,9 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
 
                                             <div className="flex items-center text-neutral-600">
                                                 {quiz_item.status === "FINISH" ?
-                                                    <GoCheckCircleFill className="mr-2 text-xl text-green-500" />
+                                                    <GoCheckCircleFill className="text-xl text-green-500" />
                                                     :
-                                                    <GoCircle className="mr-2 text-xl" />
+                                                    <GoCircle className="text-xl" />
                                                 }
                                             </div>
                                         </div>

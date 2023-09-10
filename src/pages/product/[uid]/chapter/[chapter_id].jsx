@@ -5,13 +5,11 @@ import ChapterSidebar from "@/src/components/pages/product/chapter/sidebar";
 import ProductLayout from "@/src/layouts/product";
 import { BACKEND_URL } from "@/src/redux/actions/types";
 import { useSelector } from "react-redux";
-import ConfirmModal from "@/src/components/pages/product/chapter/confirm";
 
 
 const Chapter = ({ product, user_chapter, user_chapters, user_lessons, videos, tasks, quizzes }) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
-    const [confirm, setConfirm] = useState(true);
 
     if (typeof window !== 'undefined' && !isAuthenticated) {
         router.push('/accounts/login')
@@ -24,10 +22,6 @@ const Chapter = ({ product, user_chapter, user_chapters, user_lessons, videos, t
         >
             {(isAuthenticated && user_chapter) &&
                 <div className="container mx-auto px-5 flex items-start">
-                    {confirm &&
-                        <ConfirmModal confirm={confirm} setConfirm={setConfirm} />
-                    }
-                    
                     {/* Sidebar */}
                     <ChapterSidebar
                         product={product}

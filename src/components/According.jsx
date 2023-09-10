@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CiCircleChevDown, CiCircleChevUp } from "react-icons/ci";
+import { GoCheckCircleFill } from "react-icons/go";
 
 
 const According = (props) => {
@@ -9,7 +10,7 @@ const According = (props) => {
         <div className="mb-5 rounded-xl shadow overflow-hidden">
             {/* Head */}
             <div 
-                className="flex justify-between items-center cursor-pointer p-5 bg-neutral-50" 
+                className={`flex justify-between items-center cursor-pointer p-5 ${props.status ? "bg-green-50" : "bg-neutral-50"}`} 
                 onClick={() => setContent(!content)}
             >
                 <div className="flex flex-col">
@@ -18,7 +19,14 @@ const According = (props) => {
                 </div>
 
                 <div className="text-2xl text-neutral-600">
-                    {content ? <CiCircleChevUp /> : <CiCircleChevDown />}
+                    {props.status ?
+                        <GoCheckCircleFill className="text-green-500" />
+                    :
+                        <>
+                            {content ? <CiCircleChevUp /> : <CiCircleChevDown />}
+                        </>
+                    }
+                    
                 </div>
             </div>
 
