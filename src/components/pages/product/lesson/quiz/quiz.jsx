@@ -5,13 +5,13 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 
 
-const QuizProgressComponent = ({ user_quiz_data, access }) => {
+const QuizProgressComponent = ({ user_quiz_data, user_answers, access }) => {
     const router = useRouter();
     const dispatch = useDispatch();
 
-    const ChoiceAnswer = async (id, q_id, a_id) => {
+    const ChoiceAnswer = async (user_quiz_id, question_id, answer_id) => {
         try {
-            const response = await fetch(`${BACKEND_URL}/answer/${id}/${q_id}/${a_id}/`, {
+            const response = await fetch(`${BACKEND_URL}/products/user/quiz/${user_quiz_id}/question/${question_id}/answer/${answer_id}/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,39 +48,40 @@ const QuizProgressComponent = ({ user_quiz_data, access }) => {
         }
     }
 
+
     return (
         <React.Fragment>
             <div className="my-5">
                 <form>
-                    {user_quiz_data.questions.map((question, i) => {
+                    {user_answers.map((user_answer, i) => {
                         return (
-                            <div className="border-b" key={question.id}>
+                            <div className="border-b" key={user_answer.id}>
                                 {/* Question */}
                                 <div className="flex font-bold mt-5">
                                     <h1 className="mx-4">{i + 1}.</h1>
-                                    <h1>{question.title}</h1>
-                                    <span>{question.body}</span>
+                                    <h1>{user_answer.question.title}</h1>
+                                    <span>{user_answer.question.body}</span>
                                 </div>
 
                                 {/* Variants */}
                                 <div className="my-5 text-neutral-600">
-                                    {question.get_answers.map(answer => {
+                                    {user_answer.question.get_answers.map(answer => {
                                         return (
                                             <label
                                                 key={answer.id}
                                                 htmlFor={answer.id}
-                                                onClick={() => ChoiceAnswer(user_quiz_data.id, question.id, answer.id)}
-                                                className="flex items-center px-4 py-2 rounded-lg cursor-pointer hover:bg-orange-100"
+                                                onClick={() => ChoiceAnswer(user_quiz_data.id, user_answer.question.id, answer.id)}
+                                                className={`flex items-center px-4 py-2 rounded-lg cursor-pointer hover:bg-orange-100 ${user_answer.answers.find(id => id === answer.id) && "bg-orange-100"}`}
                                             >
-                                                {question.format === 'ONE' ?
+                                                {user_answer.question.format === 'ONE' ?
                                                     <>
-                                                        <input type="radio" id={answer.id} name={question.id} />
+                                                        <input type="radio" id={answer.id} name={user_answer.question.id} defaultChecked={user_answer.answers.find(id => id === answer.id) ? true : false} />
                                                         <span className="ml-2">{answer.text}</span>
                                                     </>
 
                                                 :
                                                     <>
-                                                        <input type="checkbox" id={answer.id} name={question.id} />
+                                                        <input type="checkbox" id={answer.id} name={user_answer.question.id} defaultChecked={user_answer.answers.find(id => id === answer.id) ? true : false}/>
                                                         <span className="ml-2">{answer.text}</span>
                                                     </>
                                                 }

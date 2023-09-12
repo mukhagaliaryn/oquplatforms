@@ -4,7 +4,7 @@ import QuizProgressComponent from "./quiz";
 import QuizResultComponent from "./result";
 
 
-const QuizComponent = ({ user_quiz_data, access }) => {
+const QuizComponent = ({ user_quiz_data, user_answers, access }) => {
     return (
         <div className="shadow flex-1 mt-5 rounded-xl ml-2 px-5">
             {user_quiz_data.status === "FINISH" ?
@@ -13,6 +13,7 @@ const QuizComponent = ({ user_quiz_data, access }) => {
             : user_quiz_data.status === "PROGRESS" ?
                 <QuizProgressComponent 
                     user_quiz_data={user_quiz_data}
+                    user_answers={user_answers}
                     access={access}
                 />
             :

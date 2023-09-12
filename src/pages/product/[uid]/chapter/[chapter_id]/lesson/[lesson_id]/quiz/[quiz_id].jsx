@@ -7,7 +7,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, user_lesson, chapter, access }) => {
+const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, user_answers, user_lesson, chapter, access }) => {
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -35,6 +35,7 @@ const QuizLesson = ({ videos, tasks, quizzes, user_quiz_data, user_lesson, chapt
                     {/* Content */}
                     <QuizComponent
                         user_quiz_data={user_quiz_data}
+                        user_answers={user_answers}
                         access={access}
                     />
                 </div>
@@ -58,6 +59,7 @@ export async function getServerSideProps(context) {
     const chapter = data.chapter || null;
     const user_lesson = data.user_lesson || null;
     const user_quiz_data = data.user_quiz_data || null;
+    const user_answers = data.user_answers || [];
 
     const videos = data.videos || [];
     const tasks = data.tasks || [];
@@ -75,6 +77,8 @@ export async function getServerSideProps(context) {
             chapter,
             user_lesson,
             user_quiz_data,
+            user_answers,
+
             videos,
             tasks,
             quizzes,
