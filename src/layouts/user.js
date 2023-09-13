@@ -36,7 +36,7 @@ const UserAccountLayout = (props) => {
                 `}
             </Script>
 
-            <div id="root" className="min-h-screen flex flex-col">
+            <div id="root" className="font-inter min-h-screen flex flex-col">
                 <div className="flex-1">
                     <Header
                         isAuthenticated={isAuthenticated}
