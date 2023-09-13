@@ -6,20 +6,6 @@ import Footer from "../components/Footer";
 import { check_auth_status } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/header";
-import { Inter_Tight, Poppins } from 'next/font/google'
-
-
-const inter = Inter_Tight({
-    subsets: ['latin'],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    variable: '--font-inter',
-})
-
-const poppins = Poppins({
-    subsets: ['latin'],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-    variable: '--font-poppins',
-})
 
 
 const MainLayout = (props) => {
@@ -47,12 +33,11 @@ const MainLayout = (props) => {
                 `}
             </Script>
 
-            <div id="root" className={`${inter.variable} font-inter min-h-screen flex flex-col`}>
+            <div id="root" className="font-inter min-h-screen flex flex-col">
                 <div id="main-wrapper" className="flex-1">
                     <Header
                         isAuthenticated={isAuthenticated}
                         user={user}
-                        poppins={poppins}
                     />
                     <div id="page-props">
                         {props.children}

@@ -6,7 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { BtnLink, BtnLinkPrimary } from "../Button";
 
 
-const MainHeader = ({user, isAuthenticated, logoutHandler, poppins }) => {
+const MainHeader = ({user, isAuthenticated, logoutHandler }) => {
     const [burgerMenu, setBurgerMenu] = useState(false);
 
     return (
@@ -14,7 +14,7 @@ const MainHeader = ({user, isAuthenticated, logoutHandler, poppins }) => {
             <div id="hidden" className="block md:hidden"></div>
 
             <div id="logo" className="flex">
-                <Link href={"/"} className={`${poppins.variable} font-poppins font-extrabold text-4xl text-orange-400`}>OQU</Link>
+                <Link href={"/"} className="font-poppins font-extrabold text-4xl text-orange-400">OQU</Link>
             </div>
 
             <div id="nav" className="hidden md:flex">

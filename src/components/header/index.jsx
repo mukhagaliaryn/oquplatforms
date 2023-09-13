@@ -5,7 +5,7 @@ import PlatformHeader from "./platform";
 import MainHeader from "./main";
 
 
-const Header = ({ isAuthenticated, user, poppins}) => {
+const Header = ({ isAuthenticated, user}) => {
     const dispatch = useDispatch();
 
     const logoutHandler = () => {
@@ -21,14 +21,12 @@ const Header = ({ isAuthenticated, user, poppins}) => {
                     user={user} 
                     isAuthenticated={isAuthenticated} 
                     logoutHandler={logoutHandler}
-                    poppins={poppins}
                 />
                 :
                 <MainHeader 
                     user={user} 
                     isAuthenticated={isAuthenticated} 
                     logoutHandler={logoutHandler} 
-                    poppins={poppins}
                 />
             }
         </div>
