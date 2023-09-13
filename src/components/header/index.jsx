@@ -1,12 +1,11 @@
 import React from "react";
-
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/actions/auth";
 import PlatformHeader from "./platform";
 import MainHeader from "./main";
 
 
-const Header = ({ isAuthenticated, user}) => {
+const Header = ({ isAuthenticated, user, poppins}) => {
     const dispatch = useDispatch();
 
     const logoutHandler = () => {
@@ -21,13 +20,15 @@ const Header = ({ isAuthenticated, user}) => {
                 <PlatformHeader 
                     user={user} 
                     isAuthenticated={isAuthenticated} 
-                    logoutHandler={logoutHandler} 
+                    logoutHandler={logoutHandler}
+                    poppins={poppins}
                 />
                 :
                 <MainHeader 
                     user={user} 
                     isAuthenticated={isAuthenticated} 
                     logoutHandler={logoutHandler} 
+                    poppins={poppins}
                 />
             }
         </div>

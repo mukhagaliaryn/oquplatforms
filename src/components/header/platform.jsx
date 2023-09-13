@@ -5,7 +5,7 @@ import { CiGrid41, CiHome, CiSearch } from "react-icons/ci";
 import { useRouter } from "next/router";
 
 
-const PlatformHeader = ({user, logoutHandler}) => {
+const PlatformHeader = ({user, logoutHandler, poppins}) => {
     const router = useRouter();
 
     return (
@@ -13,7 +13,7 @@ const PlatformHeader = ({user, logoutHandler}) => {
             <div id="hidden" className="block md:hidden"></div>
 
             <div id="logo" className="flex items-center">
-                <Link href={"/"} className="font-poppins font-extrabold text-4xl text-orange-400">OQU</Link>
+                <Link href={"/"} className={`${poppins.variable} font-poppins font-extrabold text-4xl text-orange-400`}>OQU</Link>
             </div>
 
             <div className="hidden lg:flex">
