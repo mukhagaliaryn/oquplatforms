@@ -55,7 +55,7 @@ const TaskComponent = ({ user_task, access }) => {
                 </ul>
             </div>
             
-            {!user_task.is_done &&
+            {user_task.status !== "PROGRESS" &&
                 <form className="mb-5 flex justify-between" onSubmit={e => onSubmit(e)}>
                     <div className="flex items-center text-neutral-600">
                         <input
@@ -63,12 +63,12 @@ const TaskComponent = ({ user_task, access }) => {
                             className="mr-2"
                             required
                         />
-                        <label htmlFor="full">Сұрақтарға толық жауап бердім</label>
+                        <label htmlFor="full">Тапсырманы жазбаша орындап, мұғалімге тескеруге бердім</label>
                     </div>
                     <button
                         className="px-4 py-2 border-orange-400 bg-orange-400 text-white rounded-lg transition-all hover:opacity-70"
                     >
-                        Келесі тапсырмаға өту
+                        Мұғалімнің бағалауын күту
                     </button>
                 </form>
             }

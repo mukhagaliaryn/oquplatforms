@@ -39,7 +39,7 @@ const ProductLayout = (props) => {
                 }
             `}</style>
 
-            <div id="root" className="font-inter min-h-screen flex flex-col">
+            <div id="root" className="min-h-screen flex flex-col">
                 <Header
                     isAuthenticated={isAuthenticated}
                     user={user}

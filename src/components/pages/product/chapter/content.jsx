@@ -3,6 +3,7 @@ import { CiFileOn, CiPlay1, CiViewList } from "react-icons/ci";
 import { GoCheckCircleFill, GoCircle } from "react-icons/go";
 import According from "@/src/components/According";
 import { useRouter } from "next/router";
+import { BiSolidTimeFive } from "react-icons/bi";
 
 
 const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, quizzes, }) => {
@@ -26,7 +27,7 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                         <div className="h-full bg-orange-400" style={{ width: `${user_chapter.score}%` }}></div>
                     </div>
                     <div className="ml-4">
-                        <span className="text-xs text-neutral-600">{user_chapter.score}/{user_chapter.max_score}</span>
+                        <span className="text-xs text-neutral-600">{user_chapter.score}%</span>
                     </div>
                 </div>
             </div>
@@ -81,9 +82,12 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
-                                                {task_item.is_done ?
+                                                {task_item.status === "FINISH" ?
                                                     <GoCheckCircleFill className="text-xl text-green-500" />
-                                                    :
+                                                :
+                                                task_item.status === "PROGRESS" ?
+                                                    <BiSolidTimeFive className="text-xl text-blue-500" />
+                                                :
                                                     <GoCircle className="text-xl" />
                                                 }
                                             </div>
@@ -109,7 +113,10 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                                             <div className="flex items-center text-neutral-600">
                                                 {quiz_item.status === "FINISH" ?
                                                     <GoCheckCircleFill className="text-xl text-green-500" />
-                                                    :
+                                                :
+                                                quiz_item.status === "PROGRESS" ?
+                                                    <BiSolidTimeFive className="text-xl text-blue-500" />
+                                                :
                                                     <GoCircle className="text-xl" />
                                                 }
                                             </div>

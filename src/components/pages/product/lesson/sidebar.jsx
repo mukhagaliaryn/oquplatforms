@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CiCircleChevLeft, CiFileOn, CiPlay1, CiViewList } from "react-icons/ci";
 import { useRouter } from "next/router";
 import { GoCheckCircleFill } from "react-icons/go";
+import { BiSolidTimeFive } from "react-icons/bi";
 import { BACKEND_URL } from "@/src/redux/actions/types";
 import { setAlert } from "@/src/redux/actions/alert";
 import { useDispatch } from "react-redux";
@@ -25,7 +26,7 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
         }
     }
     for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].is_done) {
+        if (tasks[i].status === "FINISH") {
             task_done = true;
         } else {
             task_done = false;
@@ -77,7 +78,7 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
                         <div className="bg-orange-400 h-full" style={{ width: `${user_lesson.score}%` }}></div>
                     </div>
                     <span className="text-xs text-neutral-600 ml-2">
-                        {user_lesson.score}/{user_lesson.max_score}
+                        {user_lesson.score}%
                     </span>
                 </div>
             </Link>
@@ -91,7 +92,7 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
                                 href={`/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/video/${item.video.id}`}
                                 className={`flex justify-between rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/video/${item.video.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}
                             >
-                                <div className="flex items-center">
+                                <div className="flex items-center flex-1">
                                     <CiPlay1 className="mr-2 text-xl" />
                                     <span className="flex-1 line-clamp-1">{item.video.title}</span>
                                 </div>
@@ -116,9 +117,12 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
                                     <CiFileOn className="mr-2 text-xl" />
                                     <span className="flex-1 line-clamp-1">{item.task.title}</span>
                                 </div>
-                                {item.is_done &&
+                                {item.status === "PROGRESS" ?
+                                    <BiSolidTimeFive className="text-xl text-blue-500" />
+                                    :
+                                    item.status === "FINISH" &&
                                     <GoCheckCircleFill className="text-xl text-green-500" />
-                                }
+                                } 
                             </Link>
                         </li>
                     )
@@ -137,7 +141,10 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
                                     <CiViewList className="mr-2 text-xl" />
                                     <span className="flex-1 line-clamp-1">{item.quiz.title}</span>
                                 </div>
-                                {item.status === "FINISH" &&
+                                {item.status === "PROGRESS" ?
+                                    <BiSolidTimeFive className="text-xl text-blue-500" />
+                                    :
+                                    item.status === "FINISH" &&
                                     <GoCheckCircleFill className="text-xl text-green-500" />
                                 } 
                             </Link>

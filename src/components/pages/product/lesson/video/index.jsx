@@ -62,7 +62,7 @@ const VideoComponent = ({ user_video, access }) => {
                     </div>
                     <button
                         className="px-4 py-2 border-orange-400 bg-orange-400 text-white rounded-lg transition-all hover:opacity-70"
-                    >Келесі тапсырмаға өту</button>
+                    >Видеосабақты аяқтау</button>
                 </form>
             }
         </div>

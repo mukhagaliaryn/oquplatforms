@@ -16,7 +16,7 @@ const AccountLayout = (props) => {
             <Script id="storage">
                 {``}
             </Script>
-            <div id="root" className="font-inter h-screen flex flex-col overflow-y-auto">
+            <div id="root" className="h-screen flex flex-col overflow-y-auto">
                 <div id="main-wrapper" className="flex-1">
                     <div className="w-full py-5 border-b text-center">
                         <Link href={"/"} 
