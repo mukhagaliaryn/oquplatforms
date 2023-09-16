@@ -6,16 +6,27 @@ import { CiCircleChevLeft } from "react-icons/ci";
 import { GoCheckCircleFill } from "react-icons/go";
 
 
-const ChapterSidebar = ({ product, user_chapters }) => {
+const ChapterSidebar = ({ product, user_product, user_chapters }) => {
     const router = useRouter();
 
     return (
         <div className="w-80 sticky line-clamp-1 top-0 mr-2 pt-5 hidden md:block">
             <Link href={`/product/${router.query.uid}`}
-                className="p-4 text-neutral-600 flex mb-4 items-center shadow transition-all rounded-lg hover:bg-orange-100"
+                className="p-4 block text-neutral-600  mb-4 shadow transition-all rounded-lg hover:bg-orange-100"
             >
-                <CiCircleChevLeft className="text-2xl mr-2" />
-                <h1>{product}</h1>
+                <div className="flex items-center">
+                    <CiCircleChevLeft className="text-2xl mr-2" />
+                    <h1>{product}</h1>
+                </div>
+                
+                <div className="mt-5 flex items-center">
+                    <div className="h-1 w-full bg-neutral-100 rounded-lg overflow-hidden">
+                        <div className="bg-orange-400 h-full" style={{ width: `${user_product.score}%` }}></div>
+                    </div>
+                    <span className="text-xs text-neutral-600 ml-2">
+                        {user_product.score}%
+                    </span>
+                </div>
             </Link>
 
             <ul>

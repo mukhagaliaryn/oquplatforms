@@ -33,7 +33,7 @@ const QuizStartComponent = ({ user_quiz_data, access }) => {
     return (
         <div className="my-5">
             <div className="flex justify-between items-center">
-                <h1 className="text-4xl font-bold">{user_quiz_data.quiz.title}</h1>
+                <h1 className="text-2xl font-bold">{user_quiz_data.quiz.title}</h1>
                 <span className="text-sm text-neutral-600">{user_quiz_data.quiz.duration} мин</span>
             </div>
             <span className="text-neutral-600 block my-2">

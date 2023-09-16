@@ -12,7 +12,7 @@ const QuizProgressComponent = ({ user_quiz_data, user_answers, access }) => {
     const ChoiceAnswer = async (user_quiz_id, question_id, answer_id) => {
         try {
             const response = await fetch(`${BACKEND_URL}/products/user/quiz/${user_quiz_id}/question/${question_id}/answer/${answer_id}/`, {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `JWT ${access}`

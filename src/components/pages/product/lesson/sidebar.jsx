@@ -119,8 +119,9 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
                                 </div>
                                 {item.status === "PROGRESS" ?
                                     <BiSolidTimeFive className="text-xl text-blue-500" />
-                                    :
-                                    item.status === "FINISH" &&
+                                : item.status === "CONFIRM" ?
+                                    <BiSolidTimeFive className="animate-bounce text-xl text-blue-500" />
+                                : item.status === "FINISH" &&
                                     <GoCheckCircleFill className="text-xl text-green-500" />
                                 } 
                             </Link>

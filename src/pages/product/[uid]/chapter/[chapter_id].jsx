@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import ChapterContent from "@/src/components/pages/product/chapter/content";
 import ChapterSidebar from "@/src/components/pages/product/chapter/sidebar";
@@ -7,7 +7,7 @@ import { BACKEND_URL } from "@/src/redux/actions/types";
 import { useSelector } from "react-redux";
 
 
-const Chapter = ({ product, user_chapter, user_chapters, user_lessons, videos, tasks, quizzes }) => {
+const Chapter = ({ product, user_product, user_chapter, user_chapters, user_lessons, videos, tasks, quizzes,access }) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
 
@@ -25,7 +25,8 @@ const Chapter = ({ product, user_chapter, user_chapters, user_lessons, videos, t
                     {/* Sidebar */}
                     <ChapterSidebar
                         product={product}
-                        user_chapters={user_chapters} 
+                        user_product={user_product}
+                        user_chapters={user_chapters}
                     />
 
                     {/* Content */}
@@ -36,6 +37,7 @@ const Chapter = ({ product, user_chapter, user_chapters, user_lessons, videos, t
                         videos={videos}
                         tasks={tasks}
                         quizzes={quizzes}
+                        access={access} 
                     />
                 </div>
             }
@@ -56,12 +58,14 @@ export async function getServerSideProps(context) {
 
     const user_type = data.user_type || null
     const product = data.product || null
+    const user_product = data.user_product || null
     const user_chapter = data.user_chapter || null;
     const user_chapters = data.user_chapters || [];
     const user_lessons = data.user_lessons || [];
     const videos = data.videos || [];
     const tasks = data.tasks || [];
     const quizzes = data.quizzes || [];
+    const access = context.req.cookies.access || "";
 
 
     if (user_type === "TEACHER" || user_type === "MANAGER") {
@@ -73,13 +77,14 @@ export async function getServerSideProps(context) {
     return {
         props: {
             product,
+            user_product,
             user_chapter,
             user_chapters,
             user_lessons,
             videos,
             tasks,
             quizzes,
-            
+            access,
             user_type
         }
     }

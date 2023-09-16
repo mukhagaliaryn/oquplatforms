@@ -4,13 +4,48 @@ import { GoCheckCircleFill, GoCircle } from "react-icons/go";
 import According from "@/src/components/According";
 import { useRouter } from "next/router";
 import { BiSolidTimeFive } from "react-icons/bi";
+import { BACKEND_URL } from "@/src/redux/actions/types";
+import { setAlert } from "@/src/redux/actions/alert";
+import { useDispatch } from "react-redux";
 
 
-const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, quizzes, }) => {
+const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, quizzes, access }) => {
     const router = useRouter();
+    const dispatch = useDispatch();
+
+    let video_done;
+    for (let i = 0; i < user_lessons.length; i++) {
+        if (user_lessons[i].is_done) {
+            video_done = true;
+        } else {
+            video_done = false;
+            break;
+        }
+    }
 
     const linkToLesson = link => {
         router.push(link)
+    }
+
+    const handleFinishChapter = async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/products/product/${router.query.uid}/chapter/${router.query.chapter_id}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            });
+
+            if (response.status == 200) {
+                router.push(router.asPath);
+                dispatch(setAlert("Бөлім аяқталды!", "success"));
+            } else {
+                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     return (
@@ -32,7 +67,7 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                 </div>
             </div>
 
-            <div className="mt-10">
+            <div className="my-10">
                 {user_lessons.map(item => {
                     return (
                         <According 
@@ -88,6 +123,9 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                                                 task_item.status === "PROGRESS" ?
                                                     <BiSolidTimeFive className="text-xl text-blue-500" />
                                                 :
+                                                task_item.status === "CONFIRM" ?
+                                                    <BiSolidTimeFive className="animate-bounce text-xl text-blue-500" />
+                                                :
                                                     <GoCircle className="text-xl" />
                                                 }
                                             </div>
@@ -128,6 +166,21 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                     )
                 })}
             </div>
+            
+            {!user_chapter.is_done &&
+                <React.Fragment>
+                    {video_done &&
+                        <div className="mb-10">
+                            <button
+                                onClick={() => handleFinishChapter()}
+                                className="px-6 py-3 block w-full border-orange-400 bg-orange-400 text-white rounded-lg transition-all hover:opacity-70"
+                            >
+                                Бөлімді қорытындылау
+                            </button>
+                        </div>
+                    }
+                </React.Fragment>
+            }
         </div>
     )
 }
