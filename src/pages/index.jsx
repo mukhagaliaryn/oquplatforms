@@ -9,13 +9,15 @@ import MainManagerComponent from "../components/pages/platforms/managers";
 import MainUserComponent from "../components/pages/platforms/user";
 
 
-const Main = ({class_group, official_student}) => {
+const Main = (data) => {
+    const {class_group, user_products, official_student} = data;
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const user = useSelector(state => state.auth.user)
 
     return (
         <MainLayout
             title={'Басты бет - OQU platforms'}
+            content={'Басты бет - OQU platforms'}
         >
             {(isAuthenticated && user) ?
                 <React.Fragment>
@@ -23,6 +25,7 @@ const Main = ({class_group, official_student}) => {
                         <MainComponent 
                             user={user}
                             class_group={class_group}
+                            user_products={user_products}
                             official_student={official_student}
                         />
                     : user.user_type === "TEACHER" ?
@@ -51,11 +54,13 @@ export async function getServerSideProps(context) {
     const data = await res.json();
 
     const class_group = data.class_group || null
+    const user_products = data.user_products || []
     const official_student = data.official_student || null
 
     return {
         props: {
             class_group,
+            user_products,
             official_student
         }
     }

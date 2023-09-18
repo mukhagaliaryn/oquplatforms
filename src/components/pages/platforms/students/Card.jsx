@@ -4,28 +4,26 @@ import Link from "next/link";
 import React from "react";
 
 
-const Card = ({ item }) => {
-
+const Card = ({ user_product }) => {
     return (
         <Link
-            key={item.id}
-            href={`/product/${item.id}`}
+            href={`/product/${user_product.product.id}`}
             className="w-full rounded-xl overflow-hidden shadow-lg transition-all hover:shadow-xl"
         >
             <Image
-                src={item.poster} width={512} height={512}
+                src={user_product.product.poster} width={512} height={512}
                 className="w-full block"
-                alt={item.name}
+                alt={user_product.product.name}
             />
 
             <div className="p-5">
-                <h1 className="text-xl font-bold">{item.name}</h1>
+                <h1 className="text-xl font-bold">{user_product.product.name}</h1>
                 <div className=" text-neutral-600">
-                    <span>{getClassLevel(item.class_level)}-сынып</span>
+                    <span>{getClassLevel(user_product.product.class_level)}-сынып</span>
                 </div>
                 <div className="mt-2">
                     <div className="h-1 rounded bg-neutral-100 overflow-hidden">
-                        <div className="h-full bg-orange-400 rounded" style={{ width: `${item.id}%` }}></div>
+                        <div className="h-full bg-orange-400 rounded" style={{ width: `${user_product.score}%` }}></div>
                     </div>
                 </div>
             </div>

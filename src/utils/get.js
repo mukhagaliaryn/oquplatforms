@@ -51,3 +51,4 @@ export const getProductType = (prop) => {
     }
     return result;
 }
+

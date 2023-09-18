@@ -8,7 +8,7 @@ import { CiCircleCheck } from "react-icons/ci";
 
 
 const MainComponent = (props) => {
-    const { user, class_group, official_student } = props;
+    const { user, class_group, user_products, official_student } = props;
     const [selected, setSelected] = useState(new Date());
     const handleDayClick = day => {
         setSelected(day)
@@ -77,12 +77,12 @@ const MainComponent = (props) => {
                             </div>
 
                             <div className="md:ml-5 flex-1">
-                                {class_group.subjects.map(item => {
+                                {user_products.map(user_product => {
                                     return (
-                                        <div key={item.id} className="mb-5">
-                                            <h1 className="text-neutral-600 text-sm">{item.name} - {item.id}%</h1>
+                                        <div key={user_product.id} className="mb-5">
+                                            <h1 className="text-neutral-600 text-sm">{user_product.product.name} - {user_product.score}%</h1>
                                             <div className="h-2 bg-neutral-100 rounded">
-                                                <div className="h-full bg-orange-400 rounded" style={{ width: `${item.id}%` }}></div>
+                                                <div className="h-full bg-orange-400 rounded" style={{ width: `${user_product.score}%` }}></div>
                                             </div>
                                         </div>
                                     )
@@ -101,11 +101,11 @@ const MainComponent = (props) => {
                     </div>
 
                     <div className="mt-10">
-                        <h1 className="text-2xl font-bold ">Бағдарлама пәндері</h1>
+                        <h1 className="text-2xl font-bold ">Өтілетін бағдарламалар</h1>
                         <div className="grid gap-2 md:gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 my-5">
-                            {class_group.subjects.map(item => {
+                            {user_products.map(user_product => {
                                 return (
-                                    <Card item={item} key={item.id} />
+                                    <Card user_product={user_product} key={user_product.id} />
                                 )
                             })}
                         </div>

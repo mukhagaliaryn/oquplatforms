@@ -11,7 +11,8 @@ import MainLayout from "@/src/layouts/main";
 
 
 
-const Product = ({ product, user_product, purposes, features, chapters, lessons, access }) => {
+const Product = (data) => {
+    const { product, user_product, purposes, features, chapters, lessons, access } = data;
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
