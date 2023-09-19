@@ -128,8 +128,9 @@ return (
 
             <div className="lg:w-96 lg:h-96 rounded-xl overflow-hidden mx-auto mb-5 lg:ml-5">
                 <Image
-                    src={product.poster} width={512} height={512} alt="poster"
+                    src={product.poster ? product.poster : "/icons/product.png"} width={512} height={512} alt="poster"
                     className="w-full h-full"
+                    priority
                 />
             </div>
         </div>

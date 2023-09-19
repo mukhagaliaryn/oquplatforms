@@ -11,9 +11,10 @@ const Card = ({ user_product }) => {
             className="w-full rounded-xl overflow-hidden shadow-lg transition-all hover:shadow-xl"
         >
             <Image
-                src={user_product.product.poster} width={512} height={512}
+                src={user_product.product.poster ? user_product.product.poster : "/icons/product.png"} width={512} height={512}
                 className="w-full block"
                 alt={user_product.product.name}
+                priority
             />
 
             <div className="p-5">

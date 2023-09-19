@@ -70,6 +70,7 @@ const MainComponent = (props) => {
                                 <Image
                                     src={user.image ? user.image : "/icons/user.png"} width={512} height={512} alt="image"
                                     className="w-48 h-48 mx-auto md:mx-0 rounded-full border-4 p-1 border-orange-400"
+                                    priority
                                 />
                                 <div className="text-center mt-2">
                                     <h1 className="text-xl font-bold">{user.first_name} {user.last_name}</h1>
