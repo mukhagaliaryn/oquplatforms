@@ -71,7 +71,7 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
             >   
                 <div className="flex items-center">
                     <CiCircleChevLeft className="text-2xl mr-2" />
-                    <h1>{chapter.chapter_name}</h1>
+                    <h1 className=" flex-1 line-clamp-1">{chapter.chapter_name}</h1>
                 </div>
                 <div className="mt-5 flex items-center">
                     <div className="h-1 w-full bg-neutral-100 rounded-lg overflow-hidden">

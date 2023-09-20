@@ -27,7 +27,7 @@ const ChaptersComponent = ({ chapters, lessons }) => {
 
                                                 <div className="flex items-center">
                                                     <CiTimer className="text-xl mr-2" />
-                                                    <span>{lesson.duration}мин</span>
+                                                    <span className="text-sm">{lesson.duration}мин</span>
                                                 </div>
                                             </div>
                                         )

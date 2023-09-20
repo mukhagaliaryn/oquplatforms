@@ -1,12 +1,12 @@
 import React from "react";
-import { BtnLinkPrimary } from "@/src/components/Button";
 import { getClassLevel, getProductType } from "@/src/utils/get";
 import Image from "next/image";
-import { CiCircleCheck } from "react-icons/ci";
 import { BACKEND_URL } from "@/src/redux/actions/types";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setAlert } from "@/src/redux/actions/alert";
+import parse from 'html-react-parser';
+import { GoCheckCircleFill } from "react-icons/go";
 
 
 const ProductDetailComponent = ({ product, user_product, chapters, access }) => {
@@ -63,13 +63,19 @@ return (
                     <div className="pb-5 flex items-center justify-center lg:justify-start">
                         <h1 className="text-4xl lg:text-6xl font-bold">{product.name}</h1>
                         <div className="text-2xl ml-2 lg:text-4xl lg:ml-5 text-green-500">
-                            <CiCircleCheck />
+                            <GoCheckCircleFill />
                         </div>
                     </div>
                     <div className="py-5 text-neutral-600 border-b border-t">
-                        {product.about}
+                        {parse(product.about)}
                     </div>
+
                     <div className="flex flex-col py-5 text-neutral-600 border-b">
+                        <div className="flex mt-2">
+                            <span className="mr-2 font-bold">Типі:</span>
+                            <span>{getProductType(product.product_type)}</span>
+                        </div>
+
                         <div className="flex mt-2">
                             <span className="mr-2 font-bold">Категория:</span>
                             <span>{product.topic.category.name}</span>
@@ -82,12 +88,7 @@ return (
 
                         <div className="flex mt-2">
                             <span className="mr-2 font-bold">Сынып:</span>
-                            <span>{getClassLevel(product.class_level)} - сынып</span>
-                        </div>
-                        
-                        <div className="flex mt-2">
-                            <span className="mr-2 font-bold">Типі:</span>
-                            <span>{getProductType(product.product_type)}</span>
+                            <span>{getClassLevel(product.class_level)}-сынып</span>
                         </div>
 
                         <div className="flex items-center mt-2">

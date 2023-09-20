@@ -39,7 +39,7 @@ const ChapterSidebar = ({ product, user_product, user_chapters }) => {
                                 :
                                     <GoCircle className="mr-2 text-xl" />
                                 }
-                                <span>{item.chapter.chapter_name}</span>
+                                <span className="flex-1 line-clamp-1">{item.chapter.chapter_name}</span>
                             </Link>
                         </li>
                     )

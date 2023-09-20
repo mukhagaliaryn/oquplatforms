@@ -61,21 +61,10 @@ const TaskComponent = ({ user_task, access }) => {
                     <h1 className="text-2xl font-bold">{user_task.task.title}</h1>
                     <span className="text-sm text-neutral-600">{user_task.task.duration} мин</span>
                 </div>
-                <span className="text-neutral-600 block mt-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quod obcaecati quibusdam blanditiis, aliquid, sint quia ullam culpa
-                    commodi cum nesciunt magnam, debitis totam adipisci dolorum quidem?
-                    At provident expedita voluptas.
-                </span>
             </div>
 
-            <div className="my-5 px-5">
-                <ul className="text-neutral-600 list-disc">
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit quae libero tenetur. Sed, nihil fugit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit quae libero tenetur. Sed, nihil fugit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit quae libero tenetur. Sed, nihil fugit.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit quae libero tenetur. Sed, nihil fugit.</li>
-                </ul>
+            <div className="my-5 text-neutral-600">
+                {user_task.task.body}
             </div>
             
             {user_task.status === "FINISH" ?
@@ -84,7 +73,7 @@ const TaskComponent = ({ user_task, access }) => {
                     <span className="text-neutral-600">Тапсырма балы: {user_task.score}</span>
                 </div>
             : user_task.status === "CONFIRM" ?
-                <form className="mb-5 flex justify-between" onSubmit={e => handleTaskFinish(e)}>
+                <form className="py-5 flex justify-between border-t" onSubmit={e => handleTaskFinish(e)}>
                     <button
                         className="px-4 py-2 border-orange-400 bg-orange-400 text-white rounded-lg transition-all hover:opacity-70"
                     >
@@ -96,7 +85,7 @@ const TaskComponent = ({ user_task, access }) => {
                     <span className="text-neutral-600">Жауап қаралуда...</span>
                 </div>
             :
-                <form className="mb-5 flex justify-between" onSubmit={e => handleSendTask(e)}>
+                <form className="flex justify-between border-t py-5" onSubmit={e => handleSendTask(e)}>
                     <div className="flex items-center text-neutral-600">
                         <input
                             type="checkbox" name="" id="full"

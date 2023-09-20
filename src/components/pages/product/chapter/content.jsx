@@ -51,7 +51,7 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
     return (
         <div className="flex-1 ml-2 pt-5">
             <div className="shadow rounded-xl p-10">
-                <h1 className="text-4xl font-bold">{user_chapter.chapter.chapter_name}</h1>
+                <h1 className="text-2xl font-bold">{user_chapter.chapter.chapter_name}</h1>
                 <span className="py-2 text-neutral-600 block border-b">{product}</span>
                 <span className="text-neutral-600 block mt-2">
                     {user_chapter.chapter.about}
