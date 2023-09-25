@@ -9,7 +9,8 @@ import { setAlert } from "@/src/redux/actions/alert";
 import { useDispatch } from "react-redux";
 
 
-const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access }) => {
+const LessonSidebar = (props) => {
+    const { chapter, user_lesson, user_videos, user_tasks, user_quizzes, access } = props;
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -17,24 +18,24 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
     let task_done;
     let quiz_done;
 
-    for (let i = 0; i < videos.length; i++) {
-        if (videos[i].is_done) {
+    for (let i = 0; i < user_videos.length; i++) {
+        if (user_videos[i].is_done) {
             video_done = true;
         } else {
             video_done = false;
             break;
         }
     }
-    for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].status === "FINISH") {
+    for (let i = 0; i < user_tasks.length; i++) {
+        if (user_tasks[i].status === "FINISH") {
             task_done = true;
         } else {
             task_done = false;
             break;
         }
     }
-    for (let i = 0; i < quizzes.length; i++) {
-        if (quizzes[i].status === "FINISH") {
+    for (let i = 0; i < user_quizzes.length; i++) {
+        if (user_quizzes[i].status === "FINISH") {
             quiz_done = true;
         } else {
             quiz_done = false;
@@ -45,7 +46,7 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
 
     const handleFinishLesson = async () => {
         try {
-            const response = await fetch(`${BACKEND_URL}/products/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/finished/`, {
+            const response = await fetch(`${BACKEND_URL}/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/finished/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,12 +86,12 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
 
             {/* Videos */}
             <ul>
-                {videos.map(item => {
+                {user_videos.map(item => {
                     return (
-                        <li key={item.video.id}>
+                        <li key={item.id}>
                             <Link
-                                href={`/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/video/${item.video.id}`}
-                                className={`flex justify-between rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/video/${item.video.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}
+                                href={`/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/video/${item.id}`}
+                                className={`flex justify-between rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/video/${item.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}
                             >
                                 <div className="flex items-center flex-1">
                                     <CiPlay1 className="mr-2 text-xl" />
@@ -106,12 +107,12 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
             </ul>
             {/* Tasks */}
             <ul>
-                {tasks.map(item => {
+                {user_tasks.map(item => {
                     return (
-                        <li key={item.task.id}>
+                        <li key={item.id}>
                             <Link
-                                href={`/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${item.task.id}`}
-                                className={`flex justify-between rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${item.task.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}
+                                href={`/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${item.id}`}
+                                className={`flex justify-between rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${item.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}
                             >   
                                 <div className="flex items-center flex-1">
                                     <CiFileOn className="mr-2 text-xl" />
@@ -131,12 +132,12 @@ const LessonSidebar = ({ chapter, user_lesson, videos, tasks, quizzes, access })
             </ul>
             {/* Quizzes */}
             <ul>
-                {quizzes.map(item => {
+                {user_quizzes.map(item => {
                     return (
-                        <li key={item.quiz.id}>
+                        <li key={item.id}>
                             <Link
-                                href={`/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/quiz/${item.quiz.id}`}
-                                className={`flex rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/quiz/${item.quiz.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}
+                                href={`/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/quiz/${item.id}`}
+                                className={`flex rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/quiz/${item.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}
                             >
                                 <div className="flex flex-1 items-center">
                                     <CiViewList className="mr-2 text-xl" />

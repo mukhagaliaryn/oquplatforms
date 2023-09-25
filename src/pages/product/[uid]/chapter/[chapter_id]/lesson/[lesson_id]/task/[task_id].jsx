@@ -7,7 +7,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const TaskLesson = ({ videos, tasks, quizzes, user_task, user_lesson, chapter, access }) => {
+const TaskLesson = (data) => {
+    const { 
+        user_task, 
+        user_lesson, 
+        chapter, 
+        user_videos, 
+        user_tasks, 
+        user_quizzes, 
+        access 
+    } = data;
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -24,11 +33,11 @@ const TaskLesson = ({ videos, tasks, quizzes, user_task, user_lesson, chapter, a
                 <div className="container mx-auto px-5 flex items-start mb-10">
                     {/* Sidebar */}
                     <LessonSidebar
-                        user_lesson={user_lesson}
-                        videos={videos}
-                        tasks={tasks}
-                        quizzes={quizzes}
                         chapter={chapter}
+                        user_lesson={user_lesson}
+                        user_videos={user_videos}
+                        user_tasks={user_tasks}
+                        user_quizzes={user_quizzes}
                         access={access}
                     />
 
@@ -51,7 +60,7 @@ export async function getServerSideProps(context) {
             "Authorization": `JWT ${context.req.cookies.access}`
         }
     }
-    const res = await fetch(`${BACKEND_URL}/products/product/${context.params.uid}/chapter/${context.params.chapter_id}/lesson/${context.params.lesson_id}/task/${context.params.task_id}`, context.req.cookies.access && config)
+    const res = await fetch(`${BACKEND_URL}/product/${context.params.uid}/chapter/${context.params.chapter_id}/lesson/${context.params.lesson_id}/task/${context.params.task_id}`, context.req.cookies.access && config)
     const data = await res.json();
 
     const user_type = data.user_type || null
@@ -59,9 +68,9 @@ export async function getServerSideProps(context) {
     const user_lesson = data.user_lesson || null;
     const user_task = data.user_task || null;
 
-    const videos = data.videos || [];
-    const tasks = data.tasks || [];
-    const quizzes = data.quizzes || [];
+    const user_videos = data.user_videos || [];
+    const user_tasks = data.user_tasks || [];
+    const user_quizzes = data.user_quizzes || [];
     const access = context.req.cookies.access || ""
 
     if (user_type === "TEACHER" || user_type === "MANAGER") {
@@ -75,10 +84,9 @@ export async function getServerSideProps(context) {
             chapter,
             user_lesson,
             user_task,
-            videos,
-            tasks,
-            quizzes,
-            user_type,
+            user_videos,
+            user_tasks,
+            user_quizzes,
             access
         }
     }

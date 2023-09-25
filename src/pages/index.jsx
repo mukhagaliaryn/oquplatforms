@@ -2,15 +2,13 @@ import React from "react";
 import MainLayout from "../layouts/main";
 import LandingComponent from "../components/pages/main";
 import { useSelector } from "react-redux";
-import MainComponent from "../components/pages/platforms/students";
 import { BACKEND_URL } from "../redux/actions/types";
-import MainTeacherComponent from "../components/pages/platforms/teachers";
-import MainManagerComponent from "../components/pages/platforms/managers";
-import MainUserComponent from "../components/pages/platforms/user";
+import MainComponent from "../components/pages/platforms/main/user";
+import MainAnonymousUserComponent from "../components/pages/platforms/main/anonymous";
 
 
 const Main = (data) => {
-    const {class_group, user_products, official_student} = data;
+    const { class_group, user_products, official_student } = data;
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const user = useSelector(state => state.auth.user)
 
@@ -22,21 +20,17 @@ const Main = (data) => {
             {(isAuthenticated && user) ?
                 <React.Fragment>
                     {user.user_type === "STUDENT" ?
-                        <MainComponent 
+                        <MainComponent
                             user={user}
                             class_group={class_group}
                             user_products={user_products}
                             official_student={official_student}
                         />
-                    : user.user_type === "TEACHER" ?
-                        <MainTeacherComponent />
-                    : user.user_type === "MANAGER" ?
-                        <MainManagerComponent />
-                    :
-                        <MainUserComponent />
+                        :
+                        <MainAnonymousUserComponent />
                     }
                 </React.Fragment>
-            :
+                :
                 <LandingComponent />
             }
         </MainLayout>

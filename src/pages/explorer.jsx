@@ -3,8 +3,8 @@ import MainLayout from "../layouts/main";
 import { useSelector } from "react-redux";
 import { BACKEND_URL } from "../redux/actions/types";
 import { useRouter } from "next/router";
-import ExlorerComponent from "../components/pages/main/explorer";
-import MainUserComponent from "../components/pages/platforms/user";
+import ExlorerComponent from "../components/pages/platforms/explorer";
+import MainUserComponent from "../components/pages/platforms/main/user";
 
 
 const Exlorer = ({ categories, topics }) => {

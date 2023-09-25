@@ -5,13 +5,15 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 
 
-const QuizProgressComponent = ({ user_quiz_data, user_answers, access }) => {
+const QuizProgressComponent = (props) => {
+    const { user_quiz_data, user_answers, access } = props;
     const router = useRouter();
     const dispatch = useDispatch();
 
+
     const ChoiceAnswer = async (user_quiz_id, question_id, answer_id) => {
         try {
-            const response = await fetch(`${BACKEND_URL}/products/user/quiz/${user_quiz_id}/question/${question_id}/answer/${answer_id}/`, {
+            const response = await fetch(`${BACKEND_URL}/user/quiz/${user_quiz_id}/question/${question_id}/answer/${answer_id}/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -26,10 +28,10 @@ const QuizProgressComponent = ({ user_quiz_data, user_answers, access }) => {
     }
 
 
-    const onSubmit = async e => {
+    const handleFinishQuiz = async e => {
         e.preventDefault();
         try {
-            const response = await fetch(`${BACKEND_URL}/products/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/quiz/${router.query.quiz_id}/finished/`, {
+            const response = await fetch(`${BACKEND_URL}/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/quiz/${router.query.quiz_id}/finished/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -95,7 +97,7 @@ const QuizProgressComponent = ({ user_quiz_data, user_answers, access }) => {
                 </form>
             </div>
 
-            <form className="m-5 flex justify-between" onSubmit={e => onSubmit(e)}>
+            <form className="m-5 flex justify-between" onSubmit={e => handleFinishQuiz(e)}>
                 <div className="flex items-center text-neutral-600">
                     <input
                         type="checkbox" name="" id="full"
@@ -107,7 +109,7 @@ const QuizProgressComponent = ({ user_quiz_data, user_answers, access }) => {
                 <button
                     className="px-4 py-2 border-orange-400 bg-orange-400 text-white rounded-lg transition-all hover:opacity-70"
                 >
-                    Келесі тапсырмаға өту
+                    Тестті аяқтау
                 </button>
             </form>
         </React.Fragment>

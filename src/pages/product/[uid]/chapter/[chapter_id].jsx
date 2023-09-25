@@ -7,7 +7,17 @@ import { BACKEND_URL } from "@/src/redux/actions/types";
 import { useSelector } from "react-redux";
 
 
-const Chapter = ({ product, user_product, user_chapter, user_chapters, user_lessons, videos, tasks, quizzes,access }) => {
+const Chapter = (props) => {
+    const { 
+        user_product, 
+        user_chapter, 
+        user_chapters, 
+        user_lessons, 
+        user_videos, 
+        user_tasks, 
+        user_quizzes,
+        access 
+    } = props;
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
 
@@ -24,19 +34,18 @@ const Chapter = ({ product, user_product, user_chapter, user_chapters, user_less
                 <div className="container mx-auto px-5 flex items-start">
                     {/* Sidebar */}
                     <ChapterSidebar
-                        product={product}
                         user_product={user_product}
                         user_chapters={user_chapters}
                     />
 
                     {/* Content */}
                     <ChapterContent
-                        product={product}
+                        product={user_product.product}
                         user_chapter={user_chapter}
                         user_lessons={user_lessons}
-                        videos={videos}
-                        tasks={tasks}
-                        quizzes={quizzes}
+                        user_videos={user_videos}
+                        user_tasks={user_tasks}
+                        user_quizzes={user_quizzes}
                         access={access} 
                     />
                 </div>
@@ -53,18 +62,17 @@ export async function getServerSideProps(context) {
             "Authorization": `JWT ${context.req.cookies.access}`
         }
     }
-    const res = await fetch(`${BACKEND_URL}/products/product/${context.params.uid}/chapter/${context.params.chapter_id}/`, context.req.cookies.access && config)
+    const res = await fetch(`${BACKEND_URL}/product/${context.params.uid}/chapter/${context.params.chapter_id}/`, context.req.cookies.access && config)
     const data = await res.json();
 
     const user_type = data.user_type || null
-    const product = data.product || null
     const user_product = data.user_product || null
     const user_chapter = data.user_chapter || null;
     const user_chapters = data.user_chapters || [];
     const user_lessons = data.user_lessons || [];
-    const videos = data.videos || [];
-    const tasks = data.tasks || [];
-    const quizzes = data.quizzes || [];
+    const user_videos = data.user_videos || [];
+    const user_tasks = data.user_tasks || [];
+    const user_quizzes = data.user_quizzes || [];
     const access = context.req.cookies.access || "";
 
 
@@ -76,14 +84,14 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            product,
             user_product,
             user_chapter,
             user_chapters,
             user_lessons,
-            videos,
-            tasks,
-            quizzes,
+            user_videos,
+            user_tasks,
+            user_quizzes,
+
             access,
             user_type
         }

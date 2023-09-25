@@ -4,7 +4,8 @@ import QuizProgressComponent from "./quiz";
 import QuizResultComponent from "./result";
 
 
-const QuizComponent = ({ user_quiz_data, user_answers, access }) => {
+const QuizComponent = (props) => {
+    const { user_quiz_data, user_answers, access } = props;
 
     return (
         <div className="shadow flex-1 mt-5 rounded-xl ml-2 px-5">

@@ -12,7 +12,7 @@ import MainLayout from "@/src/layouts/main";
 
 
 const Product = (data) => {
-    const { product, user_product, purposes, features, chapters, lessons, access } = data;
+    const { user_product, first_user_chapter_id, purposes, features, chapters, lessons, access } = data;
     const router = useRouter();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
@@ -23,15 +23,15 @@ const Product = (data) => {
     
     return (
         <MainLayout
-            title={product && product.name}
-            content={product && product.description}
+            title={user_product && user_product.product.name}
+            content={user_product && user_product.product.description}
         >
-            {(isAuthenticated && product) &&
+            {(isAuthenticated && user_product) &&
                 <React.Fragment>
                     {/* Detail */}
                     <ProductDetailComponent 
-                        product={product}
                         user_product={user_product}
+                        first_user_chapter_id={first_user_chapter_id}
                         chapters={chapters}
                         access={access}
                     />
@@ -40,7 +40,7 @@ const Product = (data) => {
                         <div className="flex-1 xl:mr-5">
                             
                             {/* Description */}
-                            <DescriptionComponent product={product} />
+                            <DescriptionComponent product={user_product.product} />
 
                             {/* Purpose */}
                             <PurposeComponent purposes={purposes} />
@@ -66,10 +66,10 @@ export async function getServerSideProps(context) {
             "Authorization": `JWT ${context.req.cookies.access}`
         }
     }
-    const res = await fetch(`${BACKEND_URL}/products/product/${context.params.uid}/`, context.req.cookies.access && config)
+    const res = await fetch(`${BACKEND_URL}/product/${context.params.uid}/`, context.req.cookies.access && config)
     const data = await res.json();
     const user_type = data.user_type || null
-    const product = data.product || null;
+    const first_user_chapter_id = data.first_user_chapter_id;
     const user_product = data.user_product || null;
     const purposes = data.purposes || [];
     const features = data.features || [];
@@ -87,8 +87,8 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            product,
             user_product,
+            first_user_chapter_id,
             purposes,
             features,
             chapters,

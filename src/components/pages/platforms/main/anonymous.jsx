@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const MainUserComponent = () => {
+const MainAnonymousUserComponent = () => {
     return (
         <div className="container mx-auto px-5 my-10">
             <h1 className="text-6xl font-bold text-center">Платформа қолжетімді емес!</h1>
@@ -9,4 +9,4 @@ const MainUserComponent = () => {
     )
 }
 
-export default MainUserComponent;
+export default MainAnonymousUserComponent;

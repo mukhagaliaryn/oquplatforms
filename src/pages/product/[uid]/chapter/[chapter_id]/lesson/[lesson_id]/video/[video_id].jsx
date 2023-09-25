@@ -7,7 +7,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-const VideoLesson = ({ user_video, user_lesson, tasks, quizzes, videos, chapter, access }) => {
+const VideoLesson = (data) => {
+    const { 
+        user_video,
+        user_lesson, 
+        chapter, 
+        user_videos, 
+        user_tasks, 
+        user_quizzes, 
+        access 
+    } = data;
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const router = useRouter();
 
@@ -23,21 +32,21 @@ const VideoLesson = ({ user_video, user_lesson, tasks, quizzes, videos, chapter,
         >
             {(isAuthenticated && user_video) &&
                 <div className="container mx-auto px-5 flex items-start mb-10">
-                    
+
                     {/* Sidebar */}
                     <LessonSidebar
-                        user_lesson={user_lesson}
-                        videos={videos}
-                        tasks={tasks}
-                        quizzes={quizzes}
                         chapter={chapter}
+                        user_lesson={user_lesson}
+                        user_videos={user_videos}
+                        user_tasks={user_tasks}
+                        user_quizzes={user_quizzes}
                         access={access}
                     />
 
                     {/* Content */}
-                    <VideoComponent 
-                        user_video={user_video} 
-                        access={access} 
+                    <VideoComponent
+                        user_video={user_video}
+                        access={access}
                     />
                 </div>
             }
@@ -54,7 +63,7 @@ export async function getServerSideProps(context) {
             "Authorization": `JWT ${context.req.cookies.access}`
         }
     }
-    const res = await fetch(`${BACKEND_URL}/products/product/${context.params.uid}/chapter/${context.params.chapter_id}/lesson/${context.params.lesson_id}/video/${context.params.video_id}`, context.req.cookies.access && config)
+    const res = await fetch(`${BACKEND_URL}/product/${context.params.uid}/chapter/${context.params.chapter_id}/lesson/${context.params.lesson_id}/video/${context.params.video_id}`, context.req.cookies.access && config)
     const data = await res.json();
 
     const user_type = data.user_type || null;
@@ -62,9 +71,9 @@ export async function getServerSideProps(context) {
     const user_lesson = data.user_lesson || null;
     const user_video = data.user_video || null;
 
-    const videos = data.videos || [];
-    const tasks = data.tasks || [];
-    const quizzes = data.quizzes || [];
+    const user_videos = data.user_videos || [];
+    const user_tasks = data.user_tasks || [];
+    const user_quizzes = data.user_quizzes || [];
     const access = context.req.cookies.access || "";
 
     if (user_type === "TEACHER" || user_type === "MANAGER") {
@@ -78,10 +87,10 @@ export async function getServerSideProps(context) {
             chapter,
             user_lesson,
             user_video,
-            videos,
-            tasks,
-            quizzes,
-            user_type,
+            user_videos,
+            user_tasks,
+            user_quizzes,
+
             access
         }
     }

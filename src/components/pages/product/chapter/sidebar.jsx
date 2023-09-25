@@ -6,7 +6,8 @@ import { CiCircleChevLeft } from "react-icons/ci";
 import { GoCheckCircleFill } from "react-icons/go";
 
 
-const ChapterSidebar = ({ product, user_product, user_chapters }) => {
+const ChapterSidebar = (props) => {
+    const { user_product, user_chapters } = props;
     const router = useRouter();
 
     return (
@@ -16,7 +17,7 @@ const ChapterSidebar = ({ product, user_product, user_chapters }) => {
             >
                 <div className="flex items-center">
                     <CiCircleChevLeft className="text-2xl mr-2" />
-                    <h1>{product}</h1>
+                    <h1>{user_product.product.name}</h1>
                 </div>
                 
                 <div className="mt-5 flex items-center">
@@ -33,7 +34,7 @@ const ChapterSidebar = ({ product, user_product, user_chapters }) => {
                 {user_chapters.map(item => {
                     return (
                         <li key={item.id}>
-                            <Link href={`/product/${router.query.uid}/chapter/${item.chapter.id}`} className={`flex rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${item.chapter.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}>
+                            <Link href={`/product/${router.query.uid}/chapter/${item.id}`} className={`flex rounded-lg items-center p-4 hover:bg-orange-100 transition-all ${router.asPath === `/product/${router.query.uid}/chapter/${item.id}` ? "text-white bg-orange-400 hover:bg-orange-400" : "text-neutral-600"}`}>
                                 {item.is_done ?
                                     <GoCheckCircleFill className="mr-2 text-xl text-green-500" />
                                 :

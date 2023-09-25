@@ -5,14 +5,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 
-const TaskComponent = ({ user_task, access }) => {
+const TaskComponent = (props) => {
+    const { user_task, access } = props;
     const router = useRouter();
     const dispatch = useDispatch();
 
     const handleSendTask = async e => {
         e.preventDefault();
+
         try {
-            const response = await fetch(`${BACKEND_URL}/products/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${router.query.task_id}/`, {
+            const response = await fetch(`${BACKEND_URL}/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${router.query.task_id}/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -31,11 +33,12 @@ const TaskComponent = ({ user_task, access }) => {
         }
     }
 
+    
     const handleTaskFinish = async e => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`${BACKEND_URL}/products/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${router.query.task_id}/finished/`, {
+            const response = await fetch(`${BACKEND_URL}/product/${router.query.uid}/chapter/${router.query.chapter_id}/lesson/${router.query.lesson_id}/task/${router.query.task_id}/finished/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

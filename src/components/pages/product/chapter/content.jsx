@@ -9,7 +9,16 @@ import { setAlert } from "@/src/redux/actions/alert";
 import { useDispatch } from "react-redux";
 
 
-const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, quizzes, access }) => {
+const ChapterContent = (props) => {
+    const { 
+        product, 
+        user_chapter, 
+        user_lessons, 
+        user_videos, 
+        user_tasks, 
+        user_quizzes, 
+        access 
+    } = props;
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -29,7 +38,7 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
 
     const handleFinishChapter = async () => {
         try {
-            const response = await fetch(`${BACKEND_URL}/products/product/${router.query.uid}/chapter/${router.query.chapter_id}/`, {
+            const response = await fetch(`${BACKEND_URL}/product/${router.query.uid}/chapter/${router.query.chapter_id}/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,7 +61,7 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
         <div className="flex-1 ml-2 pt-5">
             <div className="shadow rounded-xl p-10">
                 <h1 className="text-2xl font-bold">{user_chapter.chapter.chapter_name}</h1>
-                <span className="py-2 text-neutral-600 block border-b">{product}</span>
+                <span className="py-2 text-neutral-600 block border-b">{product.name}</span>
                 <span className="text-neutral-600 block mt-2">
                     {user_chapter.chapter.about}
                 </span>
@@ -68,30 +77,30 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
             </div>
 
             <div className="my-10">
-                {user_lessons.map(item => {
+                {user_lessons.map(user_lesson => {
                     return (
                         <According 
-                            title={item.lesson.title} 
+                            title={user_lesson.lesson.title} 
                             content={"Сабақ жайлы мәлімет"} 
-                            key={item.lesson.id}
-                            status={item.is_done}
+                            key={user_lesson.lesson.id}
+                            status={user_lesson.is_done}
                         >
                             {/* Videos */}
-                            {videos.map(video_item => {
-                                if (video_item.video.lesson === item.lesson.id) {
+                            {user_videos.map(user_video => {
+                                if (user_video.video.lesson === user_lesson.lesson.id) {
                                     return (
                                         <div
-                                            key={video_item.video.id}
-                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/video/${video_item.video.id}`)}
+                                            key={user_video.id}
+                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.id}/lesson/${user_lesson.id}/video/${user_video.id}`)}
                                             className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                         >
                                             <div className="flex items-center flex-1">
                                                 <CiPlay1 className="text-xl mr-2" />
-                                                <span>{video_item.video.title}</span>
+                                                <span>{user_video.video.title}</span>
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
-                                                {video_item.is_done ?
+                                                {user_video.is_done ?
                                                     <GoCheckCircleFill className="text-xl text-green-500" />
                                                 :
                                                     <GoCircle className="text-xl" />
@@ -103,27 +112,27 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                             })}
 
                             {/* Tasks */}
-                            {tasks.map(task_item => {
-                                if (task_item.task.lesson === item.lesson.id) {
+                            {user_tasks.map(user_task => {
+                                if (user_task.task.lesson === user_lesson.lesson.id) {
                                     return (
                                         <div
-                                            key={task_item.task.id}
-                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/task/${task_item.task.id}`)}
+                                            key={user_task.id}
+                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.id}/lesson/${user_lesson.id}/task/${user_task.id}`)}
                                             className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                         >
                                             <div className="flex items-center">
                                                 <CiFileOn className="text-xl mr-2" />
-                                                <span>{task_item.task.title}</span>
+                                                <span>{user_task.task.title}</span>
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
-                                                {task_item.status === "FINISH" ?
+                                                {user_task.status === "FINISH" ?
                                                     <GoCheckCircleFill className="text-xl text-green-500" />
                                                 :
-                                                task_item.status === "PROGRESS" ?
+                                                user_task.status === "PROGRESS" ?
                                                     <BiSolidTimeFive className="text-xl text-blue-500" />
                                                 :
-                                                task_item.status === "CONFIRM" ?
+                                                user_task.status === "CONFIRM" ?
                                                     <BiSolidTimeFive className="animate-bounce text-xl text-blue-500" />
                                                 :
                                                     <GoCircle className="text-xl" />
@@ -135,24 +144,24 @@ const ChapterContent = ({ product, user_chapter, user_lessons, videos, tasks, qu
                             })}
 
                             {/* Quizzes */}
-                            {quizzes.map(quiz_item => {
-                                if (quiz_item.quiz.lesson === item.lesson.id) {
+                            {user_quizzes.map(user_quiz => {
+                                if (user_quiz.quiz.lesson === user_lesson.lesson.id) {
                                     return (
                                         <div
-                                            key={quiz_item.quiz.id}
-                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.chapter.id}/lesson/${item.lesson.id}/quiz/${quiz_item.quiz.id}`)}
+                                            key={user_quiz.id}
+                                            onClick={() => linkToLesson(`/product/${router.query.uid}/chapter/${user_chapter.id}/lesson/${user_lesson.id}/quiz/${user_quiz.id}`)}
                                             className="flex items-center justify-between text-neutral-600 p-5 border-b transition-all cursor-pointer hover:bg-orange-100"
                                         >
                                             <div className="flex items-center">
                                                 <CiViewList className="text-xl mr-2" />
-                                                <span>{quiz_item.quiz.title}</span>
+                                                <span>{user_quiz.quiz.title}</span>
                                             </div>
 
                                             <div className="flex items-center text-neutral-600">
-                                                {quiz_item.status === "FINISH" ?
+                                                {user_quiz.status === "FINISH" ?
                                                     <GoCheckCircleFill className="text-xl text-green-500" />
                                                 :
-                                                quiz_item.status === "PROGRESS" ?
+                                                user_quiz.status === "PROGRESS" ?
                                                     <BiSolidTimeFive className="text-xl text-blue-500" />
                                                 :
                                                     <GoCircle className="text-xl" />
