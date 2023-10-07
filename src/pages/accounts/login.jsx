@@ -106,13 +106,13 @@ const Login = () => {
                             }
                         </button>
                         
-                        <Link href={"/accounts/password-reset"} className="inline-block mt-2 text-neutral-600 hover:underline">Парольді қалпына келтіру</Link>
+                        <Link href={"/accounts/password-reset"} className="inline-block text-center mt-4 text-neutral-600 hover:underline">Парольді қалпына келтіру</Link>
                     </div>
 
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                         <Link href={"/accounts/register"} 
                             className="px-4 py-2 block rounded-lg text-neutral-600 text-center border hover:border-neutral-900">Регистрация</Link>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </AccountLayout>

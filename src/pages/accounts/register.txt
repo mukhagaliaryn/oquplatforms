@@ -6,7 +6,6 @@ import { check_auth_status, signup } from "@/src/redux/actions/auth";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Link from "next/link";
 
