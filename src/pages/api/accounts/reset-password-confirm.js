@@ -1,7 +1,7 @@
 import { BACKEND_URL } from "@/src/redux/actions/types";
 
 
-export default async (req, res) => {
+const resetPasswordConfirm = async (req, res) => {
     if (req.method === "POST") {
         const { uid, token, new_password, re_new_password } = req.body;
         const body = JSON.stringify({ uid, token, new_password, re_new_password })
@@ -33,3 +33,6 @@ export default async (req, res) => {
         return res.status(405).json({ error: `Method ${req.method} not allowed` });
     }
 }
+
+
+export default resetPasswordConfirm;

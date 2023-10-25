@@ -5,6 +5,7 @@ import { BACKEND_URL } from "../redux/actions/types";
 import MainComponent from "../components/pages/platforms/main/user";
 import MainAnonymousUserComponent from "../components/pages/platforms/main/anonymous";
 import { useRouter } from "next/router";
+import LandingComponent from "../components/pages/main";
 
 
 const Main = (data) => {
@@ -13,16 +14,16 @@ const Main = (data) => {
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const user = useSelector(state => state.auth.user);
 
-    if (typeof window !== 'undefined' && !isAuthenticated) {
-        router.push('/accounts/login')
-    }
+    // if (typeof window !== 'undefined' && !isAuthenticated) {
+    //     router.push('/accounts/login')
+    // }
 
     return (
         <MainLayout
             title={'Басты бет - OQU platforms'}
             content={'Басты бет - OQU platforms'}
         >
-            {(isAuthenticated && user) &&
+            {(isAuthenticated && user) ?
                 <React.Fragment>
                     {user.user_type === "STUDENT" ?
                         <MainComponent
@@ -35,6 +36,8 @@ const Main = (data) => {
                         <MainAnonymousUserComponent />
                     }
                 </React.Fragment>
+            :
+                <LandingComponent/>
             }
         </MainLayout>
     )

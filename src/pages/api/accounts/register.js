@@ -1,6 +1,7 @@
 import { BACKEND_URL } from "@/src/redux/actions/types";
 
-export default async (req, res) => {
+
+const register = async (req, res) => {
     if(req.method === "POST") {
         const { first_name, last_name, username, email, password, re_password } = req.body;
         const body = JSON.stringify({ first_name, last_name, username, email, password, re_password })
@@ -30,3 +31,6 @@ export default async (req, res) => {
         return res.status(405).json({"error": `Method ${req.method} not allowed.`})
     }
 }
+
+
+export default register;

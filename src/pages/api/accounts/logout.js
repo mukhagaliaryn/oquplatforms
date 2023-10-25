@@ -2,7 +2,7 @@ import { DEVELOPMENT } from '@/src/redux/actions/types';
 import cookie from 'cookie';
 
 
-export default async (req, res) => {
+const logout = async (req, res) => {
     if(req.method === "POST") {
         res.setHeader("Set-Cookie", [
             cookie.serialize('access', '', {
@@ -27,3 +27,6 @@ export default async (req, res) => {
         return res.status(405).json({"error": `Method ${req.method} not allowed.`})
     }
 }
+
+
+export default logout;

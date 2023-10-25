@@ -1,7 +1,7 @@
 import { BACKEND_URL } from "@/src/redux/actions/types";
 
 
-export default async (req, res) => {
+const resetPassword = async (req, res) => {
     if (req.method === "POST") {
         const { email } = req.body;
         const body = JSON.stringify({ email })
@@ -33,3 +33,6 @@ export default async (req, res) => {
         return res.status(405).json({ error: `Method ${req.method} not allowed` });
     }
 }
+
+
+export default resetPassword;

@@ -2,7 +2,7 @@ import { BACKEND_URL } from '@/src/redux/actions/types';
 import cookie from 'cookie';
 
 
-export default async (req, res) => {
+const verify = async (req, res) => {
     if (req.method === 'GET') {
         const cookies = cookie.parse(req.headers.cookie ?? '');
         const access = cookies.access ?? false;
@@ -44,3 +44,6 @@ export default async (req, res) => {
         return res.status(405).json({ error: `Method ${req.method} not allowed` });
     }
 };
+
+
+export default verify;

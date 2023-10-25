@@ -2,7 +2,7 @@ import { BACKEND_URL, DEVELOPMENT } from '@/src/redux/actions/types';
 import cookie from 'cookie';
 
 
-export default async (req, res) => {
+const login = async (req, res) => {
     if(req.method === "POST") {
         const { email, password } = req.body;
         const body = JSON.stringify({ email, password })
@@ -48,3 +48,6 @@ export default async (req, res) => {
         return res.status(405).json({"error": `Method ${req.method} not allowed.`})
     }
 }
+
+
+export default login;
