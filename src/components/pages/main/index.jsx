@@ -31,7 +31,7 @@ const LandingComponent = () => {
                         <div className="mr-2">
                             <BtnLinkPrimary href={"/"}>Нұсқаулық</BtnLinkPrimary>
                         </div>
-                        <BtnLink href={"/"}>Іске кірісу</BtnLink>
+                        <BtnLink href={"/accounts/register"}>Іске кірісу</BtnLink>
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@ const LandingComponent = () => {
                     </p>
 
                     <div className="flex justify-center">
-                        <BtnLink href={"/"}>Қазір бастау</BtnLink>
+                        <BtnLink href={"/accounts/register"}>Қазір бастау</BtnLink>
                     </div>
                 </div>
             </div>
