@@ -87,11 +87,12 @@ return (
                             <span>{user_product.product.topic.name} бағыты</span>
                         </div>
 
-                        <div className="flex mt-2">
-                            <span className="mr-2 font-bold">Сынып:</span>
-                            <span>{getClassLevel(user_product.product.class_level)}-сынып</span>
-                        </div>
-
+                        {user_product.product.class_level === "NOT DEFINED" &&
+                            <div className="flex mt-2">
+                                <span className="mr-2 font-bold">Сынып:</span>
+                                <span>{getClassLevel(user_product.product.class_level)}-сынып</span>
+                            </div>
+                        }
                         <div className="flex items-center mt-2">
                             <span className="font-bold">Өңдегендер:</span>
                             <div className="ml-2 h-full w-full flex items-center">

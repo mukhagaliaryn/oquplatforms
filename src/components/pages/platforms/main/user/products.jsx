@@ -27,9 +27,11 @@ const CardProduct = (props) => {
 
                             <div className="p-5">
                                 <h1 className="text-xl font-bold">{user_product.product.name}</h1>
-                                <div className=" text-neutral-600">
-                                    <span>{getClassLevel(user_product.product.class_level)}-сынып</span>
-                                </div>
+                                {user_product.product.class_level === "NOT DEFINED" && 
+                                    <div className=" text-neutral-600">
+                                        <span>{getClassLevel(user_product.product.class_level)}-сынып</span>
+                                    </div>
+                                }
                                 <div className="mt-2">
                                     <div className="h-1 rounded bg-neutral-100 overflow-hidden">
                                         <div className="h-full bg-orange-400 rounded" style={{ width: `${user_product.score}%` }}></div>
