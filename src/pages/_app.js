@@ -22,7 +22,7 @@ const poppins = Poppins({
 })
 
 
-const App = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }) => {
   const store = useStore(pageProps.initialReduxState);
 
   return (
@@ -43,4 +43,4 @@ const App = ({ Component, pageProps }) => {
 }
 
 
-export default App;
+export default MyApp;
