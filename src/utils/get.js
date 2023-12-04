@@ -1,17 +1,3 @@
-export const getDirectionType = (prop) => {
-    let result = null;
-    switch (prop) {
-        case "IT":
-            result = "Ақпараттық технологиялар";
-            break;
-        case "GENERAL_EDU":
-            result = "Жалпы білім беру";
-            break;
-    }
-
-    return result;
-}
-
 
 export const getClassLevel = (prop) => {
     let result = 0;

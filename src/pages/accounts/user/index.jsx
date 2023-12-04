@@ -40,7 +40,7 @@ const UserAccount = ({ user_account, access }) => {
     }
 
     const onSubmitAccount = async (data) => {
-        data = { first_name: user.first_name, last_name: user.last_name, ...data }
+        data = { full_name: user.full_name, ...data }
         try {
             const response = await fetch(`${BACKEND_URL}/accounts/user/`, {
                 method: "PUT",
@@ -68,7 +68,7 @@ const UserAccount = ({ user_account, access }) => {
 
     return (
         <UserAccountLayout
-            title={user ? `${user.first_name} ${user.last_name}` : "Аккаунт"}
+            title={user ? user.full_name : "Аккаунт"}
         >
             {(isAuthenticated && user) &&
                 <div className="">
@@ -85,33 +85,10 @@ const UserAccount = ({ user_account, access }) => {
                                 <input
                                     type="text"
                                     placeholder="..."
-                                    {...register("first_name")}
+                                    {...register("full_name")}
                                     className="border rounded-lg py-2 px-4 w-full text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none"
                                     required
-                                    defaultValue={user.first_name}
-                                />
-                            </div>
-
-                            <div className="mb-4">
-                                <label htmlFor="" className="w-full block text-left font-bold mb-2 text-neutral-600 ">Тегі</label>
-                                <input
-                                    type="text"
-                                    placeholder="..."
-                                    {...register("last_name")}
-                                    className="border rounded-lg py-2 px-4 w-full text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none"
-                                    required
-                                    defaultValue={user.last_name}
-                                />
-                            </div>
-
-                            <div className="mb-4">
-                                <label htmlFor="" className="w-full block text-left font-bold mb-2 text-neutral-600">Логин</label>
-                                <input
-                                    type="text"
-                                    placeholder="..."
-                                    className="border rounded-lg py-2 px-4 w-full text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none"
-                                    disabled
-                                    defaultValue={user.username}
+                                    defaultValue={user.full_name}
                                 />
                             </div>
 

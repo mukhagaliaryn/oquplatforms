@@ -23,7 +23,7 @@ const ProfileComponent = (props) => {
                         priority
                     />
                     <div className="text-center mt-2">
-                        <h1 className="text-xl font-bold">{user.first_name} {user.last_name}</h1>
+                        <h1 className="text-xl font-bold">{user.full_name}</h1>
                     </div>
                 </div>
 
