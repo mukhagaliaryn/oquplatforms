@@ -12,25 +12,12 @@ import Link from "next/link";
 
 const Register = () => {
     const schema = yup.object().shape({
-        first_name: yup.string()
+        full_name: yup.string()
             .required('Аты жазылуы қажет!')
             .min(3, "Минимум 3 символ болу қажет")
-            .max(32, "Максимум 32 символдан аспауы қажет"),
-        last_name: yup.string()
-            .required('Тегі жазылуы қажет!')
-            .min(3, "Минимум 3 символ болу қажет")
-            .max(32, "Максимум 32 символдан аспауы қажет"),
-        username: yup.string()
-            // .notOneOf(userList, 'Имя такое же пользователь уже существует')
-            .min(3, "Минимум 3 символ болу қажет")
-            .max(32, "Максимум 32 символдан аспауы қажет")
-            .matches(
-                /^(?=[a-zA-Z0-9._]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
-                "ID аты бренд атауы секілді және латын әріптерімен болуы қажет!")
-            .required('Пайдаланушы аты қажет'),
+            .max(64, "Максимум 64 символдан аспауы қажет"),
         email: yup.string()
             .email('Электрондық пошта @ белгісі болуы керек')
-            // .notOneOf(emailList, 'Электронная почта уже существует')
             .required('Электрондық пошта қажет')
             .max(32, "Максимум 32 символ"),
         password: yup.string()
@@ -59,7 +46,7 @@ const Register = () => {
 
     const onSubmit = (data) => {
         if (dispatch && dispatch !== null && dispatch !== undefined)
-            dispatch(signup(data.first_name, data.first_name, data.username, data.email, data.password, data.re_password));
+            dispatch(signup(data.full_name, data.email, data.password, data.re_password));
     };
 
     useEffect(() => {
@@ -85,46 +72,16 @@ const Register = () => {
                 <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
                     
                     <div className="py-2 w-full">
-                        <label htmlFor="" className="block font-bold text-neutral-600 mb-2">Есімі</label>
+                        <label htmlFor="" className="block font-bold text-neutral-600 mb-2">Аты-жөні</label>
                         <input
                             type="text"
-                            {...register("first_name")}
-                            placeholder="Есімің..."
-                            className={`block w-full border rounded-lg py-2 px-4 text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none ${errors["first_name"] && "border-red-500"}`}
+                            {...register("full_name")}
+                            placeholder="Аты-жөнің..."
+                            className={`block w-full border rounded-lg py-2 px-4 text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none ${errors["full_name"] && "border-red-500"}`}
                         />
-                        {errors["first_name"] ?
+                        {errors["full_name"] ?
                             <div className="mt-2 py-2 px-4 rounded-lg bg-red-500 text-white text-xs">
-                                {errors["first_name"].message}
-                            </div>
-                            : null}
-                    </div>
-
-                    <div className="py-2 w-full">
-                        <label htmlFor="" className="block font-bold text-neutral-600 mb-2">Тегі</label>
-                        <input
-                            type="text"
-                            {...register("last_name")}
-                            placeholder="Тегің..."
-                            className={`block w-full border rounded-lg py-2 px-4 text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none ${errors["last_name"] && "border-red-500"}`}
-                        />
-                        {errors["last_name"] ?
-                            <div className="mt-2 py-2 px-4 rounded-lg bg-red-500 text-white text-xs">
-                                {errors["last_name"].message}
-                            </div>
-                            : null}
-                    </div>
-
-                    <div className="py-2 w-full">
-                        <label htmlFor="" className="block font-bold text-neutral-600 mb-2">Никнейм | логин</label>
-                        <input
-                            type="text"
-                            {...register("username")}
-                            placeholder="Мысалы: user.name"
-                            className={`block w-full border rounded-lg py-2 px-4 text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none ${errors["username"] && "border-red-500"}`}
-                        />
-                        {errors["username"] ?
-                            <div className="mt-2 py-2 px-4 rounded-lg bg-red-500 text-white text-xs">
-                                {errors["username"].message}
+                                {errors["full_name"].message}
                             </div>
                             : null}
                     </div>

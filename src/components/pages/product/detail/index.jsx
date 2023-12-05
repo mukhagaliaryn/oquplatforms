@@ -1,5 +1,5 @@
 import React from "react";
-import { getClassLevel, getProductType } from "@/src/utils/get";
+import { getProductType } from "@/src/utils/get";
 import Image from "next/image";
 import { BACKEND_URL } from "@/src/redux/actions/types";
 import { useRouter } from "next/router";
@@ -84,15 +84,9 @@ return (
 
                         <div className="flex mt-2">
                             <span className="mr-2 font-bold">Бағыты:</span>
-                            <span>{user_product.product.topic.name} бағыты</span>
+                            <span>{user_product.product.topic.name}</span>
                         </div>
 
-                        {user_product.product.class_level === "NOT DEFINED" &&
-                            <div className="flex mt-2">
-                                <span className="mr-2 font-bold">Сынып:</span>
-                                <span>{getClassLevel(user_product.product.class_level)}-сынып</span>
-                            </div>
-                        }
                         <div className="flex items-center mt-2">
                             <span className="font-bold">Өңдегендер:</span>
                             <div className="ml-2 h-full w-full flex items-center">

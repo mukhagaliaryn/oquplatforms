@@ -114,8 +114,8 @@ export const activation = (uid, token) => async dispatch => {
 
 
 // Sign up
-export const signup = (first_name, last_name, username, email, password, re_password) => async dispatch => {
-    const body = JSON.stringify({ first_name, last_name, username, email, password, re_password });
+export const signup = (full_name, email, password, re_password) => async dispatch => {
+    const body = JSON.stringify({ full_name, email, password, re_password });
 
     dispatch({
         type: SET_AUTH_LOADING

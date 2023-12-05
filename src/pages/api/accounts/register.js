@@ -3,8 +3,8 @@ import { BACKEND_URL } from "@/src/redux/actions/types";
 
 const register = async (req, res) => {
     if(req.method === "POST") {
-        const { first_name, last_name, username, email, password, re_password } = req.body;
-        const body = JSON.stringify({ first_name, last_name, username, email, password, re_password })
+        const { full_name, email, password, re_password } = req.body;
+        const body = JSON.stringify({ full_name, email, password, re_password })
         
         try {
             const response = await fetch(`${BACKEND_URL}/auth/users/`, {
