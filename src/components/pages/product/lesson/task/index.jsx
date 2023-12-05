@@ -3,6 +3,7 @@ import { BACKEND_URL } from "@/src/redux/actions/types";
 import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch } from "react-redux";
+import parse from 'html-react-parser';
 
 
 const TaskComponent = (props) => {
@@ -67,7 +68,7 @@ const TaskComponent = (props) => {
             </div>
 
             <div className="my-5 text-neutral-600">
-                {user_task.task.body}
+                {parse(user_task.task.body)}
             </div>
             
             {user_task.status === "FINISH" ?

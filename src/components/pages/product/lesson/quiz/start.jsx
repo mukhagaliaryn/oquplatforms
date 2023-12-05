@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { setAlert } from "@/src/redux/actions/alert";
+import parse from 'html-react-parser';
 
 
 const QuizStartComponent = (props) => {
@@ -41,10 +42,7 @@ const QuizStartComponent = (props) => {
             </div>
             <div className="py-5 border-b">
                 <span className="text-neutral-600">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quod obcaecati quibusdam blanditiis, aliquid, sint quia ullam culpa
-                    commodi cum nesciunt magnam, debitis totam adipisci dolorum quidem?
-                    At provident expedita voluptas.
+                    {parse(user_quiz_data.quiz.body)}
                 </span>
             </div>
 

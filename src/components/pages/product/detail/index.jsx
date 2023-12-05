@@ -92,7 +92,7 @@ return (
                             <div className="ml-2 h-full w-full flex items-center">
                                 {user_product.product.authors.map(author => {
                                     return (
-                                        <span className="mr-2" key={author.id}>{author.first_name} {author.last_name} </span>
+                                        <span className="mr-2" key={author.id}>{author.full_name} </span>
                                     )
                                 })}
                             </div>
