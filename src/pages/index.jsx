@@ -2,46 +2,8 @@ import React from "react";
 import MainLayout from "../layouts/main";
 import { useSelector } from "react-redux";
 import { BACKEND_URL } from "../redux/actions/types";
-import MainComponent from "../components/pages/platforms/main/user";
-import MainAnonymousUserComponent from "../components/pages/platforms/main/anonymous";
 import { useRouter } from "next/router";
-import LandingComponent from "../components/pages/main";
 
-
-const Main = (data) => {
-    const { class_group, user_products, official_student } = data;
-    const router = useRouter();
-    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-    const user = useSelector(state => state.auth.user);
-
-    // if (typeof window !== 'undefined' && !isAuthenticated) {
-    //     router.push('/accounts/login')
-    // }
-
-    return (
-        <MainLayout
-            title={'Басты бет - OQU platforms'}
-            content={'Басты бет - OQU platforms'}
-        >
-            {(isAuthenticated && user) ?
-                <React.Fragment>
-                    {user.user_type === "STUDENT" ?
-                        <MainComponent
-                            user={user}
-                            class_group={class_group}
-                            user_products={user_products}
-                            official_student={official_student}
-                        />
-                        :
-                        <MainAnonymousUserComponent />
-                    }
-                </React.Fragment>
-            :
-                <LandingComponent/>
-            }
-        </MainLayout>
-    )
-}
 
 export async function getServerSideProps(context) {
     const config = {
@@ -53,17 +15,38 @@ export async function getServerSideProps(context) {
     const res = await fetch(`${BACKEND_URL}/`, context.req.cookies.access && config)
     const data = await res.json();
 
-    const class_group = data.class_group || null
-    const user_products = data.user_products || []
-    const official_student = data.official_student || null
-
     return {
-        props: {
-            class_group,
-            user_products,
-            official_student
-        }
+        props: {}
     }
 }
+
+
+const Main = (data) => {
+    const router = useRouter();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const user = useSelector(state => state.auth.user);
+
+    return (
+        <MainLayout
+            title={"Басты бет - OQU platforms"}
+            content={"Басты бет - OQU platforms"}
+        >
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+            <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+        </MainLayout>
+    )
+}
+
 
 export default Main;

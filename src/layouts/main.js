@@ -5,7 +5,8 @@ import Script from "next/script";
 import Footer from "../components/Footer";
 import { check_auth_status } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/header";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 
 const MainLayout = (props) => {
@@ -33,18 +34,16 @@ const MainLayout = (props) => {
                 `}
             </Script>
 
-            <div id="root" className="min-h-screen flex flex-col">
-                <div id="main-wrapper" className="flex-1">
-                    <Header
-                        isAuthenticated={isAuthenticated}
-                        user={user}
-                    />
-                    <div id="page-props">
+            <div id="root" className="h-screen">
+                <Header />
+
+                <div id="wrapper">
+                    <Sidebar />
+
+                    <div className="overflow-auto border border-neutral-200 rounded-tl-lg bg-neutral-100">
                         {props.children}
                     </div>
                 </div>
-
-                <Footer />
             </div>
         </React.Fragment>
     )

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { CiImageOn, CiSettings, CiUser } from "react-icons/ci";
 import { PiPasswordThin } from "react-icons/pi";
-import Header from "../components/header";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 

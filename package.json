@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
-    "@nextui-org/react": "^2.0.2",
-    "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@redux-devtools/extension": "^3.2.5",
     "autoprefixer": "10.4.14",
     "cookie": "^0.5.0",
@@ -24,7 +22,6 @@
     "nextjs-progressbar": "^0.0.16",
     "postcss": "^8.4.31",
     "react": "^18.2.0",
-    "react-day-picker": "^8.8.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.3",
     "react-icons": "^4.10.1",

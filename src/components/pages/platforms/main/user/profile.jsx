@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { DayPicker } from 'react-day-picker';
-import { kk } from 'date-fns/locale';
 
 
 const ProfileComponent = (props) => {
     const { user, user_products } = props;
-    const [selected, setSelected] = useState(new Date());
-    const handleDayClick = day => {
-        setSelected(day)
-        // console.log(day)
-    }
 
     return (
         <div className="flex mt-5 md:mt-10">
@@ -42,12 +35,6 @@ const ProfileComponent = (props) => {
             </div>
 
             <div className="rounded-xl xl:ml-5 2xl:ml-10 hidden lg:block">
-                <DayPicker
-                    mode="single"
-                    locale={kk}
-                    selected={selected}
-                    onDayClick={handleDayClick}
-                />
             </div>
         </div>
     )

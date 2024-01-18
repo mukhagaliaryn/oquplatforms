@@ -1,0 +1,5 @@
+#wrapper {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    height: calc(100vh - 48px);
+}

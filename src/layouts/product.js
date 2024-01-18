@@ -5,7 +5,7 @@ import Script from "next/script";
 import Footer from "../components/Footer";
 import { check_auth_status } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/header";
+import Header from "../components/Header";
 
 
 const ProductLayout = (props) => {

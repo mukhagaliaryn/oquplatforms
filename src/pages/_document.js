@@ -5,9 +5,9 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="shortcut icon" href="/icons/logo-520.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="/images/oqu-logo.png" type="image/x-icon" />
       </Head>
-      <body>
+      <body className="overflow-hidden">
         <Main />
         <NextScript />
       </body>
