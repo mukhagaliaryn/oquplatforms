@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/actions/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { TfiSearch } from "react-icons/tfi";
+import { TfiSearch, TfiBell, TfiWorld } from "react-icons/tfi";
 import { PiUserCircleThin } from "react-icons/pi";
 import Dropdown from "./Dropdown";
 import { AnimatePresence } from "framer-motion";
@@ -42,20 +42,39 @@ const Header = () => {
                     </div>
                 </form>
 
-                <div className="py-1 relative">
+                <div className="flex py-1">
                     <div 
-                        className="text-neutral-500 text-3xl cursor-pointer h-full px-2 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-105"
-                        onClick={() => setDropdown(!dropdown)}
+                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-105"
                     >
-                        <PiUserCircleThin />
+                        <TfiWorld />
                     </div>
 
-                    <AnimatePresence>
-                        {dropdown &&
-                            <Dropdown />
-                        }
-                    </AnimatePresence>
+                    <div
+                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-105"
+                    >
+                        <TfiBell />
+                    </div>
+
+                    <div className="relative">
+                        <div 
+                            className="text-neutral-500 text-3xl cursor-pointer h-full px-2 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-105"
+                            onClick={() => setDropdown(!dropdown)}
+                        >
+                            <PiUserCircleThin />
+                        </div>
+
+                        <AnimatePresence>
+                            {dropdown &&
+                                <Dropdown 
+                                    dropdown={dropdown}
+                                    setDropdown={setDropdown}
+                                />
+                            }
+                        </AnimatePresence>
+                    </div>
                 </div>
+
+                
             </div>
         </div>
     )

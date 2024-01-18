@@ -8,13 +8,22 @@ const Settings = () => {
         <MainLayout
             title={"Баптаулар - OQU platforms"}
         >
-            <div className="container mx-auto my-10 text-center">
-                <h1 className="text-8xl font-bold">Баптаулар</h1>
-                <p className="text-neutral-600 mt-4">
-                    Бұл бет әзірге өңделіп жатыр. 
-                    <Link href={"/"} className="mx-1 text-blue-500">Басты бет</Link> 
-                </p>
+            <div className="">
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
+                <div className="h-16 m-4 rounded-md shadow-sm bg-red-500 sm:bg-green-500 md:bg-orange-500 lg:bg-gray-500 xl:bg-blue-500 2xl:bg-white"></div>
             </div>
+          
         </MainLayout>
     )
 }

@@ -1,6 +1,10 @@
 import '@/src/styles/globals.css';
 import '@/src/styles/parser.css';
 import "@/src/styles/index.css";
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 import NextNprogress from 'nextjs-progressbar';
 import { Provider } from 'react-redux';
 import { useStore } from '@/src/redux/store';

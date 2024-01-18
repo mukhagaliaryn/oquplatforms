@@ -40,8 +40,12 @@ const MainLayout = (props) => {
                 <div id="wrapper">
                     <Sidebar />
 
-                    <div className="overflow-auto border border-neutral-200 rounded-tl-lg bg-neutral-100">
-                        {props.children}
+                    <div 
+                        className="overflow-auto border border-neutral-200 rounded-tl-lg bg-neutral-100"
+                    >
+                        <div className="max-w-[1920px] mx-auto p-2">
+                            {props.children}
+                        </div>
                     </div>
                 </div>
             </div>
