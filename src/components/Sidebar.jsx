@@ -14,7 +14,7 @@ const Sidebar = () => {
                 <li className="w-full p-1 text-neutral-500">
                     <Link 
                         href={"/"} 
-                        className={`flex flex-col items-center rounded-md transition-all hover:bg-neutral-200 active:scale-105 ${router.asPath === "/" && "bg-blue-200"}`}
+                        className={`flex flex-col items-center rounded-md transition-all hover:bg-neutral-200 active:scale-105 ${router.asPath === "/" && "bg-blue-100"}`}
                     >
                         <div className={`text-2xl px-1 py-2 ${router.asPath === "/" && "text-blue-500"}`}>
                             {router.asPath === "/" ? <GoHomeFill /> : <GoHome/>}
@@ -27,7 +27,7 @@ const Sidebar = () => {
                 <li className="w-full p-1 text-neutral-500">
                     <Link 
                         href={"/settings"} 
-                        className={`flex flex-col items-center rounded-md transition-all hover:bg-neutral-200 active:scale-105 ${router.asPath === "/settings" && "bg-blue-200"}`}
+                        className={`flex flex-col items-center rounded-md transition-all hover:bg-neutral-200 active:scale-105 ${router.asPath === "/settings" && "bg-blue-100"}`}
                     >
                         <div className={`text-2xl px-1 py-2 ${router.asPath === "/settings" && "text-blue-500"}`}>
                             {router.asPath === "/settings" ? <IoSettings /> : <IoSettingsOutline/>}

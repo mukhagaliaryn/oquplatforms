@@ -26,7 +26,7 @@ const Header = () => {
                 
                 <div id="logo" className="flex items-center">
                     <Link href={"/"} className="flex h-full items-center transition-all mr-2 active:scale-105">
-                        <Image src={"/images/full-logo-white.png"} className="w-16" width={945} height={300} />
+                        <Image src={"/images/full-logo-white.png"} className="w-16" width={945} height={300} alt="Logo"/>
                     </Link>
                     <span className="font-poppins font-semibold text-base block pl-2 border-l border-neutral-200">platforms</span>
                 </div>
