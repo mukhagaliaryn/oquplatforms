@@ -3,17 +3,20 @@ import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { IoStar } from "react-icons/io5";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 
 const CoursesList = (props) => {
     const { last_courses } = props;
-
-    console.log(last_courses);
+    const router = useRouter();
 
     return (
         <div className="mt-8">
             <div className="mb-4">
-                <h1 className="text-neutral-900 inline-block font-semibold text-xl transition-all rounded-md cursor-pointer hover:translate-x-1 hover:text-neutral-500">
+                <h1 
+                    onClick={() => router.push("/last-courses")}
+                    className="text-neutral-900 inline-block font-semibold text-xl transition-all rounded-md cursor-pointer hover:translate-x-1 hover:text-neutral-500"
+                >
                     Соңғы шыққан курстар
                 </h1>
             </div>

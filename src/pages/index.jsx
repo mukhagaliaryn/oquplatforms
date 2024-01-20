@@ -1,8 +1,6 @@
 import React from "react";
 import MainLayout from "../layouts/main";
-import { useSelector } from "react-redux";
 import { BACKEND_URL } from "../redux/actions/types";
-import { useRouter } from "next/router";
 
 import Headliner from "../components/pages/main/Headliner";
 import CoursesList from "../components/pages/main/CoursesList";
@@ -39,12 +37,6 @@ export async function getServerSideProps(context) {
 
 const Main = (data) => {
     const { headliners, last_courses, authors, popular_topics } = data;
-
-
-    const router = useRouter();
-    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-    const user = useSelector(state => state.auth.user);
-
 
     return (
         <MainLayout

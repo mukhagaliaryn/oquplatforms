@@ -4,15 +4,20 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from "next/link";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { MdOutlineWork } from "react-icons/md";
+import { useRouter } from "next/router";
 
 
 const AuthorsList = (props) => {
     const { authors } = props;
+    const router = useRouter();
 
     return (
         <div className="mt-4">
             <div className="mb-4">
-                <h1 className="text-neutral-900 inline-block font-semibold text-xl transition-all rounded-md cursor-pointer hover:translate-x-1 hover:text-neutral-500">
+                <h1 
+                    onClick={() => router.push("/authors")}
+                    className="text-neutral-900 inline-block font-semibold text-xl transition-all rounded-md cursor-pointer hover:translate-x-1 hover:text-neutral-500"
+                >
                     Авторлар
                 </h1>
             </div>

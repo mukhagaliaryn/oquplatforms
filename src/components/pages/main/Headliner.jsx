@@ -10,7 +10,7 @@ const Headliner = (props) => {
     const { headliners } = props;
 
     return (
-        <div className="shadow-sm border rounded-lg overflow-hidden">
+        <div className="overflow-hidden rounded-lg shadow-sm">
             <Swiper
                 autoplay={{
                     delay: 5000,
@@ -25,14 +25,14 @@ const Headliner = (props) => {
                 {headliners.map((headline, i) => {
                     return (
                         <SwiperSlide key={i}>
-                            <div 
-                                style={{ backgroundImage: `url(${headline.image})`}}
-                                className="bg-white h-full bg-cover bg-center bg-no-repeat"
+                            <div
+                                style={{ backgroundImage: `url(${headline.image})` }}
+                                className="bg-white h-full bg-cover bg-center bg-no-repeat rounded-lg"
                             >
                                 <div className="flex items-center w-full h-full bg-white bg-opacity-90 backdrop-blur-3xl p-10 rounded-lg">
                                     <div className="w-full flex flex-col items-center md:max-w-screen-md md:items-start md:flex-row">
                                         <div className="rounded-lg overflow-hidden block w-24 md:w-32">
-                                            <Image 
+                                            <Image
                                                 src={headline.image} width={520} height={520} alt={headline.name}
                                                 className="w-full"
                                             />
