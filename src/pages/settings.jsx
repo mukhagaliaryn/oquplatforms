@@ -1,6 +1,5 @@
 import React from "react";
 import MainLayout from "../layouts/main";
-import Link from "next/link";
 
 
 const Settings = () => {
