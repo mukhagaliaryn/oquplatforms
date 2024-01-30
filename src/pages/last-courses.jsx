@@ -1,6 +1,10 @@
 import React from "react";
 import MainLayout from "../layouts/main";
 import { BACKEND_URL } from "../redux/actions/types";
+import CoursesList from "../components/pages/main/CoursesList";
+import Link from "next/link";
+import Image from "next/image";
+import { IoStar } from "react-icons/io5";
 
 
 export async function getServerSideProps(context) {
@@ -16,7 +20,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            last_courses, 
+            last_courses,
         }
     }
 }
@@ -27,12 +31,50 @@ const LastCourses = (data) => {
 
     return (
         <MainLayout
-            title={"Басты бет - OQU platforms"}
-            content={"Басты бет - OQU platforms"}
+            title={"Соңғы шыққан курстар - OQU platforms"}
+            content={"Соңғы шыққан курстар тізімі - OQU platforms"}
         >
-            {/* last courses */}
-            <div className="bg-white rounded-md p-4 shadow-sm">
-                <h1 className="text-xl font-semibold">Соңғы шыққан курстар</h1>
+            <div className="">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
+                    {last_courses.map((course, i) => {
+                        return (
+                            <Link key={i} href={`/course/${course.id}`} className="block shadow-sm bg-white rounded-lg overflow-hidden transition-all hover:shadow-md">
+                                <div
+                                    style={{ backgroundImage: `url(${course.image})` }}
+                                    className="h-40 bg-cover bg-no-repeat bg-center"
+                                >
+                                    <div className="flex justify-center items-center w-full h-full bg-white bg-opacity-70 backdrop-blur-3xl rounded-t-lg overflow-hidden">
+                                        <Image src={course.image} width={520} height={520} className="w-20 h-20" alt={course.name} />
+                                    </div>
+                                </div>
+                                <div className="p-4">
+                                    <div>
+                                        <h1 className="text-neutral-900 font-semibold line-clamp-1">{course.name}</h1>
+                                        {course.authors.map(author => {
+                                            return (
+                                                <span
+                                                    key={author.id}
+                                                    className="text-xs text-neutral-500 line-clamp-1 inline-block"
+                                                >
+                                                    {author.full_name}
+                                                </span>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="mt-2 flex justify-between items-center">
+                                        <div className="text-xs flex items-center text-neutral-500">
+                                            <span className="mr-1">{course.all_rating}</span>
+                                            <IoStar />
+                                        </div>
+                                        <div className="text-xs bg-blue-100 px-3 py-1 text-blue-500 rounded-md">
+                                            <span>Экспресс курс</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        )
+                    })}
+                </div>
             </div>
 
             <div className="mt-8"></div>
@@ -42,3 +84,32 @@ const LastCourses = (data) => {
 
 
 export default LastCourses;
+
+
+
+
+{/* <Swiper
+slidesPerView={2}
+breakpoints={{
+    640: {
+        slidesPerView: 3
+    },
+    768: {
+        slidesPerView: 4
+    },
+    1024: {
+        slidesPerView: 5
+    },
+    1280: {
+        slidesPerView: 6
+    },
+    1536: {
+        slidesPerView: 7
+    },
+    1920: {
+        slidesPerView: 8
+    },
+}}
+spaceBetween={10}
+className="h-72"
+> */}

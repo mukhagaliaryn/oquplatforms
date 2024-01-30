@@ -1,6 +1,10 @@
 import React from "react";
 import MainLayout from "../layouts/main";
 import { BACKEND_URL } from "../redux/actions/types";
+import Link from "next/link";
+import Image from "next/image";
+import { PiUsersThreeFill } from "react-icons/pi";
+import { MdOutlineWork } from "react-icons/md";
 
 
 export async function getServerSideProps(context) {
@@ -16,7 +20,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            authors, 
+            authors,
         }
     }
 }
@@ -27,14 +31,43 @@ const Authors = (data) => {
 
     return (
         <MainLayout
-            title={"Басты бет - OQU platforms"}
-            content={"Басты бет - OQU platforms"}
+            title={"Авторлар - OQU platforms"}
+            content={"Авторлар тізімі - OQU platforms"}
         >
-            {/* last courses */}
-            <div className="bg-white rounded-md p-4 shadow-sm">
-                <h1 className="text-xl font-semibold">Авторлар</h1>
-            </div>
+            <div className="">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
+                    {authors.map(author => {
+                        return (
+                            <Link href={"#"} key={author.id} className="block shadow-sm bg-white rounded-lg overflow-hidden transition-all hover:shadow-md">
+                                <div className="p-4">
+                                    <Image
+                                        src={author.user.image ? author.user.image : "/images/user.png"} width={520} height={520}
+                                        className="w-24 h-24 rounded-2xl mx-auto"
+                                        alt={"Author image"}
+                                    />
+                                    <div className="mt-4 text-center">
+                                        <h1 className="font-semibold">{author.user.full_name}</h1>
 
+                                        <div className="mt-2 py-1 px-3 text-xs rounded-md bg-blue-100 text-blue-500 inline-block">
+                                            <span>{author.specialty}</span>
+                                        </div>
+                                        <div className="flex justify-center items-center mt-4">
+                                            <div className="flex items-center justify-center text-sm text-neutral-500 mr-2">
+                                                <PiUsersThreeFill />
+                                                <span className="ml-1">2 320</span>
+                                            </div>
+                                            <div className="flex items-center justify-center text-sm text-neutral-500 ml-2">
+                                                <MdOutlineWork />
+                                                <span className="ml-1">22</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        )
+                    })}
+                </div>
+            </div>
             <div className="mt-8"></div>
         </MainLayout>
     )

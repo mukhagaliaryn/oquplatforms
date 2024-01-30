@@ -25,7 +25,7 @@ const Header = () => {
             <div className="flex justify-between h-12 px-4">
                 
                 <div id="logo" className="flex items-center">
-                    <Link href={"/"} className="flex h-full items-center transition-all mr-2 active:scale-105">
+                    <Link href={"/"} className="flex h-full items-center transition-all mr-2 active:scale-95">
                         <Image src={"/images/full-logo-white.png"} className="w-16" width={945} height={300} alt="Logo"/>
                     </Link>
                     <span className="font-poppins font-semibold text-base block pl-2 border-l border-neutral-200">platforms</span>
@@ -44,20 +44,20 @@ const Header = () => {
 
                 <div className="flex py-1">
                     <div 
-                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-105"
+                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-95"
                     >
                         <TfiWorld />
                     </div>
 
                     <div
-                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-105"
+                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-95"
                     >
                         <TfiBell />
                     </div>
 
                     <div className="relative">
                         <div 
-                            className="text-neutral-500 text-3xl cursor-pointer h-full px-2 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-105"
+                            className="text-neutral-500 text-3xl cursor-pointer h-full px-2 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-95"
                             onClick={() => setDropdown(!dropdown)}
                         >
                             <PiUserCircleThin />

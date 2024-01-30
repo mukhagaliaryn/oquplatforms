@@ -10,7 +10,7 @@ const CourseView = (props) => {
     const { course } = props;
 
     return (
-        <div id="course-sidebar" className="bg-white flex flex-col justify-between w-full lg:w-80 xl:w-96 border border-neutral-200 rounded-lg overflow-auto lg:sticky lg:top-2">
+        <div id="course-sidebar" className="bg-white flex flex-col justify-between w-full lg:w-96 border border-neutral-200 rounded-lg overflow-auto lg:sticky lg:top-2">
             <div className="p-10">
                 {/* Image */}
                 <div className="w-28 h-28 mx-auto overflow-hidden">

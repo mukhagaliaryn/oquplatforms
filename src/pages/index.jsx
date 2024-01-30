@@ -41,7 +41,7 @@ const Main = (data) => {
     return (
         <MainLayout
             title={"Басты бет - OQU platforms"}
-            content={"Басты бет - OQU platforms"}
+            content={"Басты бет парақшасы - OQU platforms"}
         >
             {/* Headliner */}
             <Headliner headliners={headliners} />

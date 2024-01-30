@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -38,8 +37,8 @@ const PopularTopics = (props) => {
                 {popular_topics.map(topic => {
                     return (
                         <SwiperSlide key={topic.id}>
-                            <Link href={"#"} className="h-56 rounded-lg shadow-sm bg-neutral-900 flex items-center justify-center text-center p-4">
-                                <h1 className="text-neutral-100 font-semibold">{topic.name}</h1>
+                            <Link href={`/topic/${topic.slug}`} className="h-56 rounded-lg shadow-sm bg-neutral-900 flex items-center justify-center text-center p-4">
+                                <h1 className="text-neutral-100 font-semibold">{topic.name_kk}</h1>
                             </Link>
                         </SwiperSlide>
                     )
