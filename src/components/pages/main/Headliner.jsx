@@ -75,7 +75,7 @@ const Headliner = (props) => {
                     stiffness: 400,
                     damping: 50
                 }}
-                className="h-96 xl:h-[520px] 2xl:h-[620px] flex cursor-grab active:cursor-grabbing"
+                className="h-96 xl:h-[480px] 2xl:h-[620px] flex cursor-grab active:cursor-grabbing"
             >
                 {headliners.map((headline, i) => {
                     return (
@@ -109,7 +109,7 @@ const Headliner = (props) => {
                                             {headline.about}
                                         </span>
 
-                                        <Link href={"#"} className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-105">
+                                        <Link href={`/course/${headline.id}`} className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95">
                                             <span>Толығырақ</span>
                                         </Link>
                                     </div>

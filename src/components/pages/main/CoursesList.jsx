@@ -49,7 +49,7 @@ const CoursesList = (props) => {
                 {last_courses.map((course, i) => {
                     return (
                         <SwiperSlide key={i}>
-                            <Link href={"#"} className="block shadow-sm bg-white rounded-lg overflow-hidden transition-all hover:shadow-md">
+                            <Link href={`/course/${course.id}`} className="block shadow-sm bg-white rounded-lg overflow-hidden transition-all hover:shadow-md">
                                 <div
                                     style={{ backgroundImage: `url(${course.image})` }}
                                     className="h-40 bg-cover bg-no-repeat bg-center"
@@ -65,7 +65,7 @@ const CoursesList = (props) => {
                                             return (
                                                 <span 
                                                     key={author.id}
-                                                    className="text-xs text-neutral-500 line-clamp-1"
+                                                    className="text-xs text-neutral-500 line-clamp-1 inline-block"
                                                 >
                                                     {author.full_name}
                                                 </span>

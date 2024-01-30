@@ -4,6 +4,14 @@
     height: calc(100vh - 48px);
 }
 
+#course-sidebar {
+    height: calc(100vh - 72px);
+}
+
+#course-sidebar::-webkit-scrollbar {
+    width: 0;
+  }
+
 
 .headliner {
     background: rgb(245, 245, 245);

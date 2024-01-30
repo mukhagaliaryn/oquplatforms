@@ -55,7 +55,7 @@ const AuthorsList = (props) => {
                                     <Image 
                                         src={author.user.image ? author.user.image : "/images/user.png"} width={520} height={520}
                                         className="w-24 h-24 rounded-2xl mx-auto"
-                                        alt={author.full_name}
+                                        alt={"Author image"}
                                     />
                                     <div className="mt-4 text-center">
                                         <h1 className="font-semibold">{author.user.full_name}</h1>
