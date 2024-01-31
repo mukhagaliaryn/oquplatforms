@@ -35,7 +35,10 @@ const MainLayout = (props) => {
             </Script>
 
             <div id="root" className="h-screen">
-                <Header />
+                <Header 
+                    isAuthenticated={isAuthenticated}
+                    user={user}
+                />
 
                 <div id="wrapper">
                     <Sidebar />
