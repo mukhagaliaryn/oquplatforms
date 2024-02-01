@@ -19,7 +19,6 @@ const Dropdown = (props) => {
                     initial={{ y: 0, opacity: 0 }}
                     animate={{ y: 10, opacity: 1 }}
                     exit={{ y: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
                     id="dropdown"
                     className="absolute overflow-hidden w-60 bg-white bg-opacity-80 backdrop-blur-xl right-6 top-10 border border-neutral-200 rounded-md shadow-sm"
                 >

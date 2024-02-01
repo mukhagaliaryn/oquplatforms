@@ -23,6 +23,10 @@ export async function getServerSideProps(context) {
     const authors = data.authors;
     const popular_topics = data.popular_topics;
 
+    // const headliners = [];
+    // const last_courses = [];
+    // const authors = [];
+    // const popular_topics = [];
 
     return {
         props: {
