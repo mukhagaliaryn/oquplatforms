@@ -4,15 +4,7 @@
     height: calc(100vh - 48px);
 }
 
-#course-sidebar {
-    height: calc(100vh - 72px);
-}
-
-#course-sidebar::-webkit-scrollbar {
-    width: 0;
-}
-
-
+/* Main page > Headliner */
 #headliner {
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(245,245,245,1) 60%);
@@ -24,6 +16,24 @@
 }
 
 
+/* Topic page > Banner */
+#topic {
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(245,245,245,1) 60%);
+}
+
+
+/* Course page > CourseView */
+#course-sidebar {
+    height: calc(100vh - 72px);
+}
+
+#course-sidebar::-webkit-scrollbar {
+    width: 0;
+}
+
+
+/* Course page > Chapters */
 #shadow {
     background: #ffffff;
     background: linear-gradient(0deg, #ffffff 20%, #ffffff00 100%);

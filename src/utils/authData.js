@@ -1,3 +1,6 @@
+import { PiPasswordLight, PiUserLight } from "react-icons/pi";
+import { TfiEmail } from "react-icons/tfi";
+
 export const authData = [
     {
         id: 0,
@@ -8,11 +11,13 @@ export const authData = [
                 type: "email",
                 name: "email",
                 placeholder: "example@gmail.com",
+                get_icon: () => <TfiEmail />
             },
             {
                 type: "password",
                 name: "password",
                 placeholder: "Abcdfg123$",
+                get_icon: () => <PiPasswordLight />
             },
         ],
         submit: {
@@ -32,21 +37,25 @@ export const authData = [
                 type: "email",
                 name: "email",
                 placeholder: "example@gmail.com",
+                get_icon: () => <TfiEmail />
             },
             {
                 type: "text",
                 name: "full_name",
                 placeholder: "Есімің",
+                get_icon: () => <PiUserLight />
             },
             {
                 type: "password",
                 name: "password",
                 placeholder: "Abcdfg123$",
+                get_icon: () => <PiPasswordLight />
             },
             {
                 type: "password",
                 name: "re_password",
                 placeholder: "Парольді қайталау",
+                get_icon: () => <PiPasswordLight />
             },
         ],
         submit: {
@@ -66,6 +75,7 @@ export const authData = [
                 type: "email",
                 name: "email",
                 placeholder: "example@gmail.com",
+                get_icon: () => <TfiEmail />
             },
         ],
         submit: {

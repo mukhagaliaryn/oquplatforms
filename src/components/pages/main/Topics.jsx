@@ -1,3 +1,4 @@
+import { setTopicIcon } from "@/src/utils/topicIcon";
 import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -32,13 +33,17 @@ const PopularTopics = (props) => {
                     },
                 }}
                 spaceBetween={10}
-                className=""
             >
                 {popular_topics.map(topic => {
                     return (
                         <SwiperSlide key={topic.id}>
-                            <Link href={`/topic/${topic.slug}`} className="h-56 rounded-lg shadow-sm bg-neutral-900 flex items-center justify-center text-center p-4">
-                                <h1 className="text-neutral-100 font-semibold">{topic.name_kk}</h1>
+                            <Link href={`/topic/${topic.slug}`} className="rounded-lg bg-neutral-900 flex items-center justify-center transition-all hover:bg-neutral-950 h-44 sm:h-46 md:h-48 lg:h-52 xl:h-56 2xl:h-60">
+                                <div className="text-center p-5">
+                                    <div className="text-neutral-100 text-5xl mb-4 flex justify-center">
+                                        {setTopicIcon(topic.slug)}
+                                    </div>
+                                    <h1 className="text-neutral-100 font-semibold">{topic.name_kk}</h1>
+                                </div>
                             </Link>
                         </SwiperSlide>
                     )

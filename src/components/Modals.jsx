@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import { TfiClose, TfiEmail } from "react-icons/tfi";
-import { PiPasswordLight } from "react-icons/pi";
+import { TfiClose } from "react-icons/tfi";
 import { motion } from "framer-motion";
 import { authData } from "../utils/authData";
+import Link from "next/link";
 
 
 export const AuthModal = (props) => {
@@ -50,6 +50,9 @@ export const AuthModal = (props) => {
                                             className="pl-4 pr-10 py-2 border text-neutral-900 border-neutral-200 rounded-md outline-none w-full text-sm transition-all focus:border-b-blue-500 focus:shadow focus:bg-white"
                                             required
                                         />
+                                        <div className="absolute top-3 right-4 text-neutral-500">
+                                            {field.get_icon()}
+                                        </div>
                                     </div>
                                 ))}
                                 <div className="relative">
@@ -75,5 +78,15 @@ export const AuthModal = (props) => {
                 })}
             </motion.div>
         </motion.div>
+    )
+}
+
+
+export const SearchModal = (props) => {
+
+    return (
+        <div>
+            
+        </div>
     )
 }
