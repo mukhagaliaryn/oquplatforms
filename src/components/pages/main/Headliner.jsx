@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { DRAG_BUFFER } from "@/src/redux/actions/types";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 
 
@@ -96,7 +97,7 @@ const Headliner = (props) => {
                             >
                                 <div className="relative h-full">
                                     {/* Main content */}
-                                    <div className="h-full w-full flex items-center absolute top-0 left-0" id="inner">
+                                    <div className="h-full w-full flex items-start xl:items-center absolute top-0 left-0" id="inner">
                                         <div className="p-10 w-full md:max-w-screen-sm">
                                             <div className="mb-6">
                                                 <h1 className="text-5xl font-semibold text-white">{headline.name}</h1>
@@ -109,7 +110,7 @@ const Headliner = (props) => {
                                                 <span>Толығырақ</span>
                                             </Link>
                                         </div>
-                                        
+
                                     </div>
 
                                     <div className="absolute bottom-0 left-0 w-full h-20" id="headliner"></div>
@@ -138,24 +139,52 @@ export default Headliner;
 
 const Dots = ({ headliners, slideIndex, setSlideIndex }) => {
     return (
-        <div className={`absolute -bottom-4 left-10 w-full max-w-screen-md grid grid-cols-4 gap-4`}>
-            {headliners.map((headline, i) => {
-                return (
-                    <div
-                        key={i}
-                        onClick={() => setSlideIndex(i)}
-                        className={`h-28 relative overflow-hidden rounded-md transition-all cursor-pointer shadow-md
-                            ${i === slideIndex ? "border-blue-500 border-2" : "border-transparent"}
-                        `}
-                    >
-                        <Image
-                            src={headline.poster} width={500} height={250} alt="poster"
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute h-full w-full top-0 left-0 transition-all hover:bg-white/30"></div>
-                    </div>
-                )
-            })}
+        <div className="w-full pl-10 absolute -bottom-5 left-0">
+            <Swiper
+                slidesPerView={2}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 2
+                    },
+                    640: {
+                        slidesPerView: 3
+                    },
+                    768: {
+                        slidesPerView: 4
+                    },
+                    1024: {
+                        slidesPerView: 5
+                    },
+                    1280: {
+                        slidesPerView: 6
+                    },
+                    1536: {
+                        slidesPerView: 7
+                    },
+                }}
+                spaceBetween={10}
+                className="h-32 xl:h-36 2xl:h-40"
+            >
+                {headliners.map((headline, i) => {
+                    return (
+                        <SwiperSlide key={i}>
+                            <div
+                                onClick={() => setSlideIndex(i)}
+                                className={`h-28 xl:h-32 2xl:h-36 relative overflow-hidden rounded-md transition-all cursor-pointer shadow-md
+                                ${i === slideIndex ? "border-blue-500 border-2" : "border-transparent"}
+                            `}
+                            >
+                                <Image
+                                    src={headline.poster} width={500} height={250} alt="poster"
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute h-full w-full top-0 left-0 transition-all hover:bg-white/30"></div>
+                            </div>
+                        </SwiperSlide>
+                    )
+                })}
+            </Swiper>
         </div>
+
     )
 }
