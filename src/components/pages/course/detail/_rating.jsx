@@ -7,9 +7,6 @@ import { motion } from "framer-motion";
 const RatingSection = (props) => {
     const { course, rating } = props;
     const [show, setShow] = useState(false);
-    const ratingCount = [5, 4, 3, 2, 1]
-
-    console.log(rating);
 
     return (
         <motion.div
