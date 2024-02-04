@@ -5,7 +5,7 @@ import CourseDescription from "./Description";
 
 
 const CourseDetail = (props) => {
-    const { course, purposes, chapters, lessons } = props;
+    const { course, purposes, chapters, lessons, rating } = props;
 
     return (
         <div className="flex items-start gap-2 flex-col lg:flex-row">
@@ -18,6 +18,7 @@ const CourseDetail = (props) => {
                 purposes={purposes}
                 chapters={chapters}
                 lessons={lessons}
+                rating={rating}
             />
         </div>
     )

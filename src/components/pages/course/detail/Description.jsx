@@ -7,7 +7,7 @@ import AddictionSection from "./_addiction";
 
 
 const CourseDescription = (props) => {
-    const { course, purposes, chapters, lessons } = props;
+    const { course, purposes, chapters, lessons, rating } = props;
 
     return (
 
@@ -16,7 +16,7 @@ const CourseDescription = (props) => {
             <DescriptionSection course={course} />
 
             {/* Rating */}
-            <RatingSection course={course} />
+            <RatingSection course={course} rating={rating} />
 
             {/* Purpose */}
             <PurposeSection purposes={purposes} />

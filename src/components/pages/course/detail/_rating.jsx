@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 
 
 const RatingSection = (props) => {
-    const { course } = props;
+    const { course, rating } = props;
     const [show, setShow] = useState(false);
     const ratingCount = [5, 4, 3, 2, 1]
+
+    console.log(rating);
 
     return (
         <motion.div
@@ -27,19 +29,19 @@ const RatingSection = (props) => {
                 <div className="flex items-center gap-5">
                     <div className="text-center">
                         <h1 className="text-8xl font-semibold text-neutral-900">{course.all_rating}</h1>
-                        <span className="block text-neutral-500 text-xs">45 адам баға берді</span>
+                        <span className="block text-neutral-500 text-xs">{rating.all} адам баға берді</span>
                     </div>
 
                     <ul className="flex-1">
-                        {ratingCount.map(rating => (
-                            <li className="flex items-center gap-4 mb-2" key={rating}>
+                        {rating.rating_scales.map((score, i) => (
+                            <li className="flex items-center gap-4 mb-2" key={i}>
                                 <div className="flex items-center">
-                                    <span className="block text-neutral-500 text-sm w-2">{rating}</span>
+                                    <span className="block text-neutral-500 text-sm w-2">{i+1}</span>
                                     <IoStar className="text-orange-500 ml-2" />
                                 </div>
 
                                 <div className="flex-1 relative bg-neutral-200 h-2 rounded-md overflow-hidden">
-                                    <div className="absolute h-full w-1/2 bg-orange-500"></div>
+                                    <div className="absolute h-full bg-orange-500" style={{ width: `${score/rating.all * 100}%`, }}></div>
                                 </div>
                             </li> 
                         ))}
@@ -49,23 +51,18 @@ const RatingSection = (props) => {
 
                 {/* Reviews */}
                 <div className="mt-5">
-                    {ratingCount.map(rating => (
-                        <div className="py-4 border-b border-neutral-200" key={rating}>
+                    {rating.users_with_comments.map(rating => (
+                        <div className="py-4 border-b border-neutral-200" key={rating.id}>
                             <div className="flex items-center">
                                 <div className="flex pr-2 border-r border-neutral-500">
-                                    <h1 className="text-sm text-neutral-900 font-semibold">{rating}</h1> 
+                                    <h1 className="text-sm text-neutral-900 font-semibold">{rating.rating_score}</h1> 
                                     <IoStar className="text-orange-500 ml-1" />
                                 </div>
-                                <h1 className="text-neutral-900 font-semibold ml-2 text-sm">Ерғали Арын</h1>
+                                <h1 className="text-neutral-900 font-semibold ml-2 text-sm">{rating.user.full_name}</h1>
                             </div>
                             <div className="mt-2">
-                                <span className="block text-neutral-500 text-xs">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                    Praesentium ea corrupti eligendi? Sapiente esse odio vero at? 
-                                    Assumenda, quidem omnis?
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                    Praesentium ea corrupti eligendi? Sapiente esse odio vero at? 
-                                    Assumenda, quidem omnis?
+                                <span className="block text-neutral-500 text-sm">
+                                    {rating.comment}
                                 </span>
                             </div>
                         </div>

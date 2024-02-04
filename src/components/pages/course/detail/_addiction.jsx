@@ -9,7 +9,6 @@ import { TfiWorld } from "react-icons/tfi";
 const AddictionSection = (props) => {
     const { course } = props;
 
-
     return (
         <motion.div
             className="bg-white mb-2 border border-neutral-200 transition-all rounded-lg overflow-hidden relative"
@@ -20,7 +19,7 @@ const AddictionSection = (props) => {
             </div>
             {/* Content */}
             <div className="p-10">
-                <div className="grid gap-10 grid-cols-2 max-w-xl w-full mx-auto">
+                <div className="grid gap-10 grid-cols-2 max-w-xl 2xl:max-w-screen-xl w-full mx-auto">
 
                     {/* Author */}
                     <div className="flex gap-2 text-sm">
