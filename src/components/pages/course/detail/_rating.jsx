@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoStar } from "react-icons/io5";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import { motion } from "framer-motion";
 
 
 const RatingSection = (props) => {
@@ -9,7 +10,9 @@ const RatingSection = (props) => {
     const ratingCount = [5, 4, 3, 2, 1]
 
     return (
-        <div className={`bg-white mb-2 border border-neutral-200 transition-all rounded-lg overflow-hidden relative ${show ? "h-full" : "h-80"}`}>
+        <motion.div
+            animate={{ height: show ? "100%" : "20rem" }}
+            className="bg-white mb-2 border border-neutral-200 transition-all rounded-lg overflow-hidden relative">
             {/* Title */}
             <div className="border-b border-neutral-200 py-2 px-5 flex justify-between" onClick={() => setShow(!show)}>
                 <h1 className="text-neutral-900 font-semibold">Рейтинг</h1>
@@ -73,7 +76,7 @@ const RatingSection = (props) => {
             {!show &&
                 <div className="absolute bottom-0 left-0 w-full h-10 cursor-pointer" id="shadow" onClick={() => setShow(!show)}></div>
             }
-        </div>
+        </motion.div>
     )
 }
 

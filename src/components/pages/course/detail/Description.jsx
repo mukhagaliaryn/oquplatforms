@@ -3,10 +3,11 @@ import DescriptionSection from "./_description";
 import RatingSection from "./_rating";
 import PurposeSection from "./_purpose";
 import ChapterSection from "./_chapter";
+import AddictionSection from "./_addiction";
 
 
 const CourseDescription = (props) => {
-    const { course, purposes } = props;
+    const { course, purposes, chapters, lessons } = props;
 
     return (
 
@@ -20,8 +21,11 @@ const CourseDescription = (props) => {
             {/* Purpose */}
             <PurposeSection purposes={purposes} />
 
-            {/* Purpose */}
-            <ChapterSection purposes={purposes} />
+            {/* Chapters */}
+            <ChapterSection chapters={chapters} lessons={lessons} />
+
+            {/* Addiction */}
+            <AddictionSection course={course} />
         </div>
     )
 }

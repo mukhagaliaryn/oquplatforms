@@ -17,18 +17,22 @@ export async function getServerSideProps(context) {
     const data = await res.json();
     const course = data.course;
     const purposes = data.purposes;
+    const chapters = data.chapters;
+    const lessons = data.lessons;
 
     return {
         props: {
             course,
-            purposes
+            purposes,
+            chapters,
+            lessons
         }
     }
 }
 
 
 const Course = (data) => {
-    const { course, purposes } = data; 
+    const { course, purposes, lessons, chapters } = data; 
     const router = useRouter();
 
     
@@ -41,6 +45,8 @@ const Course = (data) => {
             <CourseDetail 
                 course={course}
                 purposes={purposes}
+                chapters={chapters}
+                lessons={lessons}
             />
         </MainLayout>
     )

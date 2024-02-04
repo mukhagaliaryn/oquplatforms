@@ -35,7 +35,7 @@ const LastCourses = (data) => {
             content={"Соңғы шыққан курстар тізімі - OQU platforms"}
         >
             <div className="">
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
                     {last_courses.map((course, i) => {
                         return (
                             <Link key={i} href={`/course/${course.id}`} className="block shadow-sm bg-white rounded-lg overflow-hidden transition-all hover:shadow-md">

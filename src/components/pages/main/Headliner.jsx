@@ -100,7 +100,7 @@ const Headliner = (props) => {
                                     <div className="h-full w-full flex items-start xl:items-center absolute top-0 left-0" id="inner">
                                         <div className="p-10 w-full md:max-w-screen-sm">
                                             <div className="mb-6">
-                                                <h1 className="text-5xl font-semibold text-white">{headline.name}</h1>
+                                                <h1 className="text-5xl font-bold text-white">{headline.name}</h1>
                                                 <span className="block mt-2 text-neutral-100 text-sm max-w-md">{headline.about}</span>
                                             </div>
                                             <Link

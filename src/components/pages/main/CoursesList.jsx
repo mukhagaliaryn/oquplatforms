@@ -24,22 +24,22 @@ const CoursesList = (props) => {
             <Swiper
                 slidesPerView={2}
                 breakpoints={{
-                    640: {
+                    640: { // sm
                         slidesPerView: 3
                     },
-                    768: {
+                    768: { // md
                         slidesPerView: 4
                     },
-                    1024: {
+                    1024: { // lg
                         slidesPerView: 5
                     },
-                    1280: {
+                    1280: { // xl
                         slidesPerView: 6
                     },
-                    1536: {
+                    1536: { // 2xl
                         slidesPerView: 7
                     },
-                    1920: {
+                    1920: { // 3xl
                         slidesPerView: 8
                     },
                 }}
@@ -62,12 +62,14 @@ const CoursesList = (props) => {
                                     <div>
                                         <h1 className="text-neutral-900 font-semibold line-clamp-1">{course.name}</h1>
                                         {course.authors.map(author => {
+                                            let is_last = course.authors[course.authors.length - 1].id === author.id
                                             return (
                                                 <span 
                                                     key={author.id}
-                                                    className="text-xs text-neutral-500 line-clamp-1 inline-block"
+                                                    className="text-xs text-neutral-500 line-clamp-1 inline-block mr-1"
                                                 >
                                                     {author.full_name}
+                                                    {!is_last && ","}
                                                 </span>
                                             )
                                         })}

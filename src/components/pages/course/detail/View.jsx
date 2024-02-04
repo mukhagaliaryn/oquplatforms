@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoStar } from "react-icons/io5";
-import { PiUsersThreeFill, PiShareNetworkFill, PiTimer } from "react-icons/pi";
+import { PiShareNetworkFill, PiTimer, PiUsers, PiUsersFill } from "react-icons/pi";
 import { TfiWorld } from "react-icons/tfi";
 
 
@@ -23,7 +23,7 @@ const CourseView = (props) => {
                 {/* Title */}
                 <div className="my-10 text-center ">
                     <h1 className="text-2xl font-semibold">{course.name}</h1>
-                    <span className="text-xs block text-neutral-500">{course.topic.name_kk}</span>
+                    <span className="text-sm block text-neutral-500">{course.topic.name_kk}</span>
                 </div>
 
                 {/* Action */}
@@ -51,32 +51,17 @@ const CourseView = (props) => {
                     <div className="flex flex-col items-center">
                         <div className="flex items-center justify-center">
                             <h1 className="text-neutral-900 font-semibold">0</h1>
-                            <PiUsersThreeFill className="text-neutral-900 ml-2" />
+                            <PiUsersFill className="text-neutral-900 ml-2" />
                         </div>
                         <span className="text-xs text-neutral-500">Білім алушы</span>
                     </div>
                 </div>
 
                 {/* Subtitle */}
-                <div className="text-center">
-                    <span className="text-xs block text-neutral-500">{course.about}</span>
+                <div className="text-center my-10">
+                    <span className="text-sm block text-neutral-500">{course.about}</span>
                 </div>
 
-                {/* Authors */}
-                <div className="my-10">
-                    <h1 className="text-neutral-500 text-xs">Авторлар:</h1>
-                    <div className="mt-4 flex flex-wrap gap-4">
-                        {course.authors.map(author => (
-                            <Link href={"#"} className="flex flex-col items-center transition-all active:scale-95" key={author.id}>
-                                <Image
-                                    src={author.image} width={520} height={520} alt="Author image"
-                                    className="w-10 h-10 rounded-lg"
-                                />
-                                <h1 className="text-xs text-neutral-900 font-semibold mt-2">{author.full_name}</h1>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
 
                 {/* Locals */}
                 <div className="flex justify-center gap-5">
