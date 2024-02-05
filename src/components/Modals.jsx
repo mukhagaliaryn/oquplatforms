@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { TfiClose } from "react-icons/tfi";
 import { motion } from "framer-motion";
 import { authData } from "../utils/authData";
-import Link from "next/link";
 
 
 export const AuthModal = (props) => {

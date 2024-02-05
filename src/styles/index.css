@@ -4,6 +4,7 @@
     height: calc(100vh - 48px);
 }
 
+
 /* Main page > Headliner */
 #headliner {
     background: rgb(0,0,0);
@@ -37,4 +38,10 @@
 #shadow {
     background: #ffffff;
     background: linear-gradient(0deg, #ffffff 20%, #ffffff00 100%);
+}
+
+
+/* Course player */
+#player::-webkit-scrollbar {
+    width: 0;
 }

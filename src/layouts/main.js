@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import Footer from "../components/Footer";
 import { check_auth_status } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/Header";
+import { Header } from "../components/Header";
 import Sidebar from "../components/Sidebar";
 
 

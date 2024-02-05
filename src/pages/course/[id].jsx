@@ -20,6 +20,7 @@ export async function getServerSideProps(context) {
     const chapters = data.chapters;
     const lessons = data.lessons;
     const rating = data.rating;
+    const first_url = data.first_url;
 
     return {
         props: {
@@ -27,14 +28,15 @@ export async function getServerSideProps(context) {
             purposes,
             chapters,
             lessons,
-            rating
+            rating,
+            first_url
         }
     }
 }
 
 
 const Course = (data) => {
-    const { course, purposes, lessons, chapters, rating } = data; 
+    const { course, purposes, lessons, chapters, rating, first_url } = data; 
     const router = useRouter();
 
     
@@ -50,6 +52,7 @@ const Course = (data) => {
                 chapters={chapters}
                 lessons={lessons}
                 rating={rating}
+                first_url={first_url}
             />
         </MainLayout>
     )

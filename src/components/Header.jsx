@@ -11,7 +11,7 @@ import { AuthModal } from "./Modals";
 
 
 
-const Header = (props) => {
+export const Header = (props) => {
     const { isAuthenticated } = props;
     const dispatch = useDispatch();
     const [dropdown, setDropdown] = useState(false);
@@ -109,4 +109,21 @@ const Header = (props) => {
     )
 }
 
-export default Header;
+
+
+export const PlayerHeader = (props) => {
+    const {} = props;
+
+    return (
+        <div className="bg-neutral-900">
+            <div className="flex justify-between h-12 px-4">
+                <div id="logo" className="flex items-center">
+                    <Link href={"/"} className="flex h-full items-center transition-all mr-2 active:scale-95">
+                        <Image src={"/images/full-logo-black.png"} className="w-16" width={945} height={300} alt="Logo" />
+                    </Link>
+                    <span className="font-poppins font-semibold block pl-2 border-l text-white border-neutral-200">player</span>
+                </div>
+            </div>
+        </div>
+    )
+}

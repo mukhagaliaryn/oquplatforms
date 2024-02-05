@@ -4,10 +4,16 @@ import Link from "next/link";
 import { IoStar } from "react-icons/io5";
 import { PiShareNetworkFill, PiTimer, PiUsers, PiUsersFill } from "react-icons/pi";
 import { TfiWorld } from "react-icons/tfi";
+import { useRouter } from "next/router";
 
 
 const CourseView = (props) => {
-    const { course } = props;
+    const { course, first_url } = props;
+    const router = useRouter();
+
+    const goToCourse = () => {
+        router.push(`/course/${first_url.course_id}/player/chapter/${first_url.chapter_id}/lesson/${first_url.lesson_id}`);
+    }
 
     return (
         <div id="course-sidebar" className="bg-white flex flex-col justify-between w-full lg:w-96 border border-neutral-200 rounded-lg overflow-auto lg:sticky lg:top-2">
@@ -29,6 +35,7 @@ const CourseView = (props) => {
                 {/* Action */}
                 <div className="flex justify-center gap-2">
                     <button
+                        onClick={() => goToCourse()}
                         className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
                     >
                         Курсты бастау
