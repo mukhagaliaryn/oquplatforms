@@ -20,27 +20,24 @@ export async function getServerSideProps(context) {
     const data = await res.json();
 
     const video = data.video;
-    const lesson = data.lesson;
-    const course = data.course;
-
-    const chapters = data.chapters;
-    const lessons = data.lessons;
+    const user_course = data.user_course;
+    const user_chapters = data.user_chapters;
+    const user_lessons = data.user_lessons;
 
 
     return {
         props: {
             video,
-            lesson,
-            course,
-            chapters,
-            lessons
+            user_course,
+            user_chapters,
+            user_lessons
         }
     }
 }
 
 
 const CoursePlayer = (data) => {
-    const { video, lesson, course, chapters, lessons } = data;
+    const { video, user_course, user_chapters, user_lessons } = data;
 
     return (
         <PlayerLayout
