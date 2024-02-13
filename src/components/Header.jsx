@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { TfiSearch, TfiBell, TfiWorld } from "react-icons/tfi";
-import { PiUserCircleThin } from "react-icons/pi";
+import { PiUserCircleThin, PiUserLight } from "react-icons/pi";
 import Dropdown from "./Dropdown";
 import { AuthModal } from "./Modals";
 
@@ -68,14 +68,19 @@ export const Header = (props) => {
                             :
                             <React.Fragment>
                                 <div
-                                    className="text-neutral-500 text-3xl cursor-pointer h-full px-2 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-95"
+                                    className="text-neutral-500 text-2xl cursor-pointer h-full px-2 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-95"
                                     onClick={() => setAuthModal(!authModal)}
                                 >
-                                    <PiUserCircleThin />
+                                    <PiUserLight />
                                 </div>
 
                                 <AnimatePresence>
-                                    {authModal && <AuthModal authModal={authModal} setAuthModal={setAuthModal} />}
+                                    {authModal && 
+                                        <AuthModal 
+                                            authModal={authModal} 
+                                            setAuthModal={setAuthModal} 
+                                        />
+                                    }
                                 </AnimatePresence>
                             </React.Fragment>
                         }

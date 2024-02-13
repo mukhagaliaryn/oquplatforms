@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 
 // Authentication modal
 export const AuthModal = (props) => {
-    const { authModal, setAuthModal } = props;
+    const { authModal, setAuthModal, closeLink } = props;
     const [slideIndex, setSlideIndex] = useState(0);
     const router = useRouter();
     const loading = useSelector(state => state.auth.loading);
@@ -85,16 +85,29 @@ export const AuthModal = (props) => {
         }
     };
 
-    if (typeof window !== "undefined" && isAuthenticated)
+    if (typeof window !== "undefined" && isAuthenticated) {
+        setAuthModal(!authModal);
         router.push(router.asPath);
+    }
+        
 
     return (
         <div className="fixed top-0 left-0 z-10 w-full h-full flex justify-center items-center bg-white/50 backdrop-blur-3xl">
-            <div
-                onClick={() => setAuthModal(!authModal)}
-                className="w-8 h-8 rounded-md text-neutral-500 bg-white absolute top-4 right-4 shadow-sm flex justify-center items-center cursor-pointer transition-all hover:shadow active:scale-95">
-                <TfiClose />
-            </div>
+            {closeLink ?
+                <div
+                    onClick={() => router.push("/")}
+                    className="w-8 h-8 rounded-md text-neutral-500 bg-white absolute top-4 right-4 shadow-sm flex justify-center items-center cursor-pointer transition-all hover:shadow active:scale-95"
+                >
+                    <TfiClose />
+                </div>
+                :
+                <div
+                    onClick={() => setAuthModal(!authModal)}
+                    className="w-8 h-8 rounded-md text-neutral-500 bg-white absolute top-4 right-4 shadow-sm flex justify-center items-center cursor-pointer transition-all hover:shadow active:scale-95"
+                >
+                    <TfiClose />
+                </div>
+            }
 
             <div className="max-w-sm w-full flex items-start overflow-hidden">
                 {/* Login */}
