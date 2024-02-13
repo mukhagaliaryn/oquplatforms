@@ -57,7 +57,7 @@ const MainLayout = (props) => {
 
 MainLayout.defaultProps = {
     title: "OQU platforms",
-    content: "OQU platforms - онлайн білім беру микросервистері"
+    content: "OQU platforms - онлайн білім беру платформасы"
 }
 
 export default MainLayout;

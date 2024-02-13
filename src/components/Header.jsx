@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/actions/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
@@ -13,16 +11,8 @@ import { AuthModal } from "./Modals";
 
 export const Header = (props) => {
     const { isAuthenticated } = props;
-    const dispatch = useDispatch();
     const [dropdown, setDropdown] = useState(false);
     const [authModal, setAuthModal] = useState(false);
-
-
-    const logoutHandler = () => {
-        if (dispatch && dispatch !== null && dispatch !== undefined) {
-            dispatch(logout())
-        }
-    }
 
     return (
         <div id="header" className="bg-white">
@@ -35,8 +25,8 @@ export const Header = (props) => {
                     <span className="font-poppins font-semibold text-base block pl-2 border-l border-neutral-200">platforms</span>
                 </div>
 
-                <div 
-                    id="search" 
+                <div
+                    id="search"
                     className="relative w-full max-w-md hidden md:block"
                     onClick={() => alert("Іздеу функциясы әзірге жұмыс жасамайды")}
                 >
@@ -56,18 +46,6 @@ export const Header = (props) => {
 
 
                 <div className="flex py-1">
-                    {/* <div 
-                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-95"
-                    >
-                        <TfiWorld />
-                    </div>
-
-                    <div
-                        className="text-neutral-500 text-xl cursor-pointer h-full px-3 flex items-center transition-all hover:bg-neutral-100 rounded-md active:scale-95"
-                    >
-                        <TfiBell />
-                    </div> */}
-
                     <div className="relative">
                         {isAuthenticated ?
                             <React.Fragment>
@@ -101,7 +79,6 @@ export const Header = (props) => {
                                 </AnimatePresence>
                             </React.Fragment>
                         }
-
                     </div>
                 </div>
             </div>
@@ -112,7 +89,7 @@ export const Header = (props) => {
 
 
 export const PlayerHeader = (props) => {
-    const {} = props;
+    const { } = props;
 
     return (
         <div className="bg-neutral-900">

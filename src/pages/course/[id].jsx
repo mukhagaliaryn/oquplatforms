@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
     const chapters = data.chapters;
     const lessons = data.lessons;
     const rating = data.rating;
-    const first_url = data.first_url;
+    const first_url = data.first_url || null;
 
     return {
         props: {

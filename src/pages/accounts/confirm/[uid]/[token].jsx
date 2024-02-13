@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import AccountLayout from "@/src/layouts/account";
 import { check_auth_status, reset_password_confirm } from "@/src/redux/actions/auth";
-
+import MainLayout from "@/src/layouts/main";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import Link from "next/link";
+import { PiEyeLight, PiEyeSlashLight, PiWarningOctagonLight } from "react-icons/pi";
+
 
 
 const PasswordResetConfirm = () => {
@@ -32,13 +31,13 @@ const PasswordResetConfirm = () => {
     const dispatch = useDispatch();
     const { register, formState: { errors }, handleSubmit } = useForm({ resolver: yupResolver(schema) });
     const [showPass, setPass] = useState(true)
-    const [showRePass, setRePass] = useState(true)
+
 
     const onSubmit = (data) => {
         if (dispatch && dispatch !== null && dispatch !== undefined) {
             dispatch(reset_password_confirm(router.query.uid, router.query.token, data.new_password, data.re_new_password));
         }
-        router.push('/accounts/login')
+        router.push('/')
     };
 
     useEffect(() => {
@@ -52,78 +51,66 @@ const PasswordResetConfirm = () => {
 
 
     return (
-        <AccountLayout
+        <MainLayout
             title={"Жаңа пароль енгізу"}
         >
-            <div className="max-w-sm mx-auto my-10">
-                <h1 className="text-3xl font-bold text-center">Жаңа пароль енгізу</h1>
+            <div className="w-full max-w-xl mx-auto bg-white rounded-lg border border-neutral-200 p-10">
+                <h1 className="text-xl font-semibold text-center">Жаңа пароль енгізу</h1>
 
-                <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
+                <form className="mt-5 grid gap-4" onSubmit={handleSubmit(onSubmit)}>
 
-                    <div className="py-2 w-full">
-                        <label htmlFor="" className="block font-bold text-neutral-600 mb-2">
-                            Пароль
-                        </label>
-                        <div className="relative">
-                            <input
-                                type={showPass ? "password" : "text"}
-                                {...register("new_password")}
-                                placeholder="Мысалы: Abcd1234$"
-                                className={`block w-full border rounded-lg py-2 px-4 text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none ${errors["new_password"] && "border-red-500"}`}
-                            />
-                            <span onClick={() => setPass(!showPass)} className="absolute right-2 top-2 text-2xl text-neutral-600 cursor-pointer">
-                                {showPass ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                            </span>
+                    {/* new_password */}
+                    <div className="relative">
+                        <input
+                            type={showPass ? "password" : "text"}
+                            placeholder="Abcdfg123$"
+                            {...register("new_password")}
+                            className="pl-4 pr-10 py-2 border text-neutral-900 border-neutral-200 rounded-md outline-none w-full text-sm transition-all focus:border-b-blue-500 focus:shadow focus:bg-white"
+                        />
+                        <div
+                            onClick={() => setPass(!showPass)}
+                            className="absolute top-2 right-3 text-neutral-500 text-xl cursor-pointer"
+                        >
+                            {showPass ? <PiEyeLight /> : <PiEyeSlashLight />}
                         </div>
-                        {errors["new_password"] ?
-                            <div className="mt-2 py-2 px-4 rounded-lg bg-red-500 text-white text-xs">
-                                {errors["new_password"].message}
+                        {errors["new_password"] &&
+                            <div className="mt-2 px-2 text-red-500 text-xs flex gap-1 items-center">
+                                <PiWarningOctagonLight />
+                                <span className="block">{errors["new_password"].message}</span>
                             </div>
-                            : null}
+                        }
                     </div>
 
-                    <div className="py-2 w-full">
-                        <label htmlFor="" className="block font-bold text-neutral-600 mb-2">
-                            Парольді қайталау
-                        </label>
-                        <div className="relative">
-                            <input
-                                type={showRePass ? "password" : "text"}
-                                {...register("re_new_password")}
-                                placeholder="Парольді қайталау..."
-                                className={`block w-full border rounded-lg py-2 px-4 text-neutral-600 transition-all focus:shadow-sm focus:bg-neutral-100 outline-none ${errors["re_new_password"] && "border-red-500"}`}
-                            />
-                            <span onClick={() => setRePass(!showRePass)} className="absolute right-2 top-2 text-2xl text-neutral-600 cursor-pointer">
-                                {showRePass ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                            </span>
+                    {/* re_new_password */}
+                    <div className="relative">
+                        <input
+                            type={showPass ? "password" : "text"}
+                            placeholder="Парольді қайталау"
+                            {...register("re_new_password")}
+                            className="pl-4 pr-10 py-2 border text-neutral-900 border-neutral-200 rounded-md outline-none w-full text-sm transition-all focus:border-b-blue-500 focus:shadow focus:bg-white"
+                        />
+                        <div
+                            onClick={() => setPass(!showPass)}
+                            className="absolute top-2 right-3 text-neutral-500 text-xl cursor-pointer"
+                        >
+                            {showPass ? <PiEyeLight /> : <PiEyeSlashLight />}
                         </div>
-                        {errors["re_new_password"] ?
-                            <div className="mt-2 py-2 px-4 rounded-lg bg-red-500 text-white text-xs">
-                                {errors["re_new_password"].message}
+                        {errors["re_new_password"] &&
+                            <div className="mt-2 px-2 text-red-500 text-xs flex gap-1 items-center">
+                                <PiWarningOctagonLight />
+                                <span className="block">{errors["re_new_password"].message}</span>
                             </div>
-                            : null}
+                        }
                     </div>
 
-                    <div className="py-2 w-full">
-                        <button className="block w-full px-4 py-2 border-orange-400 bg-orange-400 text-white rounded-lg transition-all hover:opacity-70">
-                            {loading 
-                            ? 
-                                "..." 
-                            : 
-                                "Жіберу"
-                            }
+                    <div className="relative">
+                        <button className="bg-neutral-900 w-full px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95">
+                            Парольді ауыстыру
                         </button>
-                    </div>
-
-                    <div className="pt-4 w-full">
-                        <Link 
-                            href={"/accounts/login"}
-                            className="px-4 py-2 block rounded-lg text-neutral-600 text-center border hover:border-neutral-900"
-                        >Кері қайту</Link>
                     </div>
                 </form>
             </div>
-        </AccountLayout>
+        </MainLayout>
     )
 }
 
