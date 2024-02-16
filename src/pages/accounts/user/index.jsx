@@ -41,7 +41,7 @@ const UserProfile = (data) => {
                         <div className="w-full flex items-center gap-5 bg-white p-10 rounded-lg border border-neutral-200">
                             {user.image ?
                                 <div className="rounded-xl w-28 h-28 overflow-hidden">
-                                    <Image src={user.image} width={520} height={520} />
+                                    <Image src={user.image} width={520} height={520} alt={user.full_name}/>
                                 </div>
                             :
                                 <div className="text-9xl bg-neutral-900 text-neutral-100 rounded-full">
