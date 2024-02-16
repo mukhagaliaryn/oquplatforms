@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     domains: [
       '127.0.0.1',
-      // "oquplatforms-storage.s3.amazonaws.com",
+      "oquplatforms-storage.s3.amazonaws.com",
     ],
   },
 }

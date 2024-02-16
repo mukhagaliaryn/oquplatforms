@@ -54,11 +54,11 @@ const Authors = (data) => {
                                         <div className="flex justify-center items-center mt-4">
                                             <div className="flex items-center justify-center text-sm text-neutral-500 mr-2">
                                                 <PiUsersThreeFill />
-                                                <span className="ml-1">2 320</span>
+                                                <span className="ml-1">0</span>
                                             </div>
                                             <div className="flex items-center justify-center text-sm text-neutral-500 ml-2">
                                                 <MdOutlineWork />
-                                                <span className="ml-1">22</span>
+                                                <span className="ml-1">0</span>
                                             </div>
                                         </div>
                                     </div>
