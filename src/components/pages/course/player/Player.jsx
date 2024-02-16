@@ -15,7 +15,7 @@ const Player = (props) => {
                 <iframe src={video.frame_url} frameBorder="0" className="w-full h-full"></iframe>
             </div>
 
-            <div className="mb-10">
+            <div className="mb-20">
                 <div className="p-10 border-b border-neutral-200">
                     <h1 className="text-2xl font-bold">{user_course.course.name}</h1>
                     <span className="block mt-2 text-sm text-neutral-500">{user_course.course.about}</span>

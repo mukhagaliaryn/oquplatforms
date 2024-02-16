@@ -5,12 +5,37 @@ import { PiVideoCameraLight } from "react-icons/pi";
 import { SlArrowDown } from "react-icons/sl";
 import { LiaCircle } from "react-icons/lia";
 import { GoCheckCircleFill } from "react-icons/go";
+import { BACKEND_URL } from "@/src/redux/actions/types";
+import { useDispatch } from "react-redux";
+import { setAlert } from "@/src/redux/actions/alert";
 
 
 const LessonsList = (props) => {
-    const { user_course, user_chapters, user_lessons } = props;
+    const { user_course, user_chapters, user_lessons, access } = props;
     const router = useRouter();
-    const [completed, setCompleted] = useState(false)
+    const dispatch = useDispatch();
+
+    const handleIsCompleted = async (user_course_id, user_chapter_id, user_lesson_id) => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/course/${user_course_id}/chapter/${user_chapter_id}/lesson/${user_lesson_id}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            })
+
+            if (response.status == 204) {
+                router.push(router.asPath)
+            } else {
+                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+            }
+
+        } catch (e) {
+            console.log(e);
+            dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+        }
+    }
 
     return (
         <div className="w-full hidden md:block md:max-w-sm xl:max-w-md border-l border-neutral-200 overflow-auto">
@@ -36,12 +61,18 @@ const LessonsList = (props) => {
                                                     href={`/course/${user_course.id}/player/chapter/${user_chapter.id}/lesson/${user_lesson.id}`}
                                                     className={`flex-1 flex items-center gap-4 text-neutral-500 px-4 py-3 transition-all`}
                                                 >
-                                                    <PiVideoCameraLight className="text-xl"/>
+                                                    <PiVideoCameraLight className="text-xl" />
                                                     {user_lesson.lesson.title}
                                                 </Link>
 
-                                                <div className="text-2xl text-neutral-900 px-3 cursor-pointer" onClick={() => setCompleted(!completed)}>
-                                                    {completed ? <GoCheckCircleFill /> : <LiaCircle/>}
+                                                <div className="text-2xl text-neutral-900 px-3 cursor-pointer">
+                                                    {user_lesson.is_completed ?
+                                                        <GoCheckCircleFill />
+                                                        :
+                                                        <div onClick={() => handleIsCompleted(user_course.id, user_chapter.id, user_lesson.id)}>
+                                                            <LiaCircle />
+                                                        </div>
+                                                    }
                                                 </div>
                                             </li>
                                         )

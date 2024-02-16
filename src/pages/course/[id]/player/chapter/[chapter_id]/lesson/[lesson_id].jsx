@@ -49,7 +49,12 @@ const CoursePlayer = (data) => {
             {video && <Player video={video} user_course={user_course} />}
 
             {/* Lessons list */}
-            <LessonsList user_course={user_course} user_chapters={user_chapters} user_lessons={user_lessons} />
+            <LessonsList 
+                user_course={user_course} 
+                user_chapters={user_chapters} 
+                user_lessons={user_lessons} 
+                access={access}
+            />
         </PlayerLayout>
     )
 }
