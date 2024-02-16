@@ -19,10 +19,10 @@ export async function getServerSideProps(context) {
     const res = await fetch(`${BACKEND_URL}/course/${id}/chapter/${chapter_id}/lesson/${lesson_id}/`, context.req.cookies.access && config)
     const data = await res.json();
 
-    const video = data.video;
-    const user_course = data.user_course;
-    const user_chapters = data.user_chapters;
-    const user_lessons = data.user_lessons;
+    const video = data.video || null
+    const user_course = data.user_course || null; 
+    const user_chapters = data.user_chapters || [];
+    const user_lessons = data.user_lessons || [];
 
 
     return {
@@ -30,27 +30,30 @@ export async function getServerSideProps(context) {
             video,
             user_course,
             user_chapters,
-            user_lessons
+            user_lessons,
+            access: context.req.cookies.access || null
         }
     }
 }
 
 
 const CoursePlayer = (data) => {
-    const { video, user_course, user_chapters, user_lessons } = data;
+    const { video, user_course, user_chapters, user_lessons, access } = data;
 
     return (
         <PlayerLayout
-            title={`${lesson.title} - OQU player`}
-            content={course.about}
-        >   
+            title={video ? `${video.lesson.title} - OQU player`: "OQU player"}
+            content={user_course && user_course.course.about}
+        >
             {/* Lesson content */}
-            <Player video={video} />
-            
+            {video && <Player video={video} user_course={user_course} />}
+
             {/* Lessons list */}
-            <LessonsList course={course} chapters={chapters} lessons={lessons} />
+            <LessonsList user_course={user_course} user_chapters={user_chapters} user_lessons={user_lessons} />
         </PlayerLayout>
     )
 }
 
 export default CoursePlayer;
+
+

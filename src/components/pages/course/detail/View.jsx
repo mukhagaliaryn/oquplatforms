@@ -5,12 +5,66 @@ import { PiShareNetworkFill, PiTimer, PiUsersFill } from "react-icons/pi";
 import { TfiWorld } from "react-icons/tfi";
 import { useRouter } from "next/router";
 import { AuthModal } from "@/src/components/Modals";
+import { useDispatch } from "react-redux";
+import { setAlert } from "@/src/redux/actions/alert";
+import { BACKEND_URL } from "@/src/redux/actions/types";
 
 
 const CourseView = (props) => {
-    const { isAuthenticated, course, first_url, user_course__course_id } = props;
+    const { isAuthenticated, course, first_url, user_course__course_id, access } = props;
     const router = useRouter();
     const [authModal, setAuthModal] = useState(false);
+    const dispatch = useDispatch();
+
+
+    const handlePostCourse = async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/course/${course.id}/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            })
+
+            const res = await response.json();
+            
+            if (response.status == 201) {
+                dispatch(setAlert("Курсты бастай беруге болады!", "success"));
+            } else {
+                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+            }
+
+        } catch (e) {
+            console.log(e);
+            dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+        }
+    }
+
+
+    const handlePutCourse = async () => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/course/${course.id}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            })
+
+            const res = await response.json();
+            if (response.status == 201) {
+                dispatch(setAlert("Курста жаңа өзгерістер...", "success"));
+                router.push(`/course/${first_url.user_course_id}/player/chapter/${first_url.user_chapter_id}/lesson/${first_url.user_lesson_id}`)
+            } else {
+                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+            }
+
+        } catch (e) {
+            console.log(e);
+            dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+        }
+    }
 
     return (
         <React.Fragment>
@@ -36,22 +90,21 @@ const CourseView = (props) => {
                             <React.Fragment>
                                 {course.id === user_course__course_id ?
                                     <button
-                                        onClick={() => router.push(`/course/${first_url.course_id}/player/chapter/${first_url.chapter_id}/lesson/${first_url.lesson_id}`)}
+                                        onClick={handlePutCourse}
                                         className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
                                     >
-                                        Курсты бастау
+                                        Курсқа кіру
                                     </button>
                                     :
                                     <button
-                                        onClick={() => alert("Will be POST method")}
+                                        onClick={handlePostCourse}
                                         className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
                                     >
                                         Курсты бастау
                                     </button>
                                 }
                             </React.Fragment>
-
-                            :
+                        :
                             <button
                                 onClick={() => setAuthModal(!authModal)}
                                 className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"

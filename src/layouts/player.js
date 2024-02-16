@@ -10,7 +10,7 @@ import { AuthModal } from "../components/Modals";
 
 const PlayerLayout = (props) => {
     const router = useRouter();
-    const user = useSelector(state => state.auth.user)
+    const user = useSelector(state => state.auth.user);
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const dispatch = useDispatch();
 
@@ -35,12 +35,12 @@ const PlayerLayout = (props) => {
             <div id="root" className="h-screen">
                 <PlayerHeader />
 
-                {!isAuthenticated ?
+                {isAuthenticated ?
                     <div className="flex h-full">
                         {props.children}
                     </div>
-                :
-                    <AuthModal />
+                    :
+                    <AuthModal closeLink={true} />
                 }
             </div>
         </React.Fragment>
