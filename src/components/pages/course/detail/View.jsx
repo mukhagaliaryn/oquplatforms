@@ -11,7 +11,7 @@ import { BACKEND_URL } from "@/src/redux/actions/types";
 
 
 const CourseView = (props) => {
-    const { isAuthenticated, course, first_url, user_course__course_id, access } = props;
+    const { isAuthenticated, course, first_url, user_course__course_id, course_following_users, access } = props;
     const router = useRouter();
     const [authModal, setAuthModal] = useState(false);
     const dispatch = useDispatch();
@@ -27,8 +27,6 @@ const CourseView = (props) => {
                 },
             })
 
-            const res = await response.json();
-            
             if (response.status == 201) {
                 dispatch(setAlert("Курсты бастай беруге болады!", "success"));
             } else {
@@ -52,9 +50,8 @@ const CourseView = (props) => {
                 },
             })
 
-            const res = await response.json();
             if (response.status == 201) {
-                dispatch(setAlert("Курста жаңа өзгерістер...", "success"));
+                dispatch(setAlert("Жаңа өзгерістер...", "success"));
                 router.push(`/course/${first_url.user_course_id}/player/chapter/${first_url.user_chapter_id}/lesson/${first_url.user_lesson_id}`)
             } else {
                 dispatch(setAlert("Бір жерден қателік кетті!", "error"));
@@ -73,7 +70,7 @@ const CourseView = (props) => {
                     {/* Image */}
                     <div className="w-28 h-28 mx-auto overflow-hidden">
                         <Image
-                            src={course.image} width={520} height={520} alt={course.name}
+                            src={course.image ? course.image : "/images/course.png"} width={520} height={520} alt={course.name}
                             className="w-full h-full"
                         />
                     </div>
@@ -129,7 +126,7 @@ const CourseView = (props) => {
 
                         <div className="flex flex-col items-center">
                             <div className="flex items-center justify-center">
-                                <h1 className="text-neutral-900 font-semibold">0</h1>
+                                <h1 className="text-neutral-900 font-semibold">{course_following_users}</h1>
                                 <PiUsersFill className="text-neutral-900 ml-2" />
                             </div>
                             <span className="text-xs text-neutral-500">Білім алушы</span>

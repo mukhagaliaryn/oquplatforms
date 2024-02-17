@@ -17,11 +17,11 @@ export async function getServerSideProps(context) {
     }
     const res = await fetch(`${BACKEND_URL}/`, context.req.cookies.access && config)
     const data = await res.json();
-    
-    const headliners = data.headliners;
-    const last_courses = data.last_courses;
-    const authors = data.authors;
-    const popular_topics = data.popular_topics;
+
+    const headliners = data.headliners || [];
+    const last_courses = data.last_courses || [];
+    const authors = data.authors || [];
+    const popular_topics = data.popular_topics || [];
 
     return {
         props: {
@@ -43,16 +43,16 @@ const Main = (data) => {
             content={"Басты бет парақшасы - OQU platforms"}
         >
             {/* Headliner */}
-            <Headliner headliners={headliners} />
+            {headliners.length > 0 && <Headliner headliners={headliners} />}
 
             {/* last courses */}
-            <CoursesList last_courses={last_courses} />
+            {last_courses.length > 0 && <CoursesList last_courses={last_courses} />}
 
             {/* last courses */}
-            <AuthorsList authors={authors} />
+            {authors.length > 0 && <AuthorsList authors={authors} />}
 
             {/* popular topics */}
-            <PopularTopics popular_topics={popular_topics} />
+            {popular_topics.length > 0 && <PopularTopics popular_topics={popular_topics} />}
 
             <div className="mt-8"></div>
         </MainLayout>

@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
     const rating = data.rating;
     const first_url = data.first_url || null;
     const user_course__course_id = data.user_course__course_id || null
-
+    const course_following_users = data.course_following_users;
 
     return {
         props: {
@@ -33,6 +33,7 @@ export async function getServerSideProps(context) {
             rating,
             first_url,
             user_course__course_id,
+            course_following_users,
             access: context.req.cookies.access || null
         }
     }
@@ -40,8 +41,17 @@ export async function getServerSideProps(context) {
 
 
 const Course = (data) => {
-    const { course, purposes, lessons, chapters, rating, first_url, user_course__course_id, access } = data; 
-    const router = useRouter();
+    const { 
+        course, 
+        purposes, 
+        lessons, 
+        chapters, 
+        rating, 
+        first_url, 
+        user_course__course_id, 
+        course_following_users,
+        access 
+    } = data; 
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
     return (
@@ -59,6 +69,7 @@ const Course = (data) => {
                 rating={rating}
                 first_url={first_url}
                 user_course__course_id={user_course__course_id}
+                course_following_users={course_following_users}
                 access={access}
             />
         </MainLayout>

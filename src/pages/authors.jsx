@@ -51,16 +51,6 @@ const Authors = (data) => {
                                         <div className="mt-2 py-1 px-3 text-xs rounded-md bg-blue-100 text-blue-500 inline-block">
                                             <span>{author.specialty}</span>
                                         </div>
-                                        <div className="flex justify-center items-center mt-4">
-                                            <div className="flex items-center justify-center text-sm text-neutral-500 mr-2">
-                                                <PiUsersThreeFill />
-                                                <span className="ml-1">0</span>
-                                            </div>
-                                            <div className="flex items-center justify-center text-sm text-neutral-500 ml-2">
-                                                <MdOutlineWork />
-                                                <span className="ml-1">0</span>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </Link>

@@ -40,11 +40,11 @@ const LastCourses = (data) => {
                         return (
                             <Link key={i} href={`/course/${course.id}`} className="block shadow-sm bg-white rounded-lg overflow-hidden transition-all hover:shadow-md">
                                 <div
-                                    style={{ backgroundImage: `url(${course.image})` }}
+                                    style={{ backgroundImage: `url(${course.image ? course.image : "/images/course.png"})` }}
                                     className="h-40 bg-cover bg-no-repeat bg-center"
                                 >
                                     <div className="flex justify-center items-center w-full h-full bg-white bg-opacity-70 backdrop-blur-3xl rounded-t-lg overflow-hidden">
-                                        <Image src={course.image} width={520} height={520} className="w-20 h-20" alt={course.name} />
+                                        <Image src={course.image ? course.image : "/images/course.png"} width={520} height={520} className="w-20 h-20" alt={course.name} />
                                     </div>
                                 </div>
                                 <div className="p-4">
@@ -67,7 +67,11 @@ const LastCourses = (data) => {
                                             <IoStar />
                                         </div>
                                         <div className="text-xs bg-blue-100 px-3 py-1 text-blue-500 rounded-md">
-                                            <span>Экспресс курс</span>
+                                            {course.course_type === "DETAIL" ?
+                                                <span>Экспресс курс</span>
+                                            :
+                                                <span>Бағытталған курс</span>
+                                            }
                                         </div>
                                     </div>
                                 </div>

@@ -92,7 +92,7 @@ const Headliner = (props) => {
                                     stiffness: 400,
                                     damping: 50
                                 }}
-                                style={{ backgroundImage: `url(${headline.poster})` }}
+                                style={{ backgroundImage: `url(${headline.poster ? headline.poster : "/images/poster.png"})` }}
                                 className="w-full h-full bg-cover bg-center bg-no-repeat shrink-0 rounded-lg overflow-hidden"
                             >
                                 <div className="relative h-full">
@@ -175,7 +175,7 @@ const Dots = ({ headliners, slideIndex, setSlideIndex }) => {
                             `}
                             >
                                 <Image
-                                    src={headline.poster} width={500} height={250} alt="poster"
+                                    src={headline.poster ? headline.poster : "/images/poster.png"} width={500} height={250} alt="poster"
                                     className="w-full h-full object-cover"
                                 />
                                 <div className="absolute h-full w-full top-0 left-0 transition-all hover:bg-white/30"></div>
