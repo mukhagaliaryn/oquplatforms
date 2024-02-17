@@ -9,7 +9,7 @@ const DescriptionSection = (props) => {
 
     const DecriptionText = (data) => {
         const description = { __html: data }
-        return <div dangerouslySetInnerHTML={description} />
+        return <div id="parser" dangerouslySetInnerHTML={description} />
     }
 
     return (
