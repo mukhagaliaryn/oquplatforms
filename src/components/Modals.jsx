@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { PiEyeLight, PiEyeSlashLight, PiUserLight, PiWarningOctagonLight } from "react-icons/pi";
+import { PiEyeLight, PiEyeSlashLight, PiUserCircleThin, PiUserLight, PiWarningOctagonLight } from "react-icons/pi";
 import { TfiClose, TfiEmail } from "react-icons/tfi";
 import { login, passwordReset, signup } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
