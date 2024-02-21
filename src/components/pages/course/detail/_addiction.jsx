@@ -11,7 +11,7 @@ const AddictionSection = (props) => {
 
     return (
         <motion.div
-            className="bg-white mb-2 border border-neutral-200 transition-all rounded-lg overflow-hidden relative"
+            className="bg-white border border-neutral-200 transition-all rounded-lg overflow-hidden relative"
         >
             {/* Title */}
             <div className="border-b border-neutral-200 py-2 px-5 flex justify-between">

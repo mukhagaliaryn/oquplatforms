@@ -2,8 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from "next/link";
-import { PiUsersThreeFill } from "react-icons/pi";
-import { MdOutlineWork } from "react-icons/md";
 import { useRouter } from "next/router";
 
 
@@ -23,8 +21,11 @@ const AuthorsList = (props) => {
             </div>
 
             <Swiper
-                slidesPerView={2}
+                slidesPerView={1}
                 breakpoints={{
+                    420: { // xs
+                        slidesPerView: 2
+                    },
                     640: {
                         slidesPerView: 3
                     },
@@ -45,7 +46,7 @@ const AuthorsList = (props) => {
                     },
                 }}
                 spaceBetween={10}
-                className="h-64"
+                className="h-56"
             >
                 {authors.map(author => {
                     return (
@@ -54,7 +55,7 @@ const AuthorsList = (props) => {
                                 <div className="p-4">
                                     <Image 
                                         src={author.user.image ? author.user.image : "/images/user.png"} width={520} height={520}
-                                        className="w-24 h-24 rounded-2xl mx-auto"
+                                        className="w-24 h-24 rounded-full mx-auto"
                                         alt={"Author image"}
                                     />
                                     <div className="mt-4 text-center">

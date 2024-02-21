@@ -3,8 +3,6 @@ import MainLayout from "../layouts/main";
 import { BACKEND_URL } from "../redux/actions/types";
 import Link from "next/link";
 import Image from "next/image";
-import { PiUsersThreeFill } from "react-icons/pi";
-import { MdOutlineWork } from "react-icons/md";
 
 
 export async function getServerSideProps(context) {
@@ -42,7 +40,7 @@ const Authors = (data) => {
                                 <div className="p-4">
                                     <Image
                                         src={author.user.image ? author.user.image : "/images/user.png"} width={520} height={520}
-                                        className="w-24 h-24 rounded-2xl mx-auto"
+                                        className="w-24 h-24 rounded-full mx-auto"
                                         alt={"Author image"}
                                     />
                                     <div className="mt-4 text-center">
@@ -58,7 +56,6 @@ const Authors = (data) => {
                     })}
                 </div>
             </div>
-            <div className="mt-8"></div>
         </MainLayout>
     )
 }

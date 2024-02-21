@@ -1,6 +1,4 @@
 #wrapper {
-    display: grid;
-    grid-template-columns: 48px 1fr;
     height: calc(100vh - 48px);
 }
 
@@ -14,6 +12,13 @@
 #inner {
     background: rgb(0,0,0);
     background: linear-gradient(90deg, rgba(0,0,0,0.4962359943977591) 0%, rgba(255,255,255,0) 50%);
+}
+
+@media screen and (max-width: 640px) {
+    #inner {
+        background: rgb(0,0,0);
+        background: linear-gradient(180deg, rgba(0,0,0,0.4962359943977591) 0%, rgba(255,255,255,0) 50%);
+    }
 }
 
 

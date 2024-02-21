@@ -6,6 +6,7 @@ import { check_auth_status } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import Footbar from "../components/Footbar";
 
 
 const MainLayout = (props) => {
@@ -39,17 +40,18 @@ const MainLayout = (props) => {
                     user={user}
                 />
 
-                <div id="wrapper">
+                <div id="wrapper" className="flex flex-col sm:flex-row">
                     <Sidebar />
 
-                    <div 
-                        className="overflow-auto border border-neutral-200 rounded-tl-lg bg-neutral-100"
-                    >
+                    <div className="flex-1 overflow-auto border border-neutral-200 sm:rounded-tl-lg bg-neutral-100">
                         <div className="max-w-[1920px] mx-auto p-2">
                             {props.children}
                         </div>
                     </div>
+
+                    <Footbar />
                 </div>
+
             </div>
         </React.Fragment>
     )

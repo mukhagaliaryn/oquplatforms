@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 
+
 // Authentication modal
 export const AuthModal = (props) => {
     const { authModal, setAuthModal, closeLink } = props;
@@ -89,10 +90,10 @@ export const AuthModal = (props) => {
         setAuthModal(!authModal);
         router.push(router.asPath);
     }
-        
+
 
     return (
-        <div className="fixed top-0 left-0 z-10 w-full h-full flex justify-center items-center bg-white/50 backdrop-blur-3xl">
+        <div className="fixed top-0 left-0 z-10 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
             {closeLink ?
                 <div
                     onClick={() => router.push("/")}
@@ -372,3 +373,62 @@ export const AuthModal = (props) => {
         </div>
     )
 }
+
+
+const EditProfileModal = (props) => {
+    const { user, editModal, setEditModal } = props;
+
+    return (
+        <div className="fixed top-0 left-0 z-10 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
+            <div
+                onClick={() => setEditModal(!editModal)}
+                className="w-8 h-8 rounded-md text-neutral-500 bg-white absolute top-4 right-4 shadow-sm flex justify-center items-center cursor-pointer transition-all hover:shadow active:scale-95"
+            >
+                <TfiClose />
+            </div>
+
+            <div className="max-w-lg w-full overflow-hidden p-5 bg-white border border-neutral-200 shadow-sm rounded-lg">
+                <h1 className="text-neutral-900 font-semibold text-xl my-5 text-center">Профильді өзгерту</h1>
+
+                <form className="grid gap-4">
+                    <div className="relative">
+                        <div className="flex justify-center mb-4">
+                            {user.image ?
+                                <div className="rounded-full w-28 h-28 overflow-hidden">
+                                    <Image src={user.image} width={520} height={520} alt={user.full_name} />
+                                </div>
+                                :
+                                <div className="text-9xl bg-neutral-900 text-neutral-100 rounded-full">
+                                    <PiUserCircleThin />
+                                </div>
+                            }
+                        </div>
+                        <input 
+                            type="file"
+                            className="pl-4 pr-10 py-2 border text-neutral-900 border-neutral-200 rounded-md outline-none w-full text-sm transition-all focus:border-b-blue-500 focus:shadow focus:bg-white"
+                        />
+                    </div>
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Толық аты-жөні"
+                            className="pl-4 pr-10 py-2 border text-neutral-900 border-neutral-200 rounded-md outline-none w-full text-sm transition-all focus:border-b-blue-500 focus:shadow focus:bg-white"
+                            defaultValue={user.full_name}
+                        />
+                        <div className="absolute top-2 right-3 text-neutral-500 text-xl">
+                            <PiUserLight />
+                        </div>
+                    </div>
+
+                    <div className="relative">
+                        <button className="bg-neutral-900 w-full px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95">
+                            Жіберу
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
+
+export default EditProfileModal;

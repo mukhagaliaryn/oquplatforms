@@ -53,7 +53,7 @@ const Category = (data) => {
                     <div className="absolute h-20 w-full bottom-0 left-0" id="topic"></div>
                 </div>
 
-                <div className="-translate-y-14 px-2 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
+                <div className="-translate-y-14 px-2 grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
                     {topic_courses.map((course, i) => {
                         return (
                             <Link key={i} href={`/course/${course.id}`} className="block shadow-sm bg-white rounded-lg overflow-hidden transition-all hover:shadow-md">
@@ -72,7 +72,7 @@ const Category = (data) => {
                                             return (
                                                 <span
                                                     key={author.id}
-                                                    className="text-xs text-neutral-500 line-clamp-1 inline-block"
+                                                    className="text-sm text-neutral-500 line-clamp-1 inline-block"
                                                 >
                                                     {author.full_name}
                                                 </span>
@@ -80,7 +80,7 @@ const Category = (data) => {
                                         })}
                                     </div>
                                     <div className="mt-2 flex justify-between items-center">
-                                        <div className="text-xs flex items-center text-neutral-500">
+                                        <div className="text-sm flex items-center text-neutral-500">
                                             <span className="mr-1">{course.all_rating}</span>
                                             <IoStar />
                                         </div>

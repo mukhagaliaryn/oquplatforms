@@ -5,18 +5,18 @@ import { GoHome, GoHomeFill } from "react-icons/go";
 import { IoSettingsOutline, IoSettings } from "react-icons/io5";
 
 
-const Sidebar = () => {
+const Footbar = () => {
     const router = useRouter();
 
     return (
-        <div className="hidden sm:flex flex-col justify-between w-12 bg-white pb-4">
-            <ul>
+        <div className="flex justify-between h-12 bg-white sm:hidden">
+            <ul className="flex-1">
                 <li className="w-full p-1 text-neutral-500">
                     <Link 
                         href={"/"} 
                         className={`flex flex-col items-center rounded-md transition-all hover:bg-neutral-200 active:scale-105 ${router.asPath === "/" && "bg-blue-100"}`}
                     >
-                        <div className={`text-2xl px-1 py-2 ${router.asPath === "/" && "text-blue-500"}`}>
+                        <div className={`text-2xl p-2 ${router.asPath === "/" && "text-blue-500"}`}>
                             {router.asPath === "/" ? <GoHomeFill /> : <GoHome/>}
                         </div>
                     </Link>
@@ -29,7 +29,7 @@ const Sidebar = () => {
                         href={"/settings"} 
                         className={`flex flex-col items-center rounded-md transition-all hover:bg-neutral-200 active:scale-105 ${router.asPath === "/settings" && "bg-blue-100"}`}
                     >
-                        <div className={`text-2xl px-1 py-2 ${router.asPath === "/settings" && "text-blue-500"}`}>
+                        <div className={`text-2xl p-2 ${router.asPath === "/settings" && "text-blue-500"}`}>
                             {router.asPath === "/settings" ? <IoSettings /> : <IoSettingsOutline/>}
                         </div>
                     </Link>
@@ -39,4 +39,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar;
+export default Footbar;

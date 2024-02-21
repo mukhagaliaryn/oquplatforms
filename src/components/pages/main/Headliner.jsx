@@ -77,7 +77,7 @@ const Headliner = (props) => {
                         stiffness: 400,
                         damping: 50
                     }}
-                    className="h-96 xl:h-[480px] 2xl:h-[620px] flex cursor-grab active:cursor-grabbing"
+                    className="h-80 sm:h-96 xl:h-[480px] 2xl:h-[620px] flex cursor-grab active:cursor-grabbing"
                 >
                     {headliners.map((headline, i) => {
                         return (
@@ -97,11 +97,11 @@ const Headliner = (props) => {
                             >
                                 <div className="relative h-full">
                                     {/* Main content */}
-                                    <div className="h-full w-full flex items-start xl:items-center absolute top-0 left-0" id="inner">
-                                        <div className="p-10 w-full md:max-w-screen-sm">
-                                            <div className="mb-6">
-                                                <h1 className="text-5xl font-bold text-white">{headline.name}</h1>
-                                                <span className="block mt-2 text-neutral-100 text-sm max-w-md">{headline.about}</span>
+                                    <div className="h-full w-full flex items-center sm:items-start xl:items-center absolute top-0 left-0" id="inner">
+                                        <div className="p-5 sm:p-10 w-full text-center sm:text-left md:max-w-screen-sm">
+                                            <div className="my-3 sm:mb-6">
+                                                <h1 className="text-4xl sm:text-5xl font-bold text-white">{headline.name}</h1>
+                                                <span className="hidden sm:block mt-2 text-neutral-100 text-sm max-w-md">{headline.about}</span>
                                             </div>
                                             <Link
                                                 href={`/course/${headline.id}`}
@@ -110,7 +110,6 @@ const Headliner = (props) => {
                                                 <span>Толығырақ</span>
                                             </Link>
                                         </div>
-
                                     </div>
 
                                     <div className="absolute bottom-0 left-0 w-full h-20" id="headliner"></div>
@@ -139,7 +138,7 @@ export default Headliner;
 
 const Dots = ({ headliners, slideIndex, setSlideIndex }) => {
     return (
-        <div className="w-full pl-10 absolute -bottom-5 left-0">
+        <div className="w-full pl-2 sm:pl-10 absolute -bottom-5 left-0">
             <Swiper
                 slidesPerView={2}
                 breakpoints={{
@@ -163,14 +162,14 @@ const Dots = ({ headliners, slideIndex, setSlideIndex }) => {
                     },
                 }}
                 spaceBetween={10}
-                className="h-32 xl:h-36 2xl:h-40"
+                className="h-28 sm:h-32 xl:h-36 2xl:h-40"
             >
                 {headliners.map((headline, i) => {
                     return (
                         <SwiperSlide key={i}>
                             <div
                                 onClick={() => setSlideIndex(i)}
-                                className={`h-28 xl:h-32 2xl:h-36 relative overflow-hidden rounded-md transition-all cursor-pointer shadow-md
+                                className={`h-24 sm:h-28 xl:h-32 2xl:h-36 relative overflow-hidden rounded-md transition-all cursor-pointer shadow-md
                                 ${i === slideIndex ? "border-blue-500 border-2" : "border-transparent"}
                             `}
                             >

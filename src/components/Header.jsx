@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
-import { TfiSearch, TfiBell, TfiWorld } from "react-icons/tfi";
+import { TfiSearch } from "react-icons/tfi";
 import { PiUserCircleThin, PiUserLight } from "react-icons/pi";
 import Dropdown from "./Dropdown";
 import { AuthModal } from "./Modals";
@@ -10,7 +10,7 @@ import { AuthModal } from "./Modals";
 
 
 export const Header = (props) => {
-    const { isAuthenticated } = props;
+    const { isAuthenticated, user } = props;
     const [dropdown, setDropdown] = useState(false);
     const [authModal, setAuthModal] = useState(false);
 
@@ -59,6 +59,7 @@ export const Header = (props) => {
                                 <AnimatePresence>
                                     {dropdown &&
                                         <Dropdown
+                                            user={user}
                                             dropdown={dropdown}
                                             setDropdown={setDropdown}
                                         />

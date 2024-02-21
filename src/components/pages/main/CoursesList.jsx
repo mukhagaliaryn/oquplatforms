@@ -22,8 +22,11 @@ const CoursesList = (props) => {
             </div>
 
             <Swiper
-                slidesPerView={2}
+                slidesPerView={1}
                 breakpoints={{
+                    420: { // xs
+                        slidesPerView: 2
+                    },
                     640: { // sm
                         slidesPerView: 3
                     },
@@ -66,7 +69,7 @@ const CoursesList = (props) => {
                                             return (
                                                 <span 
                                                     key={author.id}
-                                                    className="text-xs text-neutral-500 line-clamp-1 inline-block mr-1"
+                                                    className="text-sm text-neutral-500 line-clamp-1 inline-block mr-1"
                                                 >
                                                     {author.full_name}
                                                     {!is_last && ","}
@@ -75,7 +78,7 @@ const CoursesList = (props) => {
                                         })}
                                     </div>
                                     <div className="mt-2 flex justify-between items-center">
-                                        <div className="text-xs flex items-center text-neutral-500">
+                                        <div className="text-sm flex items-center text-neutral-500">
                                             <span className="mr-1">{course.all_rating}</span>
                                             <IoStar />
                                         </div>
