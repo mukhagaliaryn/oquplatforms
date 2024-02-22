@@ -9,7 +9,7 @@ const Footbar = () => {
     const router = useRouter();
 
     return (
-        <div className="flex justify-between h-12 bg-white sm:hidden">
+        <div className="fixed z-10 w-full border-t border-neutral-200 bottom-0 flex justify-between h-12 bg-white sm:hidden">
             <ul className="flex-1">
                 <li className="w-full p-1 text-neutral-500">
                     <Link 

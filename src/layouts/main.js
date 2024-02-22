@@ -43,15 +43,14 @@ const MainLayout = (props) => {
                 <div id="wrapper" className="flex flex-col sm:flex-row">
                     <Sidebar />
 
-                    <div className="flex-1 overflow-auto border border-neutral-200 sm:rounded-tl-lg bg-neutral-100">
+                    <div className="flex-1 overflow-auto pb-12 border border-neutral-200 sm:rounded-tl-lg bg-neutral-100">
                         <div className="max-w-[1920px] mx-auto p-2">
                             {props.children}
                         </div>
                     </div>
-
-                    <Footbar />
                 </div>
 
+                <Footbar />
             </div>
         </React.Fragment>
     )
