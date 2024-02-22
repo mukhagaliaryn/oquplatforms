@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IoStar } from "react-icons/io5";
-import { PiShareNetworkFill, PiTimer, PiUsersFill } from "react-icons/pi";
-import { TfiWorld } from "react-icons/tfi";
+import { PiFolderSimpleFill, PiShareNetworkFill, PiTimerFill, PiUsersThreeFill } from "react-icons/pi";
+import { MdPlayLesson } from "react-icons/md";
 import { useRouter } from "next/router";
 import { AuthModal } from "@/src/components/Modals";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,17 @@ import { BACKEND_URL } from "@/src/redux/actions/types";
 
 
 const CourseView = (props) => {
-    const { isAuthenticated, course, first_url, user_course__course_id, course_following_users, access } = props;
+    const { 
+        isAuthenticated, 
+        course, 
+        first_url, 
+        user_course__course_id, 
+        course_following_users,
+        chapters_count,
+        lessons_count,
+        all_lesson_duration_sum,
+        access 
+    } = props;
     const router = useRouter();
     const [authModal, setAuthModal] = useState(false);
     const dispatch = useDispatch();
@@ -29,6 +39,7 @@ const CourseView = (props) => {
 
             if (response.status == 201) {
                 dispatch(setAlert("Курсты бастай беруге болады!", "success"));
+                location.href = router.asPath;
             } else {
                 dispatch(setAlert("Бір жерден қателік кетті!", "error"));
             }
@@ -117,17 +128,17 @@ const CourseView = (props) => {
                     {/* Subscribes */}
                     <div className="my-10 flex justify-center gap-5">
                         <div className="flex flex-col items-center">
-                            <div className="flex items-center justify-center">
+                            <div className="flex gap-1 items-center justify-center">
                                 <h1 className="text-neutral-900 font-semibold">{course.all_rating}</h1>
-                                <IoStar className="text-orange-500 ml-2" />
+                                <IoStar className="text-orange-500 text-xl" />
                             </div>
                             <span className="text-xs text-neutral-500">Жалпы рейтинг</span>
                         </div>
 
                         <div className="flex flex-col items-center">
-                            <div className="flex items-center justify-center">
+                            <div className="flex gap-1 items-center justify-center">
                                 <h1 className="text-neutral-900 font-semibold">{course_following_users}</h1>
-                                <PiUsersFill className="text-neutral-900 ml-2" />
+                                <PiUsersThreeFill className="text-neutral-900 text-xl" />
                             </div>
                             <span className="text-xs text-neutral-500">Білім алушы</span>
                         </div>
@@ -139,25 +150,32 @@ const CourseView = (props) => {
                     </div>
 
 
-                    {/* Locals */}
+                    {/* Sum and counts */}
                     <div className="flex justify-center gap-5">
                         <div className="flex flex-col items-center">
-                            <div className="flex items-center justify-center">
-                                <h1 className="text-neutral-900 font-semibold">{course.last_update}</h1>
-                                <PiTimer className="text-neutral-900 ml-2" />
+                            <div className="flex gap-1 items-center justify-center">
+                                <h1 className="text-neutral-900 font-semibold">{chapters_count}</h1>
+                                <PiFolderSimpleFill className="text-neutral-900" />
                             </div>
-                            <span className="text-xs text-neutral-500">Соңғы өзгерістер</span>
+                            <span className="text-xs text-neutral-500">Бөлім</span>
                         </div>
 
                         <div className="flex flex-col items-center">
-                            <div className="flex items-center justify-center">
-                                <h1 className="text-neutral-900 font-semibold">
-                                    {course.ln.map(l => (<div key={l.id}>{l.name}</div>))}
-                                </h1>
-                                <TfiWorld className="text-neutral-900 ml-2" />
+                            <div className="flex gap-1 items-center justify-center">
+                                <h1 className="text-neutral-900 font-semibold">{lessons_count}</h1>
+                                <MdPlayLesson className="text-neutral-900"/>
                             </div>
-                            <span className="text-xs text-neutral-500">Курстың тілі</span>
+                            <span className="text-xs text-neutral-500">Сабақ</span>
                         </div>
+
+                        <div className="flex flex-col items-center">
+                            <div className="flex gap-1 items-center justify-center">
+                                <h1 className="text-neutral-900 font-semibold">{all_lesson_duration_sum} мин</h1>
+                                <PiTimerFill className="text-neutral-900"/>
+                            </div>
+                            <span className="text-xs text-neutral-500">Жалпы ұзақтығы</span>
+                        </div>
+                        
                     </div>
                 </div>
 

@@ -13,9 +13,14 @@ export async function getServerSideProps(context) {
             "Authorization": `JWT ${context.req.cookies.access}`
         }
     }
+
     const res = await fetch(`${BACKEND_URL}/course/${context.params.id}/`, context.req.cookies.access && config)
     const data = await res.json();
+
     const course = data.course;
+    const chapters_count = data.chapters_count;
+    const lessons_count = data.lessons_count;
+    const all_lesson_duration_sum = data.all_lesson_duration_sum;
     const purposes = data.purposes;
     const chapters = data.chapters;
     const lessons = data.lessons;
@@ -27,13 +32,16 @@ export async function getServerSideProps(context) {
     return {
         props: {
             course,
+            course_following_users,
+            chapters_count,
+            lessons_count,
+            all_lesson_duration_sum,
             purposes,
             chapters,
             lessons,
             rating,
             first_url,
             user_course__course_id,
-            course_following_users,
             access: context.req.cookies.access || null
         }
     }
@@ -42,14 +50,17 @@ export async function getServerSideProps(context) {
 
 const Course = (data) => {
     const { 
-        course, 
+        course,
+        course_following_users,
+        chapters_count,
+        lessons_count,
+        all_lesson_duration_sum,
         purposes, 
         lessons, 
         chapters, 
         rating, 
         first_url, 
         user_course__course_id, 
-        course_following_users,
         access 
     } = data; 
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
@@ -63,6 +74,9 @@ const Course = (data) => {
             <CourseDetail 
                 isAuthenticated={isAuthenticated}
                 course={course}
+                chapters_count={chapters_count}
+                lessons_count={lessons_count}
+                all_lesson_duration_sum={all_lesson_duration_sum}
                 purposes={purposes}
                 chapters={chapters}
                 lessons={lessons}

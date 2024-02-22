@@ -7,7 +7,10 @@ import CourseDescription from "./Description";
 const CourseDetail = (props) => {
     const { 
         isAuthenticated, 
-        course, 
+        course,
+        chapters_count,
+        lessons_count,
+        all_lesson_duration_sum,
         purposes, 
         chapters, 
         lessons, 
@@ -23,10 +26,13 @@ const CourseDetail = (props) => {
             {/* Course view */}
             <CourseView 
                 isAuthenticated={isAuthenticated}
-                course={course} 
+                course={course}
                 first_url={first_url}
                 user_course__course_id={user_course__course_id}
                 course_following_users={course_following_users}
+                chapters_count={chapters_count}
+                lessons_count={lessons_count}
+                all_lesson_duration_sum={all_lesson_duration_sum}
                 access={access}
             />
 

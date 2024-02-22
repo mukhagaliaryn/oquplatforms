@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { PiVideoCameraLight } from "react-icons/pi";
+import React from "react";
+import { PiVideoThin } from "react-icons/pi";
 import { SlArrowDown } from "react-icons/sl";
 import { LiaCircle } from "react-icons/lia";
 import { GoCheckCircleFill } from "react-icons/go";
@@ -38,7 +38,7 @@ const LessonsList = (props) => {
     }
 
     return (
-        <div className="w-full hidden md:block md:max-w-sm xl:max-w-md border-l border-neutral-200 overflow-auto">
+        <div className="w-full hidden md:block md:max-w-sm 2xl:max-w-md border-l border-neutral-200 overflow-auto">
             <ul>
                 {user_chapters.map(user_chapter => {
                     return (
@@ -59,13 +59,17 @@ const LessonsList = (props) => {
                                             `}>
                                                 <Link
                                                     href={`/course/${user_course.id}/player/chapter/${user_chapter.id}/lesson/${user_lesson.id}`}
-                                                    className={`flex-1 flex items-center gap-4 text-neutral-500 px-4 py-3 transition-all`}
+                                                    className={`flex-1 flex gap-4 text-neutral-500 p-3 transition-all`}
                                                 >
-                                                    <PiVideoCameraLight className="text-xl" />
-                                                    {user_lesson.lesson.title}
+                                                    <PiVideoThin className="text-xl" />
+                                                    <div className="flex-1">
+                                                        <h4 className="font-normal line-clamp-1">{user_lesson.lesson.title}</h4>
+                                                        <span className="text-xs">{user_lesson.lesson.duration} мин</span>
+                                                    </div>
+                                                    
                                                 </Link>
 
-                                                <div className="text-2xl text-neutral-900 px-3 cursor-pointer">
+                                                <div className="text-xl text-neutral-900 px-2 cursor-pointer">
                                                     {user_lesson.is_completed ?
                                                         <GoCheckCircleFill />
                                                         :

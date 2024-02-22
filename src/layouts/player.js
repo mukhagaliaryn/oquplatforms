@@ -36,7 +36,7 @@ const PlayerLayout = (props) => {
                 <PlayerHeader />
 
                 {isAuthenticated ?
-                    <div className="flex h-full">
+                    <div id="wrapper" className="flex">
                         {props.children}
                     </div>
                     :
