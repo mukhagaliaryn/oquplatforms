@@ -5,37 +5,11 @@ import { PiVideoThin } from "react-icons/pi";
 import { SlArrowDown } from "react-icons/sl";
 import { LiaCircle } from "react-icons/lia";
 import { GoCheckCircleFill } from "react-icons/go";
-import { BACKEND_URL } from "@/src/redux/actions/types";
-import { useDispatch } from "react-redux";
-import { setAlert } from "@/src/redux/actions/alert";
 
 
 const LessonsList = (props) => {
     const { user_course, user_chapters, user_lessons, access } = props;
     const router = useRouter();
-    const dispatch = useDispatch();
-
-    const handleIsCompleted = async (user_course_id, user_chapter_id, user_lesson_id) => {
-        try {
-            const response = await fetch(`${BACKEND_URL}/course/${user_course_id}/chapter/${user_chapter_id}/lesson/${user_lesson_id}/`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `JWT ${access}`
-                },
-            })
-
-            if (response.status == 204) {
-                router.push(router.asPath)
-            } else {
-                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
-            }
-
-        } catch (e) {
-            console.log(e);
-            dispatch(setAlert("Бір жерден қателік кетті!", "error"));
-        }
-    }
 
     return (
         <div className="w-full hidden md:block md:max-w-sm 2xl:max-w-md border-l border-neutral-200 overflow-auto">

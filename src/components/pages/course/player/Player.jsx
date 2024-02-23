@@ -3,7 +3,7 @@ import Tabs from "./_tabs";
 
 
 const Player = (props) => {
-    const { video, user_course } = props;
+    const { video, user_course, user_chapters, user_lessons, handleIsCompleted } = props;
 
 
 
@@ -19,7 +19,12 @@ const Player = (props) => {
                 ></iframe>
             </div>
 
-            <Tabs user_course={user_course} />
+            <Tabs 
+                user_course={user_course} 
+                user_chapters={user_chapters} 
+                user_lessons={user_lessons}
+                handleIsCompleted={handleIsCompleted}
+            />
 
         </div>
     )

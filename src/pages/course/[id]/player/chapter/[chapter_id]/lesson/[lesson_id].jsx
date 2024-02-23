@@ -1,8 +1,10 @@
+import React from "react";
 import LessonsList from "@/src/components/pages/course/player/LessonsList";
 import Player from "@/src/components/pages/course/player/Player";
 import PlayerLayout from "@/src/layouts/player";
 import { BACKEND_URL } from "@/src/redux/actions/types";
-import React from "react";
+import { setAlert } from "@/src/redux/actions/alert";
+import { useDispatch } from "react-redux";
 
 
 export async function getServerSideProps(context) {
@@ -39,6 +41,30 @@ export async function getServerSideProps(context) {
 
 const CoursePlayer = (data) => {
     const { video, user_course, user_chapters, user_lessons, access } = data;
+    const dispatch = useDispatch();
+    
+
+    const handleIsCompleted = async (user_course_id, user_chapter_id, user_lesson_id) => {
+        try {
+            const response = await fetch(`${BACKEND_URL}/course/${user_course_id}/chapter/${user_chapter_id}/lesson/${user_lesson_id}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${access}`
+                },
+            })
+
+            if (response.status == 204) {
+                router.push(router.asPath)
+            } else {
+                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+            }
+
+        } catch (e) {
+            console.log(e);
+            dispatch(setAlert("Бір жерден қателік кетті!", "error"));
+        }
+    }
 
     return (
         <PlayerLayout
@@ -46,13 +72,22 @@ const CoursePlayer = (data) => {
             content={user_course && user_course.course.about}
         >
             {/* Lesson content */}
-            {video && <Player video={video} user_course={user_course} />}
+            {video && 
+                <Player 
+                    video={video} 
+                    user_course={user_course}
+                    user_chapters={user_chapters} 
+                    user_lessons={user_lessons}
+                    handleIsCompleted={handleIsCompleted}
+                />
+            }
 
             {/* Lessons list */}
             <LessonsList 
                 user_course={user_course} 
                 user_chapters={user_chapters} 
-                user_lessons={user_lessons} 
+                user_lessons={user_lessons}
+                handleIsCompleted={handleIsCompleted}
                 access={access}
             />
         </PlayerLayout>
