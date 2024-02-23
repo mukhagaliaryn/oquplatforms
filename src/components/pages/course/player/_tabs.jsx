@@ -11,7 +11,7 @@ import { SlArrowDown } from "react-icons/sl";
 const Tabs = (props) => {
     const { user_course, user_chapters, user_lessons, handleIsCompleted } = props;
     const router = useRouter();
-    const [tabIndex, setTabIndex] = useState(1)
+    const [tabIndex, setTabIndex] = useState(1);
 
     const DecriptionText = (data) => {
         const description = { __html: data }

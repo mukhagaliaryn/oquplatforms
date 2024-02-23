@@ -45,7 +45,7 @@ const CoursePlayer = (data) => {
     const dispatch = useDispatch();
     const router = useRouter();
     
-
+    // Checked lesson complete
     const handleIsCompleted = async (user_course_id, user_chapter_id, user_lesson_id) => {
         try {
             const response = await fetch(`${BACKEND_URL}/course/${user_course_id}/chapter/${user_chapter_id}/lesson/${user_lesson_id}/`, {
@@ -90,7 +90,6 @@ const CoursePlayer = (data) => {
                 user_chapters={user_chapters} 
                 user_lessons={user_lessons}
                 handleIsCompleted={handleIsCompleted}
-                access={access}
             />
         </PlayerLayout>
     )
