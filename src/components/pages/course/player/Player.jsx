@@ -5,8 +5,6 @@ import Tabs from "./_tabs";
 const Player = (props) => {
     const { video, user_course, user_chapters, user_lessons, handleIsCompleted } = props;
 
-
-
     return (
         <div className="flex-1 overflow-auto" id="player">
             <div className="h-80 lg:h-96 xl:h-[480px] 2xl:h-[640px] bg-neutral-900">
@@ -25,7 +23,6 @@ const Player = (props) => {
                 user_lessons={user_lessons}
                 handleIsCompleted={handleIsCompleted}
             />
-
         </div>
     )
 }

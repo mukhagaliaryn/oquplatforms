@@ -40,7 +40,7 @@ const Tabs = (props) => {
             </div>
 
             {/* Contents */}
-            <div>
+            <div className="pb-12 sm:pb-0">
                 {/* Chapters */}
                 <div className={`block md:hidden ${tabIndex === 1 ? "block" : "hidden"}`}>
                     <ul >

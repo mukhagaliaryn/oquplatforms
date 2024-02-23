@@ -8,7 +8,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 
 
 const LessonsList = (props) => {
-    const { user_course, user_chapters, user_lessons, access } = props;
+    const { user_course, user_chapters, user_lessons } = props;
     const router = useRouter();
 
     return (

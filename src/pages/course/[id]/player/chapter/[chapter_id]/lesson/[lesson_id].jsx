@@ -5,6 +5,7 @@ import PlayerLayout from "@/src/layouts/player";
 import { BACKEND_URL } from "@/src/redux/actions/types";
 import { setAlert } from "@/src/redux/actions/alert";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
 
 export async function getServerSideProps(context) {
@@ -42,6 +43,7 @@ export async function getServerSideProps(context) {
 const CoursePlayer = (data) => {
     const { video, user_course, user_chapters, user_lessons, access } = data;
     const dispatch = useDispatch();
+    const router = useRouter();
     
 
     const handleIsCompleted = async (user_course_id, user_chapter_id, user_lesson_id) => {
