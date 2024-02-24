@@ -7,9 +7,11 @@ const Player = (props) => {
 
     return (
         <div className="flex-1 overflow-auto" id="player">
-            <div className="h-80 lg:h-96 xl:h-[480px] 2xl:h-[640px] bg-neutral-900">
+            <div className="relative h-80 lg:h-96 xl:h-[480px] 2xl:h-[640px] bg-neutral-900">
+                
+
                 <iframe 
-                    src={video.frame_url} 
+                    src={`${video.frame_url}`} 
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowFullScreen

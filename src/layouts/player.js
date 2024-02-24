@@ -33,7 +33,9 @@ const PlayerLayout = (props) => {
                 `}
             </Script>
             <div id="root" className="h-screen">
-                <PlayerHeader />
+                <PlayerHeader 
+                    user={user}
+                />
 
                 {isAuthenticated ?
                     <div id="wrapper" className="flex">

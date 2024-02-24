@@ -8,7 +8,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 
 
 const LessonsList = (props) => {
-    const { user_course, user_chapters, user_lessons } = props;
+    const { user_course, user_chapters, user_lessons, handleIsCompleted } = props;
     const router = useRouter();
 
     return (
@@ -28,7 +28,7 @@ const LessonsList = (props) => {
                                 {user_lessons.map(user_lesson => {
                                     if (user_lesson.lesson.chapter === user_chapter.chapter.id) {
                                         return (
-                                            <li key={user_lesson.id} className={`flex items-center hover:bg-neutral-100
+                                            <li key={user_lesson.id} className={`flex hover:bg-neutral-100
                                                 ${router.asPath === `/course/${user_course.id}/player/chapter/${user_chapter.id}/lesson/${user_lesson.id}` && "bg-blue-100"}
                                             `}>
                                                 <Link
@@ -43,11 +43,18 @@ const LessonsList = (props) => {
                                                     
                                                 </Link>
 
-                                                <div className="text-xl text-neutral-900 px-2 cursor-pointer">
+                                                <div
+                                                    title="Өтілген сабақты белгілеуді ұмытпа!" 
+                                                    className={`text-xl text-neutral-900 ${!user_lesson.is_completed && "hover:bg-blue-200"}`}>
                                                     {user_lesson.is_completed ?
-                                                        <GoCheckCircleFill />
+                                                        <div className="flex items-center w-full h-full px-4 cursor-pointer">
+                                                            <GoCheckCircleFill />
+                                                        </div>
                                                         :
-                                                        <div onClick={() => handleIsCompleted(user_course.id, user_chapter.id, user_lesson.id)}>
+                                                        <div 
+                                                            onClick={() => handleIsCompleted(user_course.id, user_chapter.id, user_lesson.id)}
+                                                            className="flex items-center w-full h-full px-4 cursor-pointer"
+                                                        >
                                                             <LiaCircle />
                                                         </div>
                                                     }

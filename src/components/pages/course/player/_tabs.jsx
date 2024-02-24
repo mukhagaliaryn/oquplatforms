@@ -25,6 +25,14 @@ const Tabs = (props) => {
                 <button
                     id="overview"
                     onClick={() => setTabIndex(1)}
+                    className={`px-6 py-3 font-semibold text-neutral-900 transition-all border-b-4 focus:border-b-neutral-900 ${tabIndex === 1 ? "border-b-neutral-900" : "border-b-transparent"} hidden md:block`}
+                >
+                    Шолу
+                </button>
+
+                <button
+                    id="overview"
+                    onClick={() => setTabIndex(1)}
                     className={`px-6 py-3 font-semibold text-neutral-900 transition-all border-b-4 focus:border-b-neutral-900 ${tabIndex === 1 ? "border-b-neutral-900" : "border-b-transparent"} md:hidden`}
                 >
                     Мазмұны
@@ -33,7 +41,7 @@ const Tabs = (props) => {
                 <button
                     id="overview"
                     onClick={() => setTabIndex(2)}
-                    className={`px-6 py-3 font-semibold text-neutral-900 transition-all border-b-4 focus:border-b-neutral-900 ${tabIndex === 2 ? "border-b-neutral-900" : "border-b-transparent"}`}
+                    className={`px-6 py-3 font-semibold text-neutral-900 transition-all border-b-4 focus:border-b-neutral-900 ${tabIndex === 2 ? "border-b-neutral-900" : "border-b-transparent"} md:hidden`}
                 >
                     Шолу
                 </button>
@@ -41,6 +49,20 @@ const Tabs = (props) => {
 
             {/* Contents */}
             <div className="pb-12 sm:pb-0">
+                {/* Review */}
+                <div className={`${tabIndex === 1 ? "block" : "hidden"} hidden md:block`}>
+                    <div className="p-10 border-b border-neutral-200">
+                        <h1 className="text-2xl font-bold">{user_course.course.name}</h1>
+                        <span className="block mt-2 text-sm text-neutral-500">{user_course.course.about}</span>
+                    </div>
+
+                    <div className="p-10 border-b border-neutral-200">
+                        <div className="text-neutral-500 text-sm block">
+                            {DecriptionText(user_course.course.description)}
+                        </div>
+                    </div>
+                </div>
+
                 {/* Chapters */}
                 <div className={`block md:hidden ${tabIndex === 1 ? "block" : "hidden"}`}>
                     <ul >
@@ -58,9 +80,12 @@ const Tabs = (props) => {
                                         {user_lessons.map(user_lesson => {
                                             if (user_lesson.lesson.chapter === user_chapter.chapter.id) {
                                                 return (
-                                                    <li key={user_lesson.id} className={`flex items-center hover:bg-neutral-100
-                                                    ${router.asPath === `/course/${user_course.id}/player/chapter/${user_chapter.id}/lesson/${user_lesson.id}` && "bg-blue-100"}
-                                                `}>
+                                                    <li 
+                                                        key={user_lesson.id} 
+                                                        className={`flex hover:bg-neutral-100
+                                                            ${router.asPath === `/course/${user_course.id}/player/chapter/${user_chapter.id}/lesson/${user_lesson.id}` && "bg-blue-100"}
+                                                        `}
+                                                    >
                                                         <Link
                                                             href={`/course/${user_course.id}/player/chapter/${user_chapter.id}/lesson/${user_lesson.id}`}
                                                             className={`flex-1 flex gap-4 text-neutral-500 p-3 transition-all`}
@@ -73,7 +98,7 @@ const Tabs = (props) => {
 
                                                         </Link>
 
-                                                        <div className="text-xl text-neutral-900 px-2 cursor-pointer">
+                                                        <div className="flex items-center text-xl text-neutral-900 px-4 cursor-pointer hover:bg-blue-200">
                                                             {user_lesson.is_completed ?
                                                                 <GoCheckCircleFill />
                                                                 :
