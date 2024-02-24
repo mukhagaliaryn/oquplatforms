@@ -93,7 +93,7 @@ export const AuthModal = (props) => {
 
 
     return (
-        <div className="fixed top-0 left-0 z-10 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
+        <div className="fixed top-0 left-0 z-50 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
             {closeLink ?
                 <div
                     onClick={() => router.push("/")}
