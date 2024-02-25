@@ -1,5 +1,5 @@
 import React from "react";
-import Tabs from "./_tabs";
+import Tabs from "./Tabs";
 
 
 const Player = (props) => {

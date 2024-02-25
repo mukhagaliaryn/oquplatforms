@@ -53,8 +53,6 @@ const Main = (data) => {
 
             {/* popular topics */}
             {popular_topics.length > 0 && <PopularTopics popular_topics={popular_topics} />}
-
-            {/* <div className="mt-8"></div> */}
         </MainLayout>
     )
 }

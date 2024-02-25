@@ -21,11 +21,11 @@ const AuthorsList = (props) => {
             </div>
 
             <Swiper
-                slidesPerView={1}
+                slidesPerView={2}
                 breakpoints={{
-                    420: { // xs
-                        slidesPerView: 2
-                    },
+                    // 420: { // xs
+                    //     slidesPerView: 2
+                    // },
                     640: {
                         slidesPerView: 3
                     },
@@ -61,7 +61,7 @@ const AuthorsList = (props) => {
                                     <div className="mt-4 text-center">
                                         <h1 className="font-semibold">{author.user.full_name}</h1>
 
-                                        <div className="mt-2 py-1 px-3 text-xs rounded-md bg-blue-100 text-blue-500 inline-block">
+                                        <div className="mt-2 bg-blue-100 text-blue-500 py-1 px-3 text-xs rounded-md line-clamp-1 sm:inline-block">
                                             <span>{author.specialty}</span>
                                         </div>
                                     </div>

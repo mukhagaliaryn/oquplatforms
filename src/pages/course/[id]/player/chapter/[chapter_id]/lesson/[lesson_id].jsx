@@ -1,6 +1,6 @@
 import React from "react";
-import LessonsList from "@/src/components/pages/course/player/LessonsList";
-import Player from "@/src/components/pages/course/player/Player";
+import LessonsList from "@/src/components/pages/course/player/lessons/index";
+import Player from "@/src/components/pages/course/player/play";
 import PlayerLayout from "@/src/layouts/player";
 import { BACKEND_URL } from "@/src/redux/actions/types";
 import { setAlert } from "@/src/redux/actions/alert";

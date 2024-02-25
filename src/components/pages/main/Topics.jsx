@@ -14,7 +14,7 @@ const PopularTopics = (props) => {
             </div>
 
             <Swiper
-                slidesPerView={1}
+                slidesPerView={2}
                 breakpoints={{
                     640: {
                         slidesPerView: 2
