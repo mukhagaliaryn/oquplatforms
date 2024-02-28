@@ -5,7 +5,7 @@ import { logout } from "../redux/actions/auth";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { CiSettings, CiLogout } from "react-icons/ci";
-import { PiUserCircleThin, PiUserLight } from "react-icons/pi";
+import { PiUserCircleThin } from "react-icons/pi";
 import Image from "next/image";
 
 
@@ -36,26 +36,28 @@ const Dropdown = (props) => {
                     id="dropdown"
                     className="absolute overflow-hidden w-64 bg-white/80 backdrop-blur-xl right-3 top-10 border border-neutral-200 rounded-md shadow-sm"
                 >
-                    <div
-                        onClick={() => router.push("/accounts/user/")} 
-                        className="flex items-start gap-2 p-2 border-b border-neutral-200 cursor-pointer"
-                    >
-                        <div className="w-12 h-12">
-                            {user.image ?
-                                <div className="rounded-full w-full h-full overflow-hidden">
-                                    <Image src={user.image} width={520} height={520} alt={user.full_name} />
-                                </div>
-                                :
-                                <div className="text-5xl bg-neutral-900 text-neutral-100 rounded-full w-full h-full">
-                                    <PiUserCircleThin />
-                                </div>
-                            }
+                    {user &&
+                        <div
+                            onClick={() => router.push("/accounts/user/")}
+                            className="flex items-start gap-2 p-2 border-b border-neutral-200 cursor-pointer"
+                        >
+                            <div className="w-12 h-12">
+                                {user.image ?
+                                    <div className="rounded-full w-full h-full overflow-hidden">
+                                        <Image src={user.image} width={520} height={520} alt={user.full_name} />
+                                    </div>
+                                    :
+                                    <div className="text-5xl bg-neutral-900 text-neutral-100 rounded-full w-full h-full">
+                                        <PiUserCircleThin />
+                                    </div>
+                                }
+                            </div>
+                            <div className="flex-1">
+                                <h1 className="text-neutral-900 font-semibold">{user.full_name}</h1>
+                                <span className="block text-blue-500 text-sm">{user.email}</span>
+                            </div>
                         </div>
-                        <div className="flex-1">
-                            <h1 className="text-neutral-900 font-semibold">{user.full_name}</h1>
-                            <span className="block text-blue-500 text-sm">{user.email}</span>
-                        </div>
-                    </div>
+                    }
                     <ul>
                         <li className="border-b border-neutral-200 transition-all p-2 text-neutral-500 cursor-pointer hover:bg-neutral-100/60">
                             <Link href={"/settings"} className="flex gap-2 items-center">
@@ -66,7 +68,7 @@ const Dropdown = (props) => {
                             </Link>
                         </li>
                         <li className="border-b border-neutral-200 transition-all p-2 text-neutral-500 cursor-pointer hover:bg-neutral-100/60">
-                            <button 
+                            <button
                                 onClick={() => logoutHandler()}
                                 className="flex gap-2 items-center w-full"
                             >
