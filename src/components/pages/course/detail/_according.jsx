@@ -8,16 +8,14 @@ const ChapterAccording = (props) => {
 
     return (
         <div className="">
-            <div className="flex justify-between items-center text-neutral-900 py-4 border-b bg-neutral-100 border-neutral-200 transition-all cursor-pointer">
+            <div className="flex justify-between items-center text-neutral-900 py-4 border-b bg-neutral-100 border-neutral-200 transition-all">
                 <div className="flex items-center gap-2">
                     <PiFolderSimpleFill className="text-xl" />
                     <h1 className="text-sm font-medium">{chapter.chapter_name}</h1>
                 </div>
             </div>
 
-            <motion.div
-                className=""
-            >
+            <motion.div>
                 {lessons.map(lesson => {
                     if (lesson.chapter === chapter.id) {
                         return (

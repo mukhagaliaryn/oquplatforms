@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { PiUserCircleThin } from "react-icons/pi";
 import { BACKEND_URL } from "@/src/redux/actions/types";
-import EditProfileModal, { AuthModal } from "@/src/components/Modals";
+import { AuthModal, EditProfileModal } from "@/src/components/Modals";
 
 
 export async function getServerSideProps(context) {

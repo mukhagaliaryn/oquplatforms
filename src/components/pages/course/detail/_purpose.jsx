@@ -15,7 +15,7 @@ const PurposeSection = (props) => {
             className="bg-white mb-2 border border-neutral-200 transition-all rounded-lg overflow-hidden relative"
         >
             {/* Title */}
-            <div className="border-b border-neutral-200 py-2 px-5 flex justify-between" onClick={() => setShow(!show)}>
+            <div className="border-b border-neutral-200 py-2 px-5 flex justify-between cursor-pointer" onClick={() => setShow(!show)}>
                 <h1 className="text-neutral-900 font-semibold">Өтілу мақсаты</h1>
 
                 <button className="text-neutral-900">
@@ -24,7 +24,7 @@ const PurposeSection = (props) => {
             </div>
             {/* Content */}
             <div className="p-5">
-                <div className="grid gap-5 grid-cols-2">
+                <div className="grid gap-5 grid-cols-1 md:grid-cols-2">
                     {purposes.map(purpose => (
                         <div className="flex" key={purpose.id}>
                             <GoCheck className="mr-2 text-neutral-900"/>
@@ -35,7 +35,7 @@ const PurposeSection = (props) => {
             </div>
 
             {!show &&
-                <div className="absolute bottom-0 left-0 w-full h-10 cursor-pointer" id="shadow" onClick={() => setShow(!show)}></div>
+                <div className="absolute bottom-0 left-0 w-full h-20 cursor-pointer" id="shadow" onClick={() => setShow(!show)}></div>
             }
         </motion.div>
     )

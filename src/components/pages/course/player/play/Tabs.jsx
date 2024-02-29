@@ -71,7 +71,7 @@ const Tabs = (props) => {
                                 return (
                                     <div key={author.id} className="flex gap-2">
                                         <Image
-                                            src={author.image} width={512} height={512} alt={author.full_name}
+                                            src={author.image ? author.image : "/images/user.png"} width={512} height={512} alt={author.full_name}
                                             className="w-12 h-12 rounded-full"
                                         />
                                         <div className="">
@@ -130,7 +130,7 @@ const Tabs = (props) => {
                                 return (
                                     <div key={author.id} className="flex gap-2">
                                         <Image
-                                            src={author.image} width={512} height={512} alt={author.full_name}
+                                            src={author.image ? author.image : "/images/user.png"} width={512} height={512} alt={author.full_name}
                                             className="w-12 h-12 rounded-full"
                                         />
                                         <div className="">

@@ -57,7 +57,7 @@ const CoursesList = (props) => {
                                     style={{ backgroundImage: `url(${course.image ? course.image : "/images/course.png"})` }}
                                     className="h-40 bg-cover bg-no-repeat bg-center"
                                 >
-                                    <div className="flex justify-center items-center w-full h-full bg-white bg-opacity-70 backdrop-blur-3xl rounded-t-lg overflow-hidden">
+                                    <div className="flex justify-center items-center w-full h-full bg-white/70 backdrop-blur-3xl rounded-t-lg overflow-hidden">
                                         <Image src={course.image ? course.image : "/images/course.png"} width={520} height={520} className="w-20 h-20" alt={course.name} />
                                     </div>
                                 </div>

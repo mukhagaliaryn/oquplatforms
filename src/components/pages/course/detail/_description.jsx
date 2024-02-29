@@ -18,7 +18,7 @@ const DescriptionSection = (props) => {
             className="bg-white mb-2 border border-neutral-200 transition-all rounded-lg overflow-hidden relative"
         >
             {/* Title */}
-            <div className="border-b border-neutral-200 py-2 px-5 flex justify-between" onClick={() => setShow(!show)}>
+            <div className="border-b border-neutral-200 py-2 px-5 flex justify-between cursor-pointer" onClick={() => setShow(!show)}>
                 <h1 className="text-neutral-900 font-semibold">Толық сипаттама</h1>
 
                 <button className="text-neutral-900">
@@ -33,7 +33,7 @@ const DescriptionSection = (props) => {
             </div>
 
             {!show &&
-                <div className="absolute bottom-0 left-0 w-full h-10 cursor-pointer" id="shadow" onClick={() => setShow(!show)}></div>
+                <div className="absolute bottom-0 left-0 w-full h-20 cursor-pointer" id="shadow" onClick={() => setShow(!show)}></div>
             }
         </motion.div>
     )

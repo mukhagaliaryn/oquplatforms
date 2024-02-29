@@ -4,7 +4,7 @@ import { IoStar } from "react-icons/io5";
 import { PiFolderSimpleFill, PiShareNetworkFill, PiTimerFill, PiUsersThreeFill } from "react-icons/pi";
 import { MdPlayLesson } from "react-icons/md";
 import { useRouter } from "next/router";
-import { AuthModal } from "@/src/components/Modals";
+import { AuthModal, ShareModal } from "@/src/components/Modals";
 import { useDispatch } from "react-redux";
 import { setAlert } from "@/src/redux/actions/alert";
 import { BACKEND_URL } from "@/src/redux/actions/types";
@@ -24,6 +24,7 @@ const CourseView = (props) => {
     } = props;
     const router = useRouter();
     const [authModal, setAuthModal] = useState(false);
+    const [shareModal, setShareModal] = useState(false);
     const dispatch = useDispatch();
 
 
@@ -120,7 +121,9 @@ const CourseView = (props) => {
                                 Кіру/Тіркелу
                             </button>
                         }
-                        <button className="bg-neutral-900 inline-block px-4 py-2 font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95">
+                        <button
+                            onClick={() => setShareModal(!shareModal)} 
+                            className="bg-neutral-900 inline-block px-4 py-2 font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95">
                             <PiShareNetworkFill />
                         </button>
                     </div>
@@ -192,6 +195,13 @@ const CourseView = (props) => {
             </div>
 
             {authModal && <AuthModal authModal={authModal} setAuthModal={setAuthModal} />}
+            {shareModal && 
+                <ShareModal 
+                    shareModal={shareModal} 
+                    setShareModal={setShareModal} 
+                    currentURL={`${BACKEND_URL}${router.asPath}`}
+                />
+            }
         </React.Fragment>
 
     )

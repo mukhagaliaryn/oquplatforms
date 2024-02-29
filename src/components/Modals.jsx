@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { PiEyeLight, PiEyeSlashLight, PiUserCircleThin, PiUserLight, PiWarningOctagonLight } from "react-icons/pi";
+import { PiEyeLight, PiEyeSlashLight, PiUserCircleThin, PiUserLight, PiWarningOctagonLight, PiCopySimpleLight } from "react-icons/pi";
 import { TfiClose, TfiEmail } from "react-icons/tfi";
 import { login, passwordReset, signup } from "../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -375,7 +375,8 @@ export const AuthModal = (props) => {
 }
 
 
-const EditProfileModal = (props) => {
+// Profile edit modal
+export const EditProfileModal = (props) => {
     const { user, editModal, setEditModal } = props;
 
     return (
@@ -403,7 +404,7 @@ const EditProfileModal = (props) => {
                                 </div>
                             }
                         </div>
-                        <input 
+                        <input
                             type="file"
                             className="pl-4 pr-10 py-2 border text-neutral-900 border-neutral-200 rounded-md outline-none w-full text-sm transition-all focus:border-b-blue-500 focus:shadow focus:bg-white"
                         />
@@ -431,4 +432,36 @@ const EditProfileModal = (props) => {
     )
 }
 
-export default EditProfileModal;
+
+
+export const ShareModal = (props) => {
+    const { currentURL, shareModal, setShareModal } = props;
+
+    return (
+        <div className="fixed top-0 left-0 z-10 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
+            <div
+                onClick={() => setShareModal(!shareModal)}
+                className="w-8 h-8 rounded-md text-neutral-500 bg-white absolute top-4 right-4 shadow-sm flex justify-center items-center cursor-pointer transition-all hover:shadow active:scale-95"
+            >
+                <TfiClose />
+            </div>
+
+            <div className="max-w-lg w-full overflow-hidden p-5 bg-white border border-neutral-200 shadow-sm rounded-lg">
+                <h1 className="text-neutral-900 font-semibold text-xl my-5 text-center">Басқалармен бөлісу</h1>
+
+                <form className="grid gap-4">
+                    <div className="relative">
+                        <div className="pl-4 pr-10 py-2 border text-neutral-900 border-neutral-200 rounded-md outline-none w-full text-sm transition-all focus:border-b-blue-500 focus:shadow focus:bg-white">
+                            {currentURL}
+                        </div>
+                        <div 
+                            onClick={() => alert('Copied!')}
+                            className="absolute top-2 right-3 text-neutral-500 text-xl cursor-pointer">
+                            <PiCopySimpleLight />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
