@@ -15,6 +15,7 @@ export async function getServerSideProps(context) {
             "Authorization": `JWT ${context.req.cookies.access}`
         }
     }
+
     const id = context.params.id;
     const chapter_id = context.params.chapter_id;
     const lesson_id = context.params.lesson_id;
@@ -57,11 +58,10 @@ const CoursePlayer = (data) => {
             })
 
             if (response.status == 204) {
-                router.push(router.asPath)
+                router.push(router.asPath);
             } else {
                 dispatch(setAlert("Бір жерден қателік кетті!", "error"));
             }
-
         } catch (e) {
             console.log(e);
             dispatch(setAlert("Бір жерден қателік кетті!", "error"));
@@ -95,6 +95,5 @@ const CoursePlayer = (data) => {
     )
 }
 
+
 export default CoursePlayer;
-
-

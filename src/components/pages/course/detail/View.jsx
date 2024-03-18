@@ -28,6 +28,7 @@ const CourseView = (props) => {
 
     const router = useRouter();
 
+    
     return (
         <React.Fragment>
             <div id="course-sidebar" className="bg-white flex flex-col justify-between w-full lg:w-96 border border-neutral-200 rounded-lg overflow-auto lg:sticky lg:top-2">
