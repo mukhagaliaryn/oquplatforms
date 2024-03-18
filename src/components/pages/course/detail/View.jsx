@@ -1,79 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { IoStar } from "react-icons/io5";
+import { useRouter } from "next/router";
 import { PiFolderSimpleFill, PiShareNetworkFill, PiTimerFill, PiUsersThreeFill } from "react-icons/pi";
 import { MdPlayLesson } from "react-icons/md";
-import { useRouter } from "next/router";
 import { AuthModal, ShareModal } from "@/src/components/Modals";
-import { useDispatch } from "react-redux";
-import { setAlert } from "@/src/redux/actions/alert";
-import { BACKEND_URL } from "@/src/redux/actions/types";
+import { WEBSITE_URL } from "@/src/redux/actions/types";
+import { getAllLessonDurationSum, getCourseType } from "@/src/utils/courseType";
 
 
 const CourseView = (props) => {
     const { 
         isAuthenticated, 
         course, 
-        first_url, 
         user_course__course_id, 
         course_following_users,
         chapters_count,
         lessons_count,
         all_lesson_duration_sum,
-        access 
+        handlePostCourse,
+        handlePutCourse,
+        authModal,
+        setAuthModal,
+        shareModal,
+        setShareModal
     } = props;
+
     const router = useRouter();
-    const [authModal, setAuthModal] = useState(false);
-    const [shareModal, setShareModal] = useState(false);
-    const dispatch = useDispatch();
-
-
-    const handlePostCourse = async () => {
-        try {
-            const response = await fetch(`${BACKEND_URL}/course/${course.id}/`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `JWT ${access}`
-                },
-            })
-
-            if (response.status == 201) {
-                dispatch(setAlert("Курсты бастай беруге болады!", "success"));
-                location.href = router.asPath;
-            } else {
-                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
-            }
-
-        } catch (e) {
-            console.log(e);
-            dispatch(setAlert("Бір жерден қателік кетті!", "error"));
-        }
-    }
-
-
-    const handlePutCourse = async () => {
-        try {
-            const response = await fetch(`${BACKEND_URL}/course/${course.id}/`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `JWT ${access}`
-                },
-            })
-
-            if (response.status == 201) {
-                dispatch(setAlert("Жаңа өзгерістер...", "success"));
-                router.push(`/course/${first_url.user_course_id}/player/chapter/${first_url.user_chapter_id}/lesson/${first_url.user_lesson_id}`)
-            } else {
-                dispatch(setAlert("Бір жерден қателік кетті!", "error"));
-            }
-
-        } catch (e) {
-            console.log(e);
-            dispatch(setAlert("Бір жерден қателік кетті!", "error"));
-        }
-    }
 
     return (
         <React.Fragment>
@@ -173,7 +126,7 @@ const CourseView = (props) => {
 
                         <div className="flex flex-col items-center">
                             <div className="flex gap-1 items-center justify-center">
-                                <h1 className="text-neutral-900 font-semibold">{all_lesson_duration_sum} мин</h1>
+                                <h1 className="text-neutral-900 font-semibold">{getAllLessonDurationSum(all_lesson_duration_sum)}</h1>
                                 <PiTimerFill className="text-neutral-900"/>
                             </div>
                             <span className="text-xs text-neutral-500">Жалпы ұзақтығы</span>
@@ -183,14 +136,8 @@ const CourseView = (props) => {
                 </div>
 
                 {/* Course type */}
-                <div className="">
-                    <div className="flex items-start">
-                        <div className="text-white bg-neutral-900 font-bold text-3xl p-2">EX</div>
-                        <div className="ml-2">
-                            <h1 className="font-semibold text-sm text-neutral-900">Express free</h1>
-                            <span className="text-neutral-500 text-xs block">Экспресс курс</span>
-                        </div>
-                    </div>
+                <div className="relative">
+                    {getCourseType(course.course_type)}
                 </div>
             </div>
 
@@ -199,7 +146,7 @@ const CourseView = (props) => {
                 <ShareModal 
                     shareModal={shareModal} 
                     setShareModal={setShareModal} 
-                    currentURL={`${BACKEND_URL}${router.asPath}`}
+                    currentURL={`${WEBSITE_URL}${router.asPath}`}
                 />
             }
         </React.Fragment>

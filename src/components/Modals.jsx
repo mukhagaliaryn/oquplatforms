@@ -93,7 +93,7 @@ export const AuthModal = (props) => {
 
 
     return (
-        <div className="fixed top-0 left-0 z-50 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
+        <div className="fixed top-0 left-0 z-40 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
             {closeLink ?
                 <div
                     onClick={() => router.push("/")}
@@ -122,7 +122,7 @@ export const AuthModal = (props) => {
                 >
                     <div>
                         <Image
-                            src={"/images/full-logo-white.png"} width={945} height={300} alt="logo"
+                            src={"/images/full-logo-white.svg"} width={945} height={300} alt="logo"
                             className="w-24 mx-auto"
                         />
                         <h1 className="text-neutral-900 font-semibold text-xl my-5 text-center">Жүйеге кіру</h1>
@@ -204,7 +204,7 @@ export const AuthModal = (props) => {
                 >
                     <div>
                         <Image
-                            src={"/images/full-logo-white.png"} width={945} height={300} alt="logo"
+                            src={"/images/full-logo-white.svg"} width={945} height={300} alt="logo"
                             className="w-24 mx-auto"
                         />
                         <h1 className="text-neutral-900 font-semibold text-xl my-5 text-center">Регистрация</h1>
@@ -326,7 +326,7 @@ export const AuthModal = (props) => {
                 >
                     <div>
                         <Image
-                            src={"/images/full-logo-white.png"} width={945} height={300} alt="logo"
+                            src={"/images/full-logo-white.svg"} width={945} height={300} alt="logo"
                             className="w-24 mx-auto"
                         />
                         <h1 className="text-neutral-900 font-semibold text-xl my-5 text-center">Парольді қалпына келтіру</h1>
@@ -380,7 +380,7 @@ export const EditProfileModal = (props) => {
     const { user, editModal, setEditModal } = props;
 
     return (
-        <div className="fixed top-0 left-0 z-10 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
+        <div className="fixed top-0 left-0 z-40 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
             <div
                 onClick={() => setEditModal(!editModal)}
                 className="w-8 h-8 rounded-md text-neutral-500 bg-white absolute top-4 right-4 shadow-sm flex justify-center items-center cursor-pointer transition-all hover:shadow active:scale-95"
@@ -438,7 +438,7 @@ export const ShareModal = (props) => {
     const { currentURL, shareModal, setShareModal } = props;
 
     return (
-        <div className="fixed top-0 left-0 z-10 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
+        <div className="fixed top-0 left-0 z-40 w-full h-full p-2 flex justify-center items-center bg-white/50 backdrop-blur-3xl">
             <div
                 onClick={() => setShareModal(!shareModal)}
                 className="w-8 h-8 rounded-md text-neutral-500 bg-white absolute top-4 right-4 shadow-sm flex justify-center items-center cursor-pointer transition-all hover:shadow active:scale-95"

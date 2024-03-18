@@ -1,7 +1,6 @@
 import CourseDetail from "@/src/components/pages/course/detail";
 import MainLayout from "@/src/layouts/main";
 import { BACKEND_URL } from "@/src/redux/actions/types";
-import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -24,6 +23,7 @@ export async function getServerSideProps(context) {
     const purposes = data.purposes;
     const chapters = data.chapters;
     const lessons = data.lessons;
+    const open_video = data.open_video;
     const rating = data.rating;
     const first_url = data.first_url || null;
     const user_course__course_id = data.user_course__course_id || null
@@ -39,6 +39,7 @@ export async function getServerSideProps(context) {
             purposes,
             chapters,
             lessons,
+            open_video,
             rating,
             first_url,
             user_course__course_id,
@@ -56,7 +57,8 @@ const Course = (data) => {
         lessons_count,
         all_lesson_duration_sum,
         purposes, 
-        lessons, 
+        lessons,
+        open_video,
         chapters, 
         rating, 
         first_url, 
@@ -80,6 +82,7 @@ const Course = (data) => {
                 purposes={purposes}
                 chapters={chapters}
                 lessons={lessons}
+                open_video={open_video}
                 rating={rating}
                 first_url={first_url}
                 user_course__course_id={user_course__course_id}

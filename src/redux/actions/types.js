@@ -30,6 +30,8 @@ export const DRAG_BUFFER = 50;
 // export const DEVELOPMENT = "DEVELOPMENT";
 export const DEVELOPMENT = "PRODUCTION";
 
-// Backend URLs
-// export const BACKEND_URL = 'http://127.0.0.1:8000';
-export const BACKEND_URL = 'https://api.oquplatforms.com';
+// Backend URL
+export const BACKEND_URL = DEVELOPMENT === "DEVELOPMENT" ? 'http://127.0.0.1:8000' : 'https://api.oquplatforms.com';
+
+// Website URL
+export const WEBSITE_URL = DEVELOPMENT === "DEVELOPMENT" ? "http://localhost:3000" : 'http://oquplatforms.com';

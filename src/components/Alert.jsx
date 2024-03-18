@@ -6,7 +6,7 @@ const Alert = () => {
     const alerts = useSelector(state => state.alert);
 
     return (
-        <div className="relative w-full h-full z-30">
+        <div className="relative w-full h-full z-50">
             {alerts !== null && alerts.length > 0 && alerts.map(alert => (
                 <div key={alert.id} 
                     className={`fixed w-full transition-all bottom-0 right-0 p-2 text-center ${alert.alertType === "success" ? "text-white bg-green-500" : "text-white bg-red-500"}`}   

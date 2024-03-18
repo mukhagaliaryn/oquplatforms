@@ -20,7 +20,7 @@ export const Header = (props) => {
 
                 <div id="logo" className="flex items-center gap-2">
                     <Link href={"/"} className="flex h-full items-center transition-all active:scale-95">
-                        <Image src={"/images/full-logo-white.png"} className="w-16" width={945} height={300} alt="Logo" />
+                        <Image src={"/images/full-logo-white.svg"} className="w-16" width={945} height={300} alt="Logo" />
                     </Link>
                     <span className="font-poppins font-semibold text-base block pl-2 border-l border-neutral-200">platforms</span>
                 </div>
@@ -103,7 +103,7 @@ export const PlayerHeader = (props) => {
             <div className="flex justify-between h-12 px-4">
                 <div id="logo" className="flex items-center">
                     <Link href={"/"} className="flex h-full items-center transition-all mr-2 active:scale-95">
-                        <Image src={"/images/full-logo-black.png"} className="w-16" width={945} height={300} alt="Logo" />
+                        <Image src={"/images/full-logo-black.svg"} className="w-16" width={945} height={300} alt="Logo" />
                     </Link>
                     <span className="font-poppins font-semibold block pl-2 border-l text-white border-neutral-200">player</span>
                 </div>

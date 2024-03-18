@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="shortcut icon" href="/images/oqu-logo.png" type="image/x-icon" />
+        <link rel="shortcut icon" href="/images/icon-logo.png" type="image/x-icon" />
       </Head>
       <body className="overflow-hidden">
         <Main />

@@ -39,14 +39,14 @@ const Category = (data) => {
             content={"Категория парақшасы - OQU platforms"}
         >
             <div>
-                <div className="bg-neutral-900 h-80 md:h-96 rounded-lg relative">
+                <div className="bg-neutral-400 h-80 md:h-96 rounded-lg relative">
                     <div className="w-full h-full p-10 flex flex-col md:flex-row gap-6 items-center text-neutral-100">
                         <div className="text-6xl md:text-8xl">
                             {setTopicIcon(topic.slug)}
                         </div>
                         <div className="flex-1 text-center md:text-left">
                             <h1 className="text-2xl md:text-5xl font-bold">{topic.name_kk}</h1>
-                            <span className="block text-neutral-500">{topic.own.name_kk}</span>
+                            <span className="block text-neutral-100">{topic.own.name_kk}</span>
                         </div>
                     </div>
 
