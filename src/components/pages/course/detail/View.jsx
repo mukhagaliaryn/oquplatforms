@@ -4,6 +4,7 @@ import { IoStar } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { PiFolderSimpleFill, PiShareNetworkFill, PiTimerFill, PiUsersThreeFill } from "react-icons/pi";
 import { MdPlayLesson } from "react-icons/md";
+import { IoIosStar } from "react-icons/io";
 import { AuthModal, ShareModal } from "@/src/components/Modals";
 import { WEBSITE_URL } from "@/src/redux/actions/types";
 import { getAllLessonDurationSum, getCourseType } from "@/src/utils/courseType";
@@ -51,20 +52,33 @@ const CourseView = (props) => {
                     <div className="flex justify-center gap-2">
                         {isAuthenticated ?
                             <React.Fragment>
-                                {course.id === user_course__course_id ?
-                                    <button
-                                        onClick={handlePutCourse}
-                                        className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
-                                    >
-                                        Курсқа кіру
-                                    </button>
-                                    :
-                                    <button
-                                        onClick={handlePostCourse}
-                                        className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
-                                    >
-                                        Курсты бастау
-                                    </button>
+                                {course.course_type === "FREE" ?
+                                    <React.Fragment>
+                                        {course.id === user_course__course_id ?
+                                            <button
+                                                onClick={handlePutCourse}
+                                                className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
+                                            >
+                                                Курсқа кіру
+                                            </button>
+                                        :
+                                            <button
+                                                onClick={handlePostCourse}
+                                                className="bg-neutral-900 inline-block px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
+                                            >
+                                                Курсты бастау
+                                            </button>
+                                        }
+                                    </React.Fragment>
+                                :
+                                    <div className="relative">
+                                        <button
+                                            className="flex gap-2 items-center bg-neutral-900 px-6 py-2 text-sm font-medium text-white rounded-md transition-all border border-neutral-900 hover:bg-transparent hover:text-neutral-900 active:scale-95"
+                                        >
+                                            <IoIosStar />
+                                            <>50 000 тг</>
+                                        </button>
+                                    </div>
                                 }
                             </React.Fragment>
                         :

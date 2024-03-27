@@ -9,7 +9,7 @@ import NextNprogress from 'nextjs-progressbar';
 import { Provider } from 'react-redux';
 import { useStore } from '@/src/redux/store';
 import Alert from '../components/Alert';
-import { Inter_Tight, Poppins } from 'next/font/google'
+import { Inter_Tight, Poppins } from 'next/font/google';
 
 
 const inter = Inter_Tight({

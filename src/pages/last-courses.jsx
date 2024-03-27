@@ -67,10 +67,10 @@ const LastCourses = (data) => {
                                             <IoStar />
                                         </div>
                                         <div className="text-xs bg-blue-100 px-3 py-1 text-blue-500 rounded-md">
-                                            {course.course_type === "DETAIL" ?
-                                                <span>Экспресс курс</span>
+                                            {course.course_type === "FREE" ?
+                                                <span>Тегін контент</span>
                                             :
-                                                <span>Бағытталған курс</span>
+                                                <span>Ақылы контент</span>
                                             }
                                         </div>
                                     </div>
